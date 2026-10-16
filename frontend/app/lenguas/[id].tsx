@@ -175,10 +175,20 @@ export default function LanguageDetailScreen() {
               }}
               style={{ marginTop: theme.spacing.md }}
             />
+            <Button
+              title="Explore demonstration lessons"
+              variant="secondary"
+              onPress={() =>
+                router.push({
+                  pathname: "/lenguas/[id]/lecciones",
+                  params: { id: String(languageQuery.data.id) },
+                })
+              }
+              style={{ marginTop: theme.spacing.md }}
+            />
           </>
         )}
       </ScrollView>
     </SafeAreaView>
   );
 }
-

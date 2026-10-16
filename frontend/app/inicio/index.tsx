@@ -1,4 +1,4 @@
-import { BookOpen, Languages } from "lucide-react-native";
+import { BookOpen, Languages, MapPin, Sparkles, Trophy } from "lucide-react-native";
 import { useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -122,8 +122,32 @@ export default function HomeScreen() {
             with reliable sources and community guidance.
           </Text>
         </Card>
+        <View className="mt-5">
+          <Button
+            title="Learning progress"
+            onPress={() => router.push("/progreso")}
+            variant="secondary"
+            style={{ marginBottom: theme.spacing.sm }}
+          />
+          <Button
+            title="Explore the schematic map"
+            onPress={() => router.push("/mapa")}
+            variant="secondary"
+            style={{ marginBottom: theme.spacing.sm }}
+          />
+          <Button
+            title="Browse heritage records"
+            onPress={() => router.push("/patrimonio")}
+            variant="secondary"
+          />
+        </View>
+        <View className="mt-6 flex-row justify-around">
+          <Languages color={theme.colors.primary} size={19} />
+          <Trophy color={theme.colors.accent} size={19} />
+          <MapPin color={theme.colors.primary} size={19} />
+          <Sparkles color={theme.colors.accent} size={19} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
-
