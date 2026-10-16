@@ -53,9 +53,28 @@ The service listens on `http://localhost:8000`. Interactive API documentation is
 - `GET /languages/{language_id}`
 - `GET /languages/{language_id}/vocabulary`
 - `GET /languages/{language_id}/culture`
+- `GET /languages/{language_id}/lessons`
+- `GET /lessons/{lesson_id}`
+- `GET /lessons/{lesson_id}/activities`
+- `GET /activities/{activity_id}`
+- `POST /activities/{activity_id}/submit`
+- `GET /progress?userId=local-demo-user`
+- `GET /progress/{user_id}`
+- `GET /progress/{user_id}/language/{language_id}`
+- `GET /territories`
+- `GET /territories/{territory_id}`
+- `GET /languages/{language_id}/territories`
+- `GET /heritage?category=historical`
+- `GET /heritage/{heritage_id}`
+- `GET /toponyms?search=demo`
+- `GET /toponyms/{toponym_id}`
+- `GET /sources`
+- `GET /sources/{source_id}`
 - `GET /vocabulary/{vocabulary_id}`
 
 API response field names use camelCase to align with the TypeScript client. All date values are ISO 8601 timestamps.
+
+Learning submissions accept one selected option for each question. The local progress identifier defaults to `local-demo-user`; this is not an authentication system. Activities, scores, territories, heritage, toponyms, and source records seeded by `scripts.seed` are demonstrations only. Territory coordinates are intentionally unset until validated information is available.
 
 ## Environment variables
 
@@ -73,4 +92,3 @@ Keep the real `.env` file local. `.env.example` contains example values only.
 `app/routers` defines HTTP endpoints, `app/services` handles application rules, `app/repositories` owns database queries, `app/models` defines SQLAlchemy tables, and `app/schemas` defines validated API responses. Alembic migrations, repeatable demo seeding, and pytest tests live outside the application package.
 
 Run the backend tests from this directory with `python -m pytest`.
-
