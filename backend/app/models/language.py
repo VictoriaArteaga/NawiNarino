@@ -30,4 +30,7 @@ class Language(Base):
     cultural_contents: Mapped[list["CulturalContent"]] = relationship(
         back_populates="language", cascade="all, delete-orphan"
     )
-
+    lessons: Mapped[list["Lesson"]] = relationship(
+        back_populates="language", cascade="all, delete-orphan"
+    )
+    territories: Mapped[list["Territory"]] = relationship(back_populates="language")
