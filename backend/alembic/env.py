@@ -8,7 +8,14 @@ from app.core.database import Base
 from app import models
 
 config = context.config
-config.set_main_option("sqlalchemy.url", get_settings().database_url)
+settings = get_settings()
+if settings.data_source != "database":
+    raise RuntimeError(
+        "Set DATA_SOURCE=database and DATABASE_URL before running Alembic."
+    )
+if settings.database_url is None:
+    raise RuntimeError("DATABASE_URL is required to run Alembic.")
+config.set_main_option("sqlalchemy.url", settings.database_url.replace("%", "%%"))
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
@@ -48,4 +55,3 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
-
