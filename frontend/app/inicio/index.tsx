@@ -139,6 +139,12 @@ export default function HomeScreen() {
             title="Browse heritage records"
             onPress={() => router.push("/patrimonio")}
             variant="secondary"
+            style={{ marginBottom: theme.spacing.sm }}
+          />
+          <Button
+            title="AI Explorer — coming soon"
+            onPress={() => router.push("/explorador")}
+            variant="secondary"
           />
         </View>
         <View className="mt-6 flex-row justify-around">
