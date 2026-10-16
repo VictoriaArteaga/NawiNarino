@@ -6,6 +6,7 @@ from app.models.activity import Activity
 from app.models.lesson import Lesson
 from app.repositories.language_repository import LanguageRepository
 from app.repositories.lesson_repository import LessonRepository
+from app.schemas.common import PositivePathId
 from app.schemas.activity import ActivityResponse
 from app.schemas.lesson import LessonDetailResponse, LessonResponse
 from app.services.lesson_service import LessonService
@@ -22,7 +23,7 @@ def get_lesson_service(session: Session = Depends(get_db)) -> LessonService:
     response_model=list[LessonResponse],
 )
 def list_lessons(
-    language_id: int,
+    language_id: PositivePathId,
     service: LessonService = Depends(get_lesson_service),
 ) -> list[Lesson]:
     return service.list_for_language(language_id)
@@ -30,7 +31,7 @@ def list_lessons(
 
 @router.get("/lessons/{lesson_id}", response_model=LessonDetailResponse)
 def get_lesson(
-    lesson_id: int,
+    lesson_id: PositivePathId,
     service: LessonService = Depends(get_lesson_service),
 ) -> Lesson:
     return service.get(lesson_id)
@@ -41,7 +42,7 @@ def get_lesson(
     response_model=list[ActivityResponse],
 )
 def list_activities(
-    lesson_id: int,
+    lesson_id: PositivePathId,
     service: LessonService = Depends(get_lesson_service),
 ) -> list[Activity]:
     return service.list_activities(lesson_id)
@@ -49,7 +50,7 @@ def list_activities(
 
 @router.get("/activities/{activity_id}", response_model=ActivityResponse)
 def get_activity(
-    activity_id: int,
+    activity_id: PositivePathId,
     service: LessonService = Depends(get_lesson_service),
 ) -> Activity:
     return service.get_activity(activity_id)

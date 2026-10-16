@@ -8,6 +8,7 @@ from app.models.vocabulary import Vocabulary
 from app.repositories.language_repository import LanguageRepository
 from app.repositories.vocabulary_repository import VocabularyRepository
 from app.schemas.cultural_content import CulturalContentResponse
+from app.schemas.common import PositivePathId
 from app.schemas.language import LanguageDetailResponse, LanguageResponse
 from app.schemas.vocabulary import VocabularyResponse
 from app.services.language_service import LanguageService
@@ -36,7 +37,7 @@ def list_languages(
 
 @router.get("/{language_id}", response_model=LanguageDetailResponse)
 def get_language(
-    language_id: int,
+    language_id: PositivePathId,
     service: LanguageService = Depends(get_language_service),
 ) -> Language:
     return service.get_language(language_id)
@@ -47,7 +48,7 @@ def get_language(
     response_model=list[VocabularyResponse],
 )
 def list_vocabulary(
-    language_id: int,
+    language_id: PositivePathId,
     service: VocabularyService = Depends(get_vocabulary_service),
 ) -> list[Vocabulary]:
     return service.list_for_language(language_id)
@@ -58,7 +59,7 @@ def list_vocabulary(
     response_model=list[CulturalContentResponse],
 )
 def list_cultural_content(
-    language_id: int,
+    language_id: PositivePathId,
     service: VocabularyService = Depends(get_vocabulary_service),
 ) -> list[CulturalContent]:
     return service.list_cultural_content(language_id)

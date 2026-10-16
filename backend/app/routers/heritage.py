@@ -8,6 +8,7 @@ from app.models.heritage import Heritage
 from app.models.source import Source
 from app.models.toponym import Toponym
 from app.repositories.heritage_repository import HeritageRepository
+from app.schemas.common import PositivePathId
 from app.schemas.heritage import HeritageResponse
 from app.schemas.source import SourceResponse
 from app.schemas.toponym import ToponymDetailResponse, ToponymResponse
@@ -31,7 +32,7 @@ def list_heritage(
 
 @router.get("/heritage/{heritage_id}", response_model=HeritageResponse)
 def get_heritage(
-    heritage_id: int,
+    heritage_id: PositivePathId,
     service: HeritageService = Depends(get_heritage_service),
 ) -> Heritage:
     return service.get_heritage(heritage_id)
@@ -47,7 +48,7 @@ def list_toponyms(
 
 @router.get("/toponyms/{toponym_id}", response_model=ToponymDetailResponse)
 def get_toponym(
-    toponym_id: int,
+    toponym_id: PositivePathId,
     service: HeritageService = Depends(get_heritage_service),
 ) -> Toponym:
     return service.get_toponym(toponym_id)
@@ -62,7 +63,7 @@ def list_sources(
 
 @router.get("/sources/{source_id}", response_model=SourceResponse)
 def get_source(
-    source_id: int,
+    source_id: PositivePathId,
     service: HeritageService = Depends(get_heritage_service),
 ) -> Source:
     return service.get_source(source_id)

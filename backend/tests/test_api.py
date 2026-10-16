@@ -1,8 +1,32 @@
+import pytest
+from fastapi.testclient import TestClient
+from pydantic import ValidationError
+
+from app.core.config import Settings
+from app.main import app
+
+
+def test_database_mode_requires_an_explicit_database_url():
+    with pytest.raises(ValidationError, match="DATABASE_URL is required"):
+        Settings(data_source="database", database_url=None)
+
+
+def test_database_mode_only_accepts_postgresql_urls():
+    with pytest.raises(ValidationError, match="DATABASE_URL must use PostgreSQL"):
+        Settings(data_source="database", database_url="sqlite://")
+
+
+def test_mock_mode_does_not_require_a_database_url():
+    settings = Settings(data_source="mock", database_url=None)
+
+    assert settings.database_url is None
+
+
 def test_health(client):
     response = client.get("/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "ok"}
+    assert response.json() == {"status": "ok", "dataSource": "mock"}
 
 
 def test_list_languages(client):
@@ -27,6 +51,12 @@ def test_get_missing_language_returns_404(client):
 
     assert response.status_code == 404
     assert response.json()["detail"] == "Language not found"
+
+
+def test_non_positive_path_ids_are_rejected(client):
+    assert client.get("/languages/0").status_code == 422
+    assert client.get("/sources/-1").status_code == 422
+    assert client.get("/progress/local-demo-user/language/0").status_code == 422
 
 
 def test_list_language_vocabulary(client):
@@ -111,6 +141,15 @@ def test_submit_activity_rejects_incomplete_or_foreign_answers(client):
     assert foreign_option.status_code == 422
 
 
+def test_submit_activity_rejects_non_positive_identifiers(client):
+    response = client.post(
+        "/activities/1/submit",
+        json={"answers": [{"questionId": 0, "optionId": -1}]},
+    )
+
+    assert response.status_code == 422
+
+
 def test_submit_incorrect_answer_records_zero_score(client):
     response = client.post(
         "/activities/1/submit",
@@ -157,3 +196,12 @@ def test_missing_territory_heritage_toponym_and_source_return_404(client):
     assert client.get("/heritage/999").status_code == 404
     assert client.get("/toponyms/999").status_code == 404
     assert client.get("/sources/999").status_code == 404
+
+
+def test_mock_mode_serves_seeded_data_without_database_override():
+    with TestClient(app) as test_client:
+        response = test_client.get("/languages")
+
+    assert response.status_code == 200
+    assert response.json()
+    assert all(language["isMock"] for language in response.json())

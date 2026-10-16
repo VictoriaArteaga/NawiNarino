@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Literal
 
+from pydantic import Field
+
 from app.schemas.common import ResponseSchema
 
 ActivityType = Literal["multiple_choice", "true_false", "matching"]
@@ -35,12 +37,12 @@ class ActivityResponse(ResponseSchema):
 
 
 class AnswerSubmission(ResponseSchema):
-    question_id: int
-    option_id: int
+    question_id: int = Field(gt=0)
+    option_id: int = Field(gt=0)
 
 
 class ActivitySubmission(ResponseSchema):
-    answers: list[AnswerSubmission]
+    answers: list[AnswerSubmission] = Field(min_length=1, max_length=100)
 
 
 class ActivityResult(ResponseSchema):

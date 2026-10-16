@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.models.vocabulary import Vocabulary
 from app.repositories.language_repository import LanguageRepository
 from app.repositories.vocabulary_repository import VocabularyRepository
+from app.schemas.common import PositivePathId
 from app.schemas.vocabulary import VocabularyResponse
 from app.services.vocabulary_service import VocabularyService
 
@@ -20,7 +21,7 @@ def get_vocabulary_service(session: Session = Depends(get_db)) -> VocabularyServ
 
 @router.get("/{vocabulary_id}", response_model=VocabularyResponse)
 def get_vocabulary(
-    vocabulary_id: int,
+    vocabulary_id: PositivePathId,
     service: VocabularyService = Depends(get_vocabulary_service),
 ) -> Vocabulary:
     return service.get_vocabulary(vocabulary_id)

@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.repositories.lesson_repository import LessonRepository
 from app.repositories.progress_repository import ProgressRepository
 from app.schemas.activity import ActivityResult, ActivitySubmission
+from app.schemas.common import PositivePathId
 from app.services.activity_service import ActivityService
 
 router = APIRouter(prefix="/activities", tags=["learning"])
@@ -16,7 +17,7 @@ def get_activity_service(session: Session = Depends(get_db)) -> ActivityService:
 
 @router.post("/{activity_id}/submit", response_model=ActivityResult)
 def submit_activity(
-    activity_id: int,
+    activity_id: PositivePathId,
     submission: ActivitySubmission,
     user_id: str = Query(
         default="local-demo-user",

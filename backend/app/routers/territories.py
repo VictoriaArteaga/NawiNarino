@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.models.territory import Territory
 from app.repositories.language_repository import LanguageRepository
 from app.repositories.territory_repository import TerritoryRepository
+from app.schemas.common import PositivePathId
 from app.schemas.territory import TerritoryResponse
 from app.services.territory_service import TerritoryService
 
@@ -30,7 +31,7 @@ def list_territories(
     response_model=list[TerritoryResponse],
 )
 def list_language_territories(
-    language_id: int,
+    language_id: PositivePathId,
     service: TerritoryService = Depends(get_territory_service),
 ) -> list[Territory]:
     return service.list_for_language(language_id)
@@ -38,7 +39,7 @@ def list_language_territories(
 
 @router.get("/territories/{territory_id}", response_model=TerritoryResponse)
 def get_territory(
-    territory_id: int,
+    territory_id: PositivePathId,
     service: TerritoryService = Depends(get_territory_service),
 ) -> Territory:
     return service.get(territory_id)
