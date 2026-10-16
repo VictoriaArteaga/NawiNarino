@@ -35,6 +35,7 @@ The default works for a simulator running on the same computer. For a physical p
 - Language overview, cultural content, and sample vocabulary
 - Demonstration lessons, multiple-choice activities, scoring, and persisted local progress
 - A schematic territory-marker view, heritage records, toponyms, and source placeholders
+- A static AI Explorer preview; it does not call an AI service or generate answers
 - Loading, error, retry, and empty states
 - Axios service layer and TanStack Query hooks
 - Persistent app state with Zustand and AsyncStorage
@@ -45,6 +46,16 @@ The default works for a simulator running on the same computer. For a physical p
 `app/` contains file-based routes; `components/` contains shared UI; `hooks/` connects screens to TanStack Query; `services/` contains Axios API calls; `store/` holds persisted client state; `types/` describes API responses; and `constants/theme.ts` contains the visual tokens.
 
 Learning, territory, heritage, toponym, and source content is explicitly mock data. The territory screen is a schematic marker view, not a geographically accurate map; coordinates are withheld until validated data is available.
+
+## Data and future AI integration
+
+The backend defaults to `DATA_SOURCE=mock` and uses in-memory demonstration
+records. PostgreSQL is not enabled by default; see the
+[`backend setup guide`](../backend/README.md) before explicitly configuring a
+local database. The AI Explorer is informational only. A future implementation
+must retrieve from validated documents, cite its sources, and indicate when
+there is insufficient evidence; no model, retrieval service, or AI dependency
+is included now.
 
 ## Quality checks
 
