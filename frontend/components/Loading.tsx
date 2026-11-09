@@ -1,25 +1,22 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 
 import { theme } from "../constants/theme";
+import { T } from "./T";
 
 interface LoadingProps {
   label?: string;
 }
 
-export function Loading({ label = "Loading information..." }: LoadingProps) {
+export function Loading({ label = "Cargando información..." }: LoadingProps) {
   return (
-    <View className="items-center justify-center py-12">
+    <View
+      accessibilityLiveRegion="polite"
+      style={{ alignItems: "center", justifyContent: "center", paddingVertical: 48 }}
+    >
       <ActivityIndicator color={theme.colors.primary} size="large" />
-      <Text
-        style={{
-          color: theme.colors.muted,
-          fontSize: 15,
-          marginTop: theme.spacing.md,
-        }}
-      >
+      <T s={15} c={theme.colors.muted} style={{ marginTop: theme.spacing.md }}>
         {label}
-      </Text>
+      </T>
     </View>
   );
 }
-
