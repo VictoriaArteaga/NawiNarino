@@ -1,35 +1,41 @@
-import { ScrollView, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
-import { Header } from "../../components/Header";
 import { InfoCard } from "../../components/InfoCard";
 import { Loading } from "../../components/Loading";
-import { useSources } from "../../hooks/useHeritage";
+import { PlainScreen } from "../../components/PlainScreen";
+import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
+import { useSources } from "../../hooks/useHeritage";
 
 export default function SourcesScreen() {
   const query = useSources();
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: theme.colors.canvas }}>
-      <ScrollView contentContainerStyle={{ padding: theme.spacing.lg, paddingBottom: theme.spacing.xxl }}>
-        <Header title="Sources" subtitle="Demonstration references are not real publications." backHref="/patrimonio" backLabel="Heritage" />
-        {query.isPending ? <Loading label="Loading sources..." /> : query.isError ? (
-          <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
-        ) : query.data.length === 0 ? (
-          <Card><Text style={{ color: theme.colors.muted }}>No source records available.</Text></Card>
-        ) : query.data.map((source) => (
+    <PlainScreen
+      title="Fuentes"
+      subtitle="Las referencias de demostración no son publicaciones reales."
+      backHref="/patrimonio"
+      backLabel="Explorar"
+    >
+      {query.isPending ? (
+        <Loading label="Cargando fuentes..." />
+      ) : query.isError ? (
+        <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
+      ) : query.data.length === 0 ? (
+        <Card>
+          <T c={theme.colors.muted}>No hay registros de fuentes disponibles.</T>
+        </Card>
+      ) : (
+        query.data.map((source) => (
           <InfoCard
             key={source.id}
             title={source.title}
-            description={`${source.author} · ${source.year ?? "Year pending validation"} · ${source.type}`}
+            description={`${source.author} · ${source.year ?? "Año pendiente de validación"} · ${source.type}`}
             href={{ pathname: "/fuentes/[sourceId]", params: { sourceId: String(source.id) } }}
             mock={source.isMock}
           />
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+        ))
+      )}
+    </PlainScreen>
   );
 }
