@@ -1,41 +1,60 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { theme } from "../constants/theme";
+import { T } from "./T";
 
 interface ProgressBarProps {
   percentage: number;
   label?: string;
+  color?: string;
+  height?: number;
 }
 
-export function ProgressBar({ percentage, label }: ProgressBarProps) {
-  const boundedPercentage = Math.max(0, Math.min(100, percentage));
+export function ProgressBar({
+  percentage,
+  label,
+  color = theme.colors.accent,
+  height = 8,
+}: ProgressBarProps) {
+  const bounded = Math.max(0, Math.min(100, Math.round(percentage)));
 
   return (
-    <View accessibilityRole="progressbar">
+    <View
+      accessibilityLabel={label}
+      accessibilityRole="progressbar"
+      accessibilityValue={{ max: 100, min: 0, now: bounded }}
+    >
       {label ? (
-        <View className="mb-2 flex-row justify-between">
-          <Text style={{ color: theme.colors.ink, fontWeight: "700" }}>
+        <View
+          style={{
+            alignItems: "baseline",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: theme.spacing.sm,
+          }}
+        >
+          <T f="display" w={600} s={13.5} c={theme.colors.ink}>
             {label}
-          </Text>
-          <Text style={{ color: theme.colors.muted }}>
-            {boundedPercentage}%
-          </Text>
+          </T>
+          <T w={600} s={13} c={theme.colors.muted}>
+            {bounded}%
+          </T>
         </View>
       ) : null}
       <View
         style={{
-          backgroundColor: theme.colors.border,
+          backgroundColor: theme.colors.track,
           borderRadius: theme.radii.pill,
-          height: 10,
+          height,
           overflow: "hidden",
         }}
       >
         <View
           style={{
-            backgroundColor: theme.colors.primary,
+            backgroundColor: color,
             borderRadius: theme.radii.pill,
-            height: 10,
-            width: `${boundedPercentage}%`,
+            height,
+            width: `${bounded}%`,
           }}
         />
       </View>
