@@ -31,7 +31,7 @@ The default works for a simulator running on the same computer. For a physical p
 
 ## Included features
 
-- Home screen and language list
+- Welcome, home, language list, language details, vocabulary, activities, progress, map, explore, profile and the (preview-only) Ñawi Explora screens, following the approved Spanish-language designs
 - Language overview, cultural content, and sample vocabulary
 - Demonstration lessons, multiple-choice activities, scoring, and persisted local progress
 - A schematic territory-marker view, heritage records, toponyms, and source placeholders
@@ -39,11 +39,12 @@ The default works for a simulator running on the same computer. For a physical p
 - Loading, error, retry, and empty states
 - Axios service layer and TanStack Query hooks
 - Persistent app state with Zustand and AsyncStorage
-- Expo Router navigation, NativeWind layout utilities, and Lucide icons
+- Expo Router navigation, NativeWind layout utilities, and a custom icon set
+- Brand fonts (Outfit and Nunito Sans via `@expo-google-fonts`) and vector artwork drawn with `react-native-svg`
 
 ## Structure
 
-`app/` contains file-based routes; `components/` contains shared UI; `hooks/` connects screens to TanStack Query; `services/` contains Axios API calls; `store/` holds persisted client state; `types/` describes API responses; and `constants/theme.ts` contains the visual tokens.
+`app/` contains file-based routes; `components/` contains shared UI; `hooks/` connects screens to TanStack Query; `services/` contains Axios API calls; `store/` holds persisted client state; `types/` describes API responses; and `constants/theme.ts` contains the visual tokens, and `constants/languages.tsx` maps each language record to its colors, portrait and header illustration. Illustrations live in `components/art/` (generated from the approved design artboards; the map's inner zones are illustrative, not a validated distribution).
 
 Learning, territory, heritage, toponym, and source content is explicitly mock data. The territory screen is a schematic marker view, not a geographically accurate map; coordinates are withheld until validated data is available.
 
