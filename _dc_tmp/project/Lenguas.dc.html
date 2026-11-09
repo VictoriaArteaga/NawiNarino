@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lenguas indígenas</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>body{margin:0}a{text-decoration:none}</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#F5EDE0;font-family:'Nunito Sans',sans-serif;color:#1F2D27">
+<a href="Inicio.dc.html" aria-label="Volver" style="position:absolute;left:14px;top:40px;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25674F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+<h1 style="position:absolute;left:64px;top:48px;margin:0;font-family:'Outfit',sans-serif;font-weight:600;font-size:20px;line-height:28px;color:#1F2D27">Lenguas indígenas</h1>
+<p style="position:absolute;left:20px;top:91px;margin:0;font-size:15.5px;line-height:20px;color:#6A6A62">Cuatro lenguas, un mismo territorio.</p>
+<sc-for list="{{langs}}" as="c" hint-placeholder-count="4">
+<a href="{{c.href}}" style="position:absolute;left:20px;top:{{c.top}};width:350px;height:142px;border-radius:18px;overflow:hidden;background:linear-gradient(to top right,{{c.dark}},{{c.light}});color:#fff;box-shadow:0 3px 10px rgba(50,35,10,.18);display:block">
+<img src="{{c.img}}" alt="Retrato de una persona del pueblo {{c.people}}" style="position:absolute;left:0;top:0;width:122px;height:142px;object-fit:cover;object-position:50% 30%;-webkit-mask-image:linear-gradient(to right,#000 72%,transparent 100%);mask-image:linear-gradient(to right,#000 72%,transparent 100%)">
+<span style="position:absolute;left:134px;top:24px;font-family:'Outfit',sans-serif;font-weight:700;font-size:22px;line-height:28px;text-shadow:0 1px 3px rgba(0,0,0,.22)">{{c.name}}</span>
+<span style="position:absolute;left:134px;top:58px;font-size:13px;line-height:18px;text-shadow:0 1px 2px rgba(0,0,0,.25)">{{c.sub}}</span>
+<span style="position:absolute;left:134px;top:91px;width:158px;height:6px;border-radius:3px;background:rgba(255,255,255,.38)"><span style="display:block;height:6px;border-radius:3px;background:#fff;width:{{c.pct}}"></span></span>
+<span style="position:absolute;left:134px;top:106px;font-size:12px;line-height:16px;text-shadow:0 1px 2px rgba(0,0,0,.25)">{{c.count}} / 100 palabras</span>
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:18px;top:59px"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</a>
+</sc-for>
+<nav aria-label="Navegación principal" style="position:absolute;left:0;right:0;bottom:0;height:82px;background:#FBF3E6;border-top:1px solid #EADFCB;display:flex;padding-bottom:6px;box-sizing:border-box">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4"><a href="{{t.href}}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:{{t.color}};font-size:11.5px;font-weight:{{t.weight}};font-family:'Outfit',sans-serif"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="{{t.fill}}" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{t.d}}"/></svg>{{t.label}}</a></sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const act = 0;
+const base = [
+{label:'Inicio',href:'Inicio.dc.html',d:'M3 11l9-8 9 8v10h-6v-6H9v6H3z'},
+{label:'Aprender',href:'Lenguas.dc.html',d:'M4 5a2 2 0 0 1 2-2h6v16H6a2 2 0 0 0-2 2zM20 5a2 2 0 0 0-2-2h-6v16h6a2 2 0 0 1 2 2z'},
+{label:'Mapa',href:'Mapa.dc.html',d:'M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21zM12 7.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z'},
+{label:'Explorar',href:'Explorar.dc.html',d:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z'}];
+const langs = [
+{name:'Awá Pit',people:'Awá',sub:'Lengua del pueblo Awá',count:24,pct:'24%',href:'AwaPit.dc.html',top:'133px',dark:'#2E5B48',light:'#628060',img:'/_blob/74f0b2748365e159103b2789af9d0303'},
+{name:'Inga /A’ingae',people:'Inga',sub:'Lengua del pueblo Inga',count:18,pct:'18%',href:'Inga.dc.html',top:'289px',dark:'#D48A30',light:'#E8B35C',img:'/_blob/57e7d771589d2c9df75f2124893751e9'},
+{name:'Nasa Yuwe',people:'Nasa',sub:'Lengua del pueblo Nasa',count:32,pct:'32%',href:'NasaYuwe.dc.html',top:'445px',dark:'#2A5E8F',light:'#4F7FA9',img:'/_blob/9ee6f03739e3d8d924a726e10c1b2aef'},
+{name:'Cofán',people:'Cofán',sub:'Lengua del pueblo Cofán',count:12,pct:'12%',href:'Cofan.dc.html',top:'601px',dark:'#6C3F78',light:'#855794',img:'/_blob/0958722ab8629d549f9d7580eb431b59'}];
+return { tabs: base.map((t,i)=>({...t,color: i===act ? '#25674F' : '#4A4740', weight: i===act ? 700 : 500, fill: i===act && i===0 ? 'currentColor' : 'none'})), langs };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Bienvenida</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+body{margin:0}a{text-decoration:none}
+@keyframes drift{from{transform:translateX(-16px)}to{transform:translateX(16px)}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(9px)}}
+@keyframes glow{0%,100%{opacity:.82}50%{opacity:1}}
+.drift{animation:drift 14s ease-in-out infinite alternate}
+.nudge{animation:nudge 1.8s ease-in-out infinite}
+.glow{animation:glow 5s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.drift,.nudge,.glow{animation:none}}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:#F5EDE0;font-family:'Nunito Sans',sans-serif;color:#23302A">
+<svg role="img" aria-label="Ilustración del amanecer en los Andes de Nariño: volcán Galeras con vapor, páramo con frailejones, laguna, cóndores y follaje selvático" viewBox="0 0 390 844" preserveAspectRatio="xMidYMax slice" style="position:absolute;left:0;top:0;width:390px;height:844px">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3BD84"/><stop offset=".3" stop-color="#F8D9AE"/><stop offset=".55" stop-color="#FBEBD0"/><stop offset=".72" stop-color="#E6EEE6"/></linearGradient>
+<radialGradient id="halo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD28A" stop-opacity=".95"/><stop offset=".5" stop-color="#FFD28A" stop-opacity=".35"/><stop offset="1" stop-color="#FFD28A" stop-opacity="0"/></radialGradient>
+<linearGradient id="par" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D2BC63"/><stop offset="1" stop-color="#9FA650"/></linearGradient>
+<linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CC2C8"/><stop offset="1" stop-color="#5E9FAE"/></linearGradient>
+<g id="fr"><rect x="-3.500" y="0" width="7" height="34" rx="3" fill="#9B8657"/><path d="M-3 8 l-5 3 M3 14 l5 3 M-3 22 l-5 3" stroke="#B9A56F" stroke-width="2" stroke-linecap="round"/><g fill="#8FA84C"><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(-72)"/><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(-48)"/><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(-24)"/><path d="M0 0 L-3 -24 L0 -31 L3 -24Z"/><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(24)"/><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(48)"/><path d="M0 0 L-3 -22 L0 -29 L3 -22Z" transform="rotate(72)"/></g><g fill="#DCDB92"><path d="M0 -20 L-1.500 -26 L0 -30 L1.500 -26Z" transform="rotate(-48)"/><path d="M0 -22 L-1.500 -28 L0 -32 L1.500 -28Z"/><path d="M0 -20 L-1.500 -26 L0 -30 L1.500 -26Z" transform="rotate(48)"/></g></g>
+<path id="bird" d="M0 0 Q10 -7 24 -1 Q12 -3 2 4 Q-10 -3 -24 -1 Q-10 -7 0 0Z"/>
+<path id="spk" d="M0 -5 L1.200 -1.200 L5 0 L1.200 1.200 L0 5 L-1.200 1.200 L-5 0 L-1.200 -1.200Z"/>
+</defs>
+<rect width="390" height="844" fill="url(#sky)"/>
+<g class="glow"><circle cx="120" cy="528" r="230" fill="url(#halo)"/></g>
+<g fill="#FFE3AE" opacity=".35"><path d="M120 528 L-40 330 L10 300Z"/><path d="M120 528 L60 280 L120 270Z"/><path d="M120 528 L200 270 L260 290Z"/><path d="M120 528 L330 330 L380 380Z"/></g>
+<circle cx="120" cy="520" r="30" fill="#F59B45"/>
+<g fill="#E8A33D" opacity=".8"><use href="#spk" transform="translate(40,420) scale(.8)"/><use href="#spk" transform="translate(352,452) scale(.7)"/><use href="#spk" transform="translate(206,402) scale(.6)"/><use href="#spk" transform="translate(300,330) scale(.6)"/></g>
+<g class="drift" fill="#fff" opacity=".62"><ellipse cx="70" cy="60" rx="56" ry="9"/><ellipse cx="320" cy="48" rx="50" ry="8"/><ellipse cx="350" cy="64" rx="34" ry="6"/><ellipse cx="60" cy="470" rx="52" ry="6"/><ellipse cx="250" cy="488" rx="44" ry="5"/></g>
+<path d="M0 480 L40 456 L84 474 L130 440 L178 470 L228 452 L276 480 L330 450 L390 476 V844 H0Z" fill="#AFC8C6"/>
+<path d="M196 568 L258 468 L280 436 L300 426 L324 434 L344 466 L420 568Z" fill="#6C9A97"/>
+<path d="M300 426 L324 434 L344 466 L420 568 L330 568Z" fill="#86B0AB"/>
+<g fill="#fff" opacity=".8"><circle cx="318" cy="418" r="10"/><circle cx="330" cy="402" r="12"/><circle cx="346" cy="384" r="13"/><circle cx="364" cy="366" r="10"/></g>
+<path d="M0 548 Q70 514 150 536 Q220 554 290 534 Q350 518 390 536 V844 H0Z" fill="#4A8077"/>
+<path d="M0 606 Q90 570 190 598 Q290 622 390 590 V844 H0Z" fill="url(#par)"/>
+<g stroke="#E9DA8C" stroke-width="1.600" stroke-linecap="round" opacity=".7"><path d="M40 610 l2 -6 M54 608 l2 -6 M210 614 l2 -6 M226 616 l2 -6 M300 604 l2 -6 M316 602 l2 -6 M120 618 l2 -6"/></g>
+<path d="M30 654 Q100 622 200 632 Q300 640 372 624 L386 706 Q200 738 18 712Z" fill="url(#lake)"/>
+<path d="M240 640 L262 640 L252 700 Z" fill="#6C9A97" opacity=".28"/>
+<g stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"><path d="M70 670 H150 M180 682 H270 M286 662 H350 M96 696 H180 M230 702 H310"/></g>
+<path d="M0 704 Q60 654 130 704 Q170 734 182 844 H0Z" fill="#2E5E4C"/>
+<path d="M390 684 Q330 654 270 714 Q240 744 236 844 H390Z" fill="#335F4E"/>
+<use href="#fr" transform="translate(40,668) scale(1.5)"/><use href="#fr" transform="translate(98,704) scale(1.1)"/><use href="#fr" transform="translate(352,650) scale(1.5)"/><use href="#fr" transform="translate(300,690) scale(1.1)"/>
+<g>
+<path d="M0 844 C0 770 20 730 62 706 C70 760 50 810 0 844Z" fill="#1F4D3A"/>
+<path d="M0 844 C10 790 40 760 96 752 C84 800 50 830 0 844Z" fill="#3F8A55"/>
+<path d="M0 844 C20 800 60 784 120 790 C90 820 50 836 0 844Z" fill="#D9702F"/>
+<path d="M20 844 C40 808 80 796 118 800 C96 824 64 840 20 844Z" fill="#E8A33D"/>
+<path d="M390 844 C390 770 372 726 330 706 C322 760 342 810 390 844Z" fill="#1F4D3A"/>
+<path d="M390 844 C380 790 350 760 296 752 C308 800 342 830 390 844Z" fill="#3F8A55"/>
+<path d="M390 844 C370 800 330 784 272 790 C300 820 340 836 390 844Z" fill="#D9702F"/>
+<path d="M370 844 C350 808 310 796 272 800 C296 824 328 840 370 844Z" fill="#E8A33D"/>
+</g>
+<use href="#bird" fill="#2B2A26" transform="translate(70,440) scale(.9)"/><use href="#bird" fill="#2B2A26" transform="translate(112,420) scale(.6)"/>
+</svg>
+<div style="position:absolute;left:0;right:0;top:62px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<svg aria-hidden="true" width="150" height="76" viewBox="0 0 150 76"><g transform="translate(75,66)"><g fill="#E8A33D"><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(-75)"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(-50)"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(-25)"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(25)"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(50)"/><path d="M0 -60 L4.500 -42 L-4.500 -42Z" transform="rotate(75)"/></g><g fill="#F3C46B"><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(-62.500)"/><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(-37.500)"/><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(-12.500)"/><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(12.500)"/><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(37.500)"/><path d="M0 -54 L3 -42 L-3 -42Z" transform="rotate(62.500)"/></g></g><path d="M34 66 L58 32 L72 48 L90 20 L122 66Z" fill="#FBF3E6" stroke="#1F4D3A" stroke-width="4" stroke-linejoin="round"/><path d="M52 66 L66 46 L80 66" fill="none" stroke="#C84A1F" stroke-width="4" stroke-linejoin="round"/><path d="M82 66 L98 44 L110 66" fill="none" stroke="#E8A33D" stroke-width="4" stroke-linejoin="round"/></svg>
+<h1 style="margin:4px 0 0;font-family:'Outfit',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:2px;color:#1F4D3A;background:linear-gradient(180deg,#1F4D3A 30%,#3F7F63);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">ÑAWI</h1>
+<div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:20px;letter-spacing:9px;color:#1F4D3A;margin-top:8px;padding-left:9px">NARIÑO</div>
+<svg aria-hidden="true" width="150" height="12" viewBox="0 0 150 12" style="margin-top:18px"><path d="M0 6 H58 M92 6 H150" stroke="#C84A1F" stroke-width="1.600" stroke-linecap="round" opacity=".7"/><path d="M75 0 L81 6 L75 12 L69 6Z" fill="#E8A33D"/><path d="M62 6 l3 -3 l3 3 l-3 3Z M82 6 l3 -3 l3 3 l-3 3Z" fill="#C84A1F"/></svg>
+<p style="margin:12px 0 0;font-style:italic;font-weight:600;font-size:20px;color:#23302A">“Territorio que habla”</p>
+<p style="margin:14px 40px 0;font-size:15.500px;line-height:1.5;color:#33423B">Lenguas indígenas,<br>territorios vivos,<br>conocimiento sin límites.</p>
+</div>
+<div style="position:absolute;left:50%;top:626px;transform:translateX(-50%);width:304px;height:64px;box-sizing:border-box;padding:0 14px;border-radius:22px;background:rgba(251,243,230,.94);box-shadow:0 4px 16px rgba(40,30,10,.25);display:flex;align-items:center;gap:12px">
+<div style="display:flex;flex:none"><img src="/_blob/74f0b2748365e159103b2789af9d0303" alt="Retrato del pueblo Awá" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 26%;border:3px solid #2F6F4E;box-sizing:border-box;background:#2F6F4E"><img src="/_blob/57e7d771589d2c9df75f2124893751e9" alt="Retrato del pueblo Inga" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 26%;border:3px solid #E8A33D;box-sizing:border-box;background:#E8A33D;margin-left:-10px"><img src="/_blob/9ee6f03739e3d8d924a726e10c1b2aef" alt="Retrato del pueblo Nasa" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 26%;border:3px solid #2E6FA8;box-sizing:border-box;background:#2E6FA8;margin-left:-10px"><img src="/_blob/0958722ab8629d549f9d7580eb431b59" alt="Retrato del pueblo Cofán" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 30%;border:3px solid #6B4A9E;box-sizing:border-box;background:#6B4A9E;margin-left:-10px"></div>
+<div style="line-height:1.2"><div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:#1F4D3A">4 lenguas vivas</div><div style="font-size:12px;color:#4B554F">Awá Pit · Inga · Nasa Yuwe · Cofán</div></div></div>
+<a href="Inicio.dc.html" aria-label="Desliza para comenzar" style="position:absolute;left:50%;bottom:72px;transform:translateX(-50%);width:288px;height:60px;box-sizing:border-box;border-radius:30px;background:rgba(251,243,230,.96);box-shadow:0 5px 16px rgba(40,30,10,.32);display:flex;align-items:center;justify-content:center;color:#1F4D3A;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;white-space:nowrap;padding-left:46px">
+<span class="nudge" style="position:absolute;left:5px;top:5px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#C84A1F,#E0703A);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(200,74,31,.45)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+Desliza para comenzar
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C84A1F" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;opacity:.55"><path d="M8 6l6 6-6 6"/></svg></a>
+<img src="/_blob/900f67b7599002875ad4f1737f6bec27" alt="" style="background:#F5EDE0;position:absolute;left:0;bottom:0;width:390px;height:54px;object-fit:cover;display:block">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
