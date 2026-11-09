@@ -14,9 +14,9 @@ export function Card({ children, style }: CardProps) {
         {
           backgroundColor: theme.colors.surface,
           borderColor: theme.colors.border,
-          borderRadius: theme.radii.card,
+          borderRadius: 18,
           borderWidth: 1,
-          padding: theme.spacing.lg,
+          padding: theme.spacing.lg - 4,
         },
         style,
       ]}
@@ -25,4 +25,3 @@ export function Card({ children, style }: CardProps) {
     </View>
   );
 }
-
