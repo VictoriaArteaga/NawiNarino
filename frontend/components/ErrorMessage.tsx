@@ -1,7 +1,8 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { T } from "./T";
 import { theme } from "../constants/theme";
 
 interface ErrorMessageProps {
@@ -17,32 +18,23 @@ export function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
         borderColor: "#F3D3CD",
       }}
     >
-      <Text
-        style={{
-          color: theme.colors.danger,
-          fontSize: 18,
-          fontWeight: "800",
-        }}
-      >
-        We could not load this information
-      </Text>
-      <Text
+      <T f="display" w={800} s={18} c={theme.colors.danger}>
+        No pudimos cargar esta información
+      </T>
+      <T
         accessibilityRole="alert"
-        style={{
-          color: theme.colors.ink,
-          fontSize: 15,
-          lineHeight: 22,
-          marginTop: theme.spacing.sm,
-        }}
+        s={15}
+        lh={22}
+        c={theme.colors.ink}
+        style={{ marginTop: theme.spacing.sm }}
       >
         {message}
-      </Text>
+      </T>
       {onRetry ? (
-        <View className="mt-4">
-          <Button title="Try again" onPress={onRetry} />
+        <View style={{ marginTop: theme.spacing.md }}>
+          <Button title="Intentar de nuevo" onPress={onRetry} />
         </View>
       ) : null}
     </Card>
   );
 }
-
