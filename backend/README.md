@@ -119,8 +119,65 @@ only after validation, normalization, and source attribution; retain the
 remain clearly marked as pending validation and must never be represented as
 verified real data. Do not mix unvalidated records into a verified dataset.
 
-A future retrieval-based explorer may retrieve passages from a validated
-document corpus, link each answer to its source, and report insufficient
-evidence when retrieval is inadequate. Generation, retrieval, embeddings, and
-the AI explorer API are **not implemented in this phase**. No AI service or
-database is enabled by default.
+## RAG (Explorador IA) — primera etapa
+
+Pipeline RAG en `app/rag/`, expuesto en `POST /explorer/ask`
+(`{"question": "...", "language": "opcional"}`). **No hay modelo generativo ni
+entrenamiento**: la respuesta es extractiva (oraciones literales de los
+fragmentos recuperados, con cita `[n]` a documento y página) o una abstención.
+
+| Módulo | Función |
+| --- | --- |
+| `metadata.py` | Esquema (lengua, tipo, fuente, autor, año, página, licencia, `access_level`, `indexing_authorized`, `authorization_ref`, `validation_status`) y puerta de indexación |
+| `extraction.py` / `cleaning.py` / `chunking.py` | `.txt`/`.md` con marcas `[[pagina N]]` y PDF vía `pdftotext`; limpieza que conserva diacríticos; fragmentos que no cruzan páginas |
+| `embeddings.py` | `HashingEmbedder` local (palabras + trigramas de caracteres): similitud léxica, **no semántica profunda** |
+| `vectorstore.py` | Índice JSON con coseno; rechaza cargar un índice de otro embedder |
+| `retrieval.py` | Umbral de similitud + solapamiento mínimo de términos; vacío = abstenerse |
+| `generation.py` | Respuesta extractiva con citas, avisos de sintético/pendiente de validación |
+
+**Demostración.** Corpus ficticio en `rag_data/demo/` (manifiesto por defecto), recuperador `auto`
+(híbrido bge-m3 + BM25 vía Ollama local, con respaldo `hashing`; variable `RAG_RETRIEVER`). Guía de ejecución,
+guion de preguntas y limitaciones en [`docs/demo-explorador.md`](docs/demo-explorador.md). `/health` informa el
+recuperador activo (`explorerRetriever`).
+
+**Generación local (Ollama).** Explicaciones redactadas por `llama3.2:3b` solo a partir de los fragmentos citados, validadas en el backend y con fallback extractivo (`RAG_GENERATION`, `RAG_GEN_*`; `/health` → `explorerGenerator`). Ver [`docs/generacion-local.md`](docs/generacion-local.md). Android/APK: [`docs/android-apk.md`](docs/android-apk.md).
+
+**Evidencia de respuesta.** Cada respuesta indica si la evidencia contiene los términos de la pregunta (`evidence`:
+`direct`/`related`/`none`, `unmatchedTerms`). `related` = fragmentos del tema que no confirman la pregunta; no se
+descartan. Medición, decisión y limitaciones en [`docs/rag-evidence-support.md`](docs/rag-evidence-support.md).
+
+**Contenido no indexable.** Un párrafo marcado al inicio con `[[editorial]]`,
+`[[revision]]`, `[[advertencia]]`, `[[interno]]` o `[[metadatos]]` no entra al índice
+(el original no se modifica; el reporte de ingesta lo lista). Una etiqueta
+desconocida rechaza el documento.
+
+**Evaluación.** `python -m scripts.rag_eval [-v] [--embedder ollama:bge-m3] [--sweep]`
+usa `rag_data/eval/questions.json` (38 preguntas sobre el corpus sintético).
+Resultados, comparación de embeddings y limitaciones en
+[`docs/rag-evaluation.md`](docs/rag-evaluation.md).
+
+**Permisos.** Solo se indexa un documento si es `synthetic` o si tiene
+`indexing_authorized: true` **y** `authorization_ref`. Borman está bloqueado
+por id. Hoy ningún documento real de `corpus/` tiene autorización, así que el
+único manifiesto es `rag_data/synthetic/manifest.json` (contenido ficticio de
+una «Lengua de Prueba»; no describe ninguna lengua real).
+
+Configuración (opcional, en `.env`): `RAG_MANIFEST_PATH`, `RAG_TOP_K` (4),
+`RAG_MIN_SCORE` (0.15). Requiere `pdftotext` (poppler) solo para PDFs.
+
+```shell
+python -m scripts.rag_ingest                 # indexa el manifiesto e informa rechazos
+python -m scripts.rag_ingest otro/manifest.json --out rag_data/index.json
+python -m pytest tests/test_rag.py
+```
+
+El frontend (`frontend/app/explorador/conversacion.tsx`) consume este endpoint.
+Respuesta (camelCase): `question`, `answer`, `abstained`, `citations[]`
+(`ref`, `chunkId`, `documentId`, `title`, `author`, `year`, `page`, `language`,
+`source`, `license`, `validationStatus`, `isSynthetic`, `excerpt`, `score`) y
+`notices[]`. Si `abstained` es `true`, `citations` está vacío. Los fragmentos
+débiles (menos del 85 % del mejor puntaje) no se citan.
+
+Para añadir un documento real: agregar una entrada al manifiesto con su
+`authorization_ref` (carta o permiso) una vez confirmado el permiso; el
+original no se modifica.
