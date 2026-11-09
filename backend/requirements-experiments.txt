@@ -1,0 +1,13 @@
+# Dependencias SOLO para experimentos de verificación (backend/experiments/).
+# No se necesitan para ejecutar la API.
+#
+# En Windows, crear el entorno en una RUTA CORTA (p. ej. C:\nawiexp): con la ruta
+# larga del proyecto, pip falla por el límite de 260 caracteres al instalar torch.
+#   py -3.12 -m venv C:\nawiexp
+#   C:\nawiexp\Scripts\python -m pip install -r requirements-experiments.txt -r requirements.txt
+# Ejecutar desde backend/:  C:\nawiexp\Scripts\python -X utf8 -m experiments.verification.<modulo>
+torch>=2.3,<3
+transformers>=4.44,<6
+sentencepiece>=0.2
+protobuf>=4
+psutil>=5
