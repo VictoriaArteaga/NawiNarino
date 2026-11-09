@@ -1,0 +1,333 @@
+{
+  "vocabulary": {
+    "primary": [
+      {
+        "document_id": "awapit__unipa_diccionario-awapit-espanol",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_data",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "inga__unal_chasoy-et-al_numeracion-en-lengua-inga",
+        "language": "inga",
+        "evidence_class": "primary_linguistic_data_partial",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      }
+    ],
+    "supporting": [
+      {
+        "document_id": "awapit__anu_curnow-1997_grammar-of-awa-pit",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_description",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "awapit__unipa_vivamos-aprendiendo-awapit-conjugaciones",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_data",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "awapit__unipa_alfabeto-awa",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_data",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      }
+    ]
+  },
+  "grammar": {
+    "primary": [
+      {
+        "document_id": "awapit__anu_curnow-1997_grammar-of-awa-pit",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_description",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "ainga-cofan__anderbois-et-al_jipa_illustration-aingae",
+        "language": "aingae",
+        "evidence_class": "descriptive_linguistic_analysis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "ainga-cofan__fischer-hengeveld_aingae-handbook-chapter-2023",
+        "language": "aingae",
+        "evidence_class": "descriptive_linguistic_analysis",
+        "usable_now": true,
+        "access_level": "open_with_conditions"
+      },
+      {
+        "document_id": "ainga-cofan__fischer-hengeveld_open-linguistics_operators_2018",
+        "language": "aingae",
+        "evidence_class": "descriptive_linguistic_analysis",
+        "usable_now": true,
+        "access_level": "open_with_conditions"
+      }
+    ],
+    "supporting": [
+      {
+        "document_id": "awapit__unipa_vivamos-aprendiendo-awapit-conjugaciones",
+        "language": "awapit",
+        "evidence_class": "primary_linguistic_data",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "nasa-yuwe__scielo_corpus-nasa-yuwe-etiquetado",
+        "language": "nasa_yuwe",
+        "evidence_class": "computational_linguistics_method",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "ainga-cofan__hengeveld-fischer_ch3-phonology_2022-draft",
+        "language": "aingae",
+        "evidence_class": "draft_linguistic_analysis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "ainga-cofan__hengeveld-fischer_ch5-syntax_2023-draft",
+        "language": "aingae",
+        "evidence_class": "draft_linguistic_analysis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "inga__unal_chasoy-et-al_numeracion-en-lengua-inga",
+        "language": "inga",
+        "evidence_class": "primary_linguistic_data_partial",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      }
+    ]
+  },
+  "culture": {
+    "primary": [
+      {
+        "document_id": "awapit__unipa_PEC-inkal-awa",
+        "language": "awapit",
+        "evidence_class": "community_self_description",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-pastos",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-quillacinga",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ],
+    "supporting": [
+      {
+        "document_id": "awapit__unipa_guia-aprendemos-awapit",
+        "language": "awapit",
+        "evidence_class": "educational_guidance",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-I_nasa-yuwa-namtrik",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_survey",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-2_minga",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_policy",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__proeib_pitto_transmision-del-nasa",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_thesis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__redalyc_413635242005",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_article",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__ling-fi_dic-nasa",
+        "language": "nasa_yuwe",
+        "evidence_class": "bibliographic_reference",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "inga__cultural-survival_cartilla-cabildo-inga-santiago",
+        "language": "inga",
+        "evidence_class": "community_text_untranslated",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "pasto-quillasinga__redalyc_ceballos_quillasinga-mocondino",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_ethnographic_article",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ]
+  },
+  "territory": {
+    "primary": [
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-pastos",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-quillacinga",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__banrep_fian_5130",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_archaeological_study",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ],
+    "supporting": [
+      {
+        "document_id": "awapit__unipa_PEC-inkal-awa",
+        "language": "awapit",
+        "evidence_class": "community_self_description",
+        "usable_now": true,
+        "access_level": "community_permission_required"
+      },
+      {
+        "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-I_nasa-yuwa-namtrik",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_survey",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-2_minga",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_policy",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__proeib_pitto_transmision-del-nasa",
+        "language": "nasa_yuwe",
+        "evidence_class": "sociolinguistic_thesis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "nasa-yuwe__ling-fi_dic-nasa",
+        "language": "nasa_yuwe",
+        "evidence_class": "bibliographic_reference",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__redalyc_ceballos_quillasinga-mocondino",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_ethnographic_article",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__icanh_rca_1843",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_hypothesis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__icanh_rca_1844",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_archaeological_study",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ]
+  },
+  "history": {
+    "primary": [
+      {
+        "document_id": "pasto-quillasinga__redalyc_ceballos_quillasinga-mocondino",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_ethnographic_article",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__banrep_fian_5130",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_archaeological_study",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__icanh_rca_1843",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_hypothesis",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__icanh_rca_1844",
+        "language": "pasto_quillasinga",
+        "evidence_class": "historical_archaeological_study",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ],
+    "supporting": [
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-pastos",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__mincultura_pueblo-quillacinga",
+        "language": "pasto_quillasinga",
+        "evidence_class": "official_characterization",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      },
+      {
+        "document_id": "pasto-quillasinga__icanh_rca_1853",
+        "language": "pasto_quillasinga",
+        "evidence_class": "bibliographic_reference",
+        "usable_now": true,
+        "access_level": "internal_use_only"
+      }
+    ]
+  }
+}

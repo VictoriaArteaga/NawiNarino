@@ -1,0 +1,49 @@
+{
+  "_note": "Vacios documentales al 2026-11-09 sobre los 32 archivos del corpus. Basado en lo que cada documento contiene (ver documents.json) y en las busquedas registradas en corpus/sources.md.",
+  "awapit": {
+    "vocabulary": "Cubierto por el Diccionario Awapit-Español de UNIPA (calidad A). Falta: vocabulario tematico revisado (la lamina de partes del cuerpo no se puede leer sin OCR) y transcripcion de las 3 piezas radiales.",
+    "grammar": "Cubierta por Curnow (1997), pero es un escaneo con OCR ruidoso y describe el awapit de hace casi 30 años; falta una gramatica pedagogica actual (la del Ministerio de Educacion de Ecuador no se pudo descargar).",
+    "culture": "PEC de UNIPA; falta material de cultura material, mitologia y calendario con permiso comunitario.",
+    "territory": "Solo menciones en el PEC y la guia; no hay un documento territorial especifico (resguardos, municipios).",
+    "history": "Sin documentos historicos especificos del pueblo Awá.",
+    "blocking": ["partes-cuerpo: OCR", "tres MP3: transcripcion revisada por hablantes", "licencias de UNIPA/MEN no especificadas"]
+  },
+  "nasa_yuwe": {
+    "vocabulary": "SIN fuente utilizable. El diccionario del CRIC/PEBI solo se consulta en sala en Popayan; el Living Dictionary pide permiso; las copias de Scribd se descartaron por procedencia. No usar nada de este corpus para traducir palabras nasa.",
+    "grammar": "SIN gramatica. Solo existe un articulo sobre un corpus etiquetado (metodologia, sin el corpus). Faltan Rojas Curieux (1998), Nieves Oviedo (2019) y los Estudios gramaticales (1991).",
+    "culture": "Lo cultural aparece de forma indirecta en los estudios sociolinguisticos; no hay material cultural nasa propio.",
+    "territory": "Menciones de resguardos y municipios del Cauca en los volumenes de Lenguas Vivas y en la tesis de Los Caleños; no verificadas una por una.",
+    "history": "Sin documentos historicos nasa.",
+    "blocking": ["permiso CRIC/PEBI", "permiso Living Tongues Institute", "acceso a bibliotecas para las gramaticas"]
+  },
+  "aingae": {
+    "vocabulary": "Unica fuente: Borman 1976 (SIL). Ya tiene OCR (130 paginas, ocr/unreviewed) pero la oclusiva glotal y los acentos salen mal, asi que sigue sin ser vocabulario utilizable: requiere revision contra la imagen y validacion con una fuente moderna (ortografia distinta).",
+    "grammar": "Bien cubierta para fonologia, operadores y sintaxis (cuatro textos academicos); dos son borradores. Faltan morfologia verbal y un diccionario moderno.",
+    "culture": "Sin documentos culturales cofanes; todo el material es linguistico.",
+    "territory": "Sin documentos territoriales; la presencia cofan en Colombia (Putumayo, Nariño) no esta documentada en el corpus.",
+    "history": "Sin documentos historicos.",
+    "blocking": ["OCR de Borman", "corpus y videos de AnderBois en ELDP (condiciones por evaluar)", "SIL: cartillas bloqueadas por 403 en descarga automatica"]
+  },
+  "inga": {
+    "vocabulary": "Solo numerales (artículo de la Nacional). Sin diccionario ni lista general. NO se deben inferir equivalencias de las frases de la cartilla del Cabildo Inga de Santiago.",
+    "grammar": "SIN gramatica. 'Apuntes sobre la gramatica inga' (SIL) esta bloqueada para descarga automatica.",
+    "culture": "Cartilla comunitaria con relatos en Inga; sin traduccion verificada.",
+    "territory": "Referencias menores a Sibundoy y Yunguillo; sin documento territorial.",
+    "history": "Sin documentos historicos inga.",
+    "blocking": ["permiso del Cabildo Inga de Santiago", "diccionario 1978/1997: no disponible en linea"]
+  },
+  "pasto_quillasinga": {
+    "vocabulary": "No existe vocabulario documentado en el corpus; las fuentes confirman, a lo sumo, que hay vestigios. No inventar palabras pasto o quillasinga.",
+    "grammar": "No existe.",
+    "culture": "Dos caracterizaciones oficiales cortas (3 paginas cada una).",
+    "territory": "Cubierto: municipios pasto en la caracterizacion; delimitacion territorial en Groot de Mahecha; Mocondino en Ceballos.",
+    "history": "Cubierto con cuatro estudios academicos (varios con hipotesis explicitas sobre la lengua).",
+    "blocking": ["cualquier afirmacion linguistica sobre estas lenguas es hipotesis y debe marcarse como tal"]
+  },
+  "cross_cutting": [
+    "Ningun documento esta bajo licencia abierta que permita redistribuir sus fragmentos, salvo las dos publicaciones de A'ingae con condiciones (CC BY-NC-ND y art. 25fa).",
+    "La numeracion de pagina en pages.jsonl es el indice de pagina del PDF, no la impresa. Hay que mapear antes de citar al usuario.",
+    "Municipio solo esta confirmado en 4 documentos (Pasto, Quillacinga, Ceballos y, con inferencia marcada, la cartilla de Santiago); en el resto es null a proposito.",
+    "Tesseract/OCRmyPDF no estan instalados: no se hizo OCR. Los documentos con ocr_action required o transcription_required siguen sin leerse."
+  ]
+}

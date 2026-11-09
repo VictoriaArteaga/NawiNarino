@@ -1,0 +1,15 @@
+text/
+pages.jsonl
+pages_ocr.jsonl
+ocr/unreviewed/
+ocr/validated/
+ocr/tessdata/
+ocr/experiments/borman/
+ocr/experiments/ground_truth/
+review/borman_castellano_cofan/*
+!review/borman_castellano_cofan/README.md
+!review/borman_castellano_cofan/expert_questions.md
+!review/borman_castellano_cofan/batch_01/
+review/borman_castellano_cofan/batch_01/*
+!review/borman_castellano_cofan/batch_01/instructions_documental.md
+!review/borman_castellano_cofan/batch_01/instructions_linguistic.md
