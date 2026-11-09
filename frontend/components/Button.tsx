@@ -1,6 +1,7 @@
-import { Pressable, Text, type StyleProp, type ViewStyle } from "react-native";
+import { Pressable, type StyleProp, type ViewStyle } from "react-native";
 
 import { theme } from "../constants/theme";
+import { T } from "./T";
 
 interface ButtonProps {
   title: string;
@@ -22,34 +23,33 @@ export function Button({
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityState={{ disabled }}
       disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => [
         {
           alignItems: "center",
           backgroundColor: isPrimary
-            ? theme.colors.primary
+            ? theme.colors.accent
             : theme.colors.softGreen,
-          borderRadius: theme.radii.button,
+          borderRadius: 15,
           justifyContent: "center",
-          minHeight: 54,
-          opacity: disabled ? 0.55 : pressed ? 0.84 : 1,
+          minHeight: 52,
+          opacity: disabled ? 0.55 : pressed ? 0.86 : 1,
           paddingHorizontal: theme.spacing.lg,
           paddingVertical: theme.spacing.md,
         },
         style,
       ]}
     >
-      <Text
-        style={{
-          color: isPrimary ? theme.colors.surface : theme.colors.primaryDark,
-          fontSize: 16,
-          fontWeight: "700",
-        }}
+      <T
+        f="display"
+        w={700}
+        s={16}
+        c={isPrimary ? "#FFFFFF" : theme.colors.primaryDark}
       >
         {title}
-      </Text>
+      </T>
     </Pressable>
   );
 }
-
