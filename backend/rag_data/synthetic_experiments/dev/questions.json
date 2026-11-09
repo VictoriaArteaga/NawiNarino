@@ -1,0 +1,1065 @@
+{
+ "_note": "Generado por experiments/verification/gen_corpus.py (FICTICIO). No editar a mano.",
+ "questions": [
+  {
+   "id": "dev-00-1",
+   "split": "dev",
+   "role": "single",
+   "family": "numeral",
+   "slot": "dos",
+   "q": "¿Cuál es el numeral para dos en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "belu"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "belu"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-00-2",
+   "split": "dev",
+   "role": "single",
+   "family": "numeral",
+   "slot": "dos",
+   "q": "¿Cómo se dice dos en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "belu"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "belu"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-01-1",
+   "split": "dev",
+   "role": "single",
+   "family": "numeral",
+   "slot": "siete",
+   "q": "¿Cuál es el numeral para siete en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "harpa"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v2": "harpa"
+   },
+   "support": [
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-01-2",
+   "split": "dev",
+   "role": "single",
+   "family": "numeral",
+   "slot": "siete",
+   "q": "¿Cómo se dice siete en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "harpa"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v2": "harpa"
+   },
+   "support": [
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-02-1",
+   "split": "dev",
+   "role": "agree",
+   "family": "numeral",
+   "slot": "tres",
+   "q": "¿Cuál es el numeral para tres en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "nomi"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "nomi",
+    "dev-v2": "nomi"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-02-2",
+   "split": "dev",
+   "role": "agree",
+   "family": "numeral",
+   "slot": "tres",
+   "q": "¿Cómo se dice tres en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "nomi"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "nomi",
+    "dev-v2": "nomi"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-03-1",
+   "split": "dev",
+   "role": "conflict_same",
+   "family": "numeral",
+   "slot": "cuatro",
+   "q": "¿Cuál es el numeral para cuatro en la Lengua de Contraste?",
+   "behavior": "conflict",
+   "gold_values": [
+    "dari",
+    "duri"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "dari",
+    "dev-v2": "duri"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-03-2",
+   "split": "dev",
+   "role": "conflict_same",
+   "family": "numeral",
+   "slot": "cuatro",
+   "q": "¿Cómo se dice cuatro en la Lengua de Contraste?",
+   "behavior": "conflict",
+   "gold_values": [
+    "dari",
+    "duri"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "dari",
+    "dev-v2": "duri"
+   },
+   "support": [
+    [
+     "dev-v1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-04-1",
+   "split": "dev",
+   "role": "conflict_status",
+   "family": "numeral",
+   "slot": "cinco",
+   "q": "¿Cuál es el numeral para cinco en la Lengua de Contraste?",
+   "behavior": "conflict_status",
+   "gold_values": [
+    "pelo",
+    "pila"
+   ],
+   "validated_value": "pelo",
+   "values_by_doc": {
+    "dev-v2": "pelo",
+    "dev-p1": "pila"
+   },
+   "support": [
+    [
+     "dev-p1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-04-2",
+   "split": "dev",
+   "role": "conflict_status",
+   "family": "numeral",
+   "slot": "cinco",
+   "q": "¿Cómo se dice cinco en la Lengua de Contraste?",
+   "behavior": "conflict_status",
+   "gold_values": [
+    "pelo",
+    "pila"
+   ],
+   "validated_value": "pelo",
+   "values_by_doc": {
+    "dev-v2": "pelo",
+    "dev-p1": "pila"
+   },
+   "support": [
+    [
+     "dev-p1",
+     1
+    ],
+    [
+     "dev-v2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-05-1",
+   "split": "dev",
+   "role": "pending_only",
+   "family": "numeral",
+   "slot": "seis",
+   "q": "¿Cuál es el numeral para seis en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "tuxa"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "tuxa"
+   },
+   "support": [
+    [
+     "dev-p1",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-05-2",
+   "split": "dev",
+   "role": "pending_only",
+   "family": "numeral",
+   "slot": "seis",
+   "q": "¿Cómo se dice seis en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "tuxa"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "tuxa"
+   },
+   "support": [
+    [
+     "dev-p1",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "dev-06-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "numeral",
+   "slot": "ocho",
+   "q": "¿Cuál es el numeral para ocho en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-06-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "numeral",
+   "slot": "ocho",
+   "q": "¿Cómo se dice ocho en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-07-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "numeral",
+   "slot": "diez",
+   "q": "¿Cuál es el numeral para diez en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-07-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "numeral",
+   "slot": "diez",
+   "q": "¿Cómo se dice diez en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-08-1",
+   "split": "dev",
+   "role": "single",
+   "family": "greeting",
+   "slot": "mañana",
+   "q": "¿Cuál es el saludo de la mañana en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "fuse"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "fuse"
+   },
+   "support": [
+    [
+     "dev-v1",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-08-2",
+   "split": "dev",
+   "role": "single",
+   "family": "greeting",
+   "slot": "mañana",
+   "q": "¿Con qué expresión se saluda por la mañana?",
+   "behavior": "answer",
+   "gold_values": [
+    "fuse"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "fuse"
+   },
+   "support": [
+    [
+     "dev-v1",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-09-1",
+   "split": "dev",
+   "role": "conflict_status",
+   "family": "greeting",
+   "slot": "noche",
+   "q": "¿Cuál es el saludo de la noche en la Lengua de Contraste?",
+   "behavior": "conflict_status",
+   "gold_values": [
+    "raku",
+    "reku"
+   ],
+   "validated_value": "raku",
+   "values_by_doc": {
+    "dev-v1": "raku",
+    "dev-p2": "reku"
+   },
+   "support": [
+    [
+     "dev-p2",
+     1
+    ],
+    [
+     "dev-v1",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-09-2",
+   "split": "dev",
+   "role": "conflict_status",
+   "family": "greeting",
+   "slot": "noche",
+   "q": "¿Con qué expresión se saluda por la noche?",
+   "behavior": "conflict_status",
+   "gold_values": [
+    "raku",
+    "reku"
+   ],
+   "validated_value": "raku",
+   "values_by_doc": {
+    "dev-v1": "raku",
+    "dev-p2": "reku"
+   },
+   "support": [
+    [
+     "dev-p2",
+     1
+    ],
+    [
+     "dev-v1",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-10-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "greeting",
+   "slot": "madrugada",
+   "q": "¿Cuál es el saludo de la madrugada en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-10-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "greeting",
+   "slot": "madrugada",
+   "q": "¿Con qué expresión se saluda en la madrugada?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-11-1",
+   "split": "dev",
+   "role": "single",
+   "family": "gloss",
+   "slot": "casa",
+   "q": "¿Cuál es la palabra para casa en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "zelo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "zelo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-11-2",
+   "split": "dev",
+   "role": "single",
+   "family": "gloss",
+   "slot": "casa",
+   "q": "¿Qué palabra designa casa en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "zelo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "zelo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-12-1",
+   "split": "dev",
+   "role": "agree",
+   "family": "gloss",
+   "slot": "río",
+   "q": "¿Cuál es la palabra para río en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "yumo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "yumo",
+    "dev-v2": "yumo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     3
+    ],
+    [
+     "dev-v2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-12-2",
+   "split": "dev",
+   "role": "agree",
+   "family": "gloss",
+   "slot": "río",
+   "q": "¿Qué palabra designa río en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "yumo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "yumo",
+    "dev-v2": "yumo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     3
+    ],
+    [
+     "dev-v2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-13-1",
+   "split": "dev",
+   "role": "pending_only",
+   "family": "gloss",
+   "slot": "lluvia",
+   "q": "¿Cuál es la palabra para lluvia en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "quna"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p2": "quna"
+   },
+   "support": [
+    [
+     "dev-p2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-13-2",
+   "split": "dev",
+   "role": "pending_only",
+   "family": "gloss",
+   "slot": "lluvia",
+   "q": "¿Qué palabra designa lluvia en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "quna"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p2": "quna"
+   },
+   "support": [
+    [
+     "dev-p2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-14-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "gloss",
+   "slot": "luna",
+   "q": "¿Cuál es la palabra para luna en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-14-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "gloss",
+   "slot": "luna",
+   "q": "¿Qué palabra designa luna en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-15-1",
+   "split": "dev",
+   "role": "conflict_pending",
+   "family": "gloss",
+   "slot": "piedra",
+   "q": "¿Cuál es la palabra para piedra en la Lengua de Contraste?",
+   "behavior": "conflict",
+   "gold_values": [
+    "vaki",
+    "vako"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "vaki",
+    "dev-p2": "vako"
+   },
+   "support": [
+    [
+     "dev-p1",
+     2
+    ],
+    [
+     "dev-p2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-15-2",
+   "split": "dev",
+   "role": "conflict_pending",
+   "family": "gloss",
+   "slot": "piedra",
+   "q": "¿Qué palabra designa piedra en la Lengua de Contraste?",
+   "behavior": "conflict",
+   "gold_values": [
+    "vaki",
+    "vako"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "vaki",
+    "dev-p2": "vako"
+   },
+   "support": [
+    [
+     "dev-p1",
+     2
+    ],
+    [
+     "dev-p2",
+     2
+    ]
+   ]
+  },
+  {
+   "id": "dev-16-1",
+   "split": "dev",
+   "role": "agree_mixed",
+   "family": "suffix",
+   "slot": "plural",
+   "q": "¿Qué sufijo marca el plural en la Lengua de Contraste?",
+   "behavior": "answer",
+   "gold_values": [
+    "ra"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v2": "ra",
+    "dev-p1": "ra"
+   },
+   "support": [
+    [
+     "dev-p1",
+     3
+    ],
+    [
+     "dev-v2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-16-2",
+   "split": "dev",
+   "role": "agree_mixed",
+   "family": "suffix",
+   "slot": "plural",
+   "q": "¿Cuál es el sufijo del plural?",
+   "behavior": "answer",
+   "gold_values": [
+    "ra"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v2": "ra",
+    "dev-p1": "ra"
+   },
+   "support": [
+    [
+     "dev-p1",
+     3
+    ],
+    [
+     "dev-v2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-17-1",
+   "split": "dev",
+   "role": "conflict_same",
+   "family": "suffix",
+   "slot": "diminutivo",
+   "q": "¿Qué sufijo marca el diminutivo en la Lengua de Contraste?",
+   "behavior": "conflict",
+   "gold_values": [
+    "ti",
+    "to"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "ti",
+    "dev-v2": "to"
+   },
+   "support": [
+    [
+     "dev-v1",
+     4
+    ],
+    [
+     "dev-v2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-17-2",
+   "split": "dev",
+   "role": "conflict_same",
+   "family": "suffix",
+   "slot": "diminutivo",
+   "q": "¿Cuál es el sufijo del diminutivo?",
+   "behavior": "conflict",
+   "gold_values": [
+    "ti",
+    "to"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "ti",
+    "dev-v2": "to"
+   },
+   "support": [
+    [
+     "dev-v1",
+     4
+    ],
+    [
+     "dev-v2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-18-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "suffix",
+   "slot": "singular",
+   "q": "¿Qué sufijo marca el singular en la Lengua de Contraste?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-18-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "suffix",
+   "slot": "singular",
+   "q": "¿Cuál es el sufijo del singular?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-19-1",
+   "split": "dev",
+   "role": "single",
+   "family": "culture",
+   "slot": "Luna Hueca",
+   "q": "¿Dónde se celebra la Fiesta de Luna Hueca?",
+   "behavior": "answer",
+   "gold_values": [
+    "la plaza de Orvelo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "la plaza de Orvelo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     5
+    ]
+   ]
+  },
+  {
+   "id": "dev-19-2",
+   "split": "dev",
+   "role": "single",
+   "family": "culture",
+   "slot": "Luna Hueca",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Luna Hueca?",
+   "behavior": "answer",
+   "gold_values": [
+    "la plaza de Orvelo"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "la plaza de Orvelo"
+   },
+   "support": [
+    [
+     "dev-v1",
+     5
+    ]
+   ]
+  },
+  {
+   "id": "dev-20-1",
+   "split": "dev",
+   "role": "conflict_pending",
+   "family": "culture",
+   "slot": "Agua Quieta",
+   "q": "¿Dónde se celebra la Fiesta de Agua Quieta?",
+   "behavior": "conflict",
+   "gold_values": [
+    "el cerro de Anuma",
+    "la orilla de Anuma"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "el cerro de Anuma",
+    "dev-p2": "la orilla de Anuma"
+   },
+   "support": [
+    [
+     "dev-p1",
+     4
+    ],
+    [
+     "dev-p2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-20-2",
+   "split": "dev",
+   "role": "conflict_pending",
+   "family": "culture",
+   "slot": "Agua Quieta",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Agua Quieta?",
+   "behavior": "conflict",
+   "gold_values": [
+    "el cerro de Anuma",
+    "la orilla de Anuma"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-p1": "el cerro de Anuma",
+    "dev-p2": "la orilla de Anuma"
+   },
+   "support": [
+    [
+     "dev-p1",
+     4
+    ],
+    [
+     "dev-p2",
+     3
+    ]
+   ]
+  },
+  {
+   "id": "dev-21-1",
+   "split": "dev",
+   "role": "absent",
+   "family": "culture",
+   "slot": "Viento Seco",
+   "q": "¿Dónde se celebra la Fiesta de Viento Seco?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-21-2",
+   "split": "dev",
+   "role": "absent",
+   "family": "culture",
+   "slot": "Viento Seco",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Viento Seco?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-22-1",
+   "split": "dev",
+   "role": "poly",
+   "family": "poly",
+   "slot": "sa",
+   "q": "¿Qué significa sa?",
+   "behavior": "answer_any",
+   "gold_values": [
+    "tarde",
+    "orilla"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "sa"
+   },
+   "support": [
+    [
+     "dev-v1",
+     6
+    ]
+   ]
+  },
+  {
+   "id": "dev-22-2",
+   "split": "dev",
+   "role": "poly",
+   "family": "poly",
+   "slot": "sa",
+   "q": "¿Cuál es el significado de sa?",
+   "behavior": "answer_any",
+   "gold_values": [
+    "tarde",
+    "orilla"
+   ],
+   "validated_value": null,
+   "values_by_doc": {
+    "dev-v1": "sa"
+   },
+   "support": [
+    [
+     "dev-v1",
+     6
+    ]
+   ]
+  },
+  {
+   "id": "dev-u1",
+   "split": "dev",
+   "role": "underspecified",
+   "family": "-",
+   "slot": "-",
+   "q": "¿Cómo se dice?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-u2",
+   "split": "dev",
+   "role": "underspecified",
+   "family": "-",
+   "slot": "-",
+   "q": "Cuéntame más",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-o1",
+   "split": "dev",
+   "role": "out_of_corpus",
+   "family": "-",
+   "slot": "-",
+   "q": "¿Cuál es la capital de Colombia?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  },
+  {
+   "id": "dev-o2",
+   "split": "dev",
+   "role": "out_of_corpus",
+   "family": "-",
+   "slot": "-",
+   "q": "¿Cómo se dice agua en awapit?",
+   "behavior": "abstain",
+   "gold_values": [],
+   "validated_value": null,
+   "values_by_doc": {},
+   "support": []
+  }
+ ]
+}
