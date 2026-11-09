@@ -1,24 +1,24 @@
-import { Text } from "react-native";
+import { View } from "react-native";
 
 import { theme } from "../constants/theme";
+import { T } from "./T";
 
-export function MockBadge() {
+/** Marks content that is temporary demonstration data (not verified). */
+export function MockBadge({ label = "DATOS DE DEMOSTRACIÓN" }: { label?: string }) {
   return (
-    <Text
+    <View
       style={{
         alignSelf: "flex-start",
         backgroundColor: theme.colors.mockBackground,
         borderRadius: theme.radii.pill,
-        color: theme.colors.mockText,
-        fontSize: 11,
-        fontWeight: "800",
         marginTop: theme.spacing.sm,
-        overflow: "hidden",
         paddingHorizontal: theme.spacing.md,
         paddingVertical: theme.spacing.xs,
       }}
     >
-      DEMONSTRATION DATA
-    </Text>
+      <T f="display" w={700} s={11} c={theme.colors.mockText} ls={0.3}>
+        {label}
+      </T>
+    </View>
   );
 }
