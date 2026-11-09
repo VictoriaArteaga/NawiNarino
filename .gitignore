@@ -14,3 +14,9 @@ __pycache__/
 .venv/
 venv/
 *.tsbuildinfo
+
+backend/rag_data/index.json
+
+
+backend/experiments/cache/
+!.env.*.example
