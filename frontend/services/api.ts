@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { resolveApiBaseUrl } from "./config";
+
 interface ApiErrorResponse {
   detail?: unknown;
 }
@@ -34,11 +36,21 @@ function getDetailMessage(detail: unknown): string | undefined {
 }
 
 const apiClient = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL?.trim() || "http://localhost:8000",
   timeout: 10_000,
   headers: {
     Accept: "application/json",
   },
+});
+
+// La URL se resuelve en cada petición: un build sin URL válida muestra un error claro en la interfaz
+// en vez de fallar al arrancar o conectar a localhost.
+apiClient.interceptors.request.use((config) => {
+  try {
+    config.baseURL = resolveApiBaseUrl();
+  } catch (error) {
+    return Promise.reject(error); // ApiConfigError llega tal cual a la interfaz
+  }
+  return config;
 });
 
 apiClient.interceptors.response.use(
