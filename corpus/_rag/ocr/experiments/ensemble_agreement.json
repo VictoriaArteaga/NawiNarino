@@ -1,0 +1,33 @@
+{
+ "base300+thick600+spaeng300": {
+  "('acuerdo', 'correcto')": 386,
+  "('acuerdo', 'correcto', 'especial')": 89,
+  "('desacuerdo', 'incorrecto')": 28,
+  "('desacuerdo', 'incorrecto', 'especial')": 16,
+  "('acuerdo', 'incorrecto')": 4,
+  "('desacuerdo', 'correcto')": 20,
+  "('desacuerdo', 'correcto', 'especial')": 17,
+  "('ninguna_config', 'GT')": 5
+ },
+ "base300+thick600": {
+  "('acuerdo', 'correcto')": 392,
+  "('acuerdo', 'correcto', 'especial')": 95,
+  "('desacuerdo', 'incorrecto')": 20,
+  "('desacuerdo', 'incorrecto', 'especial')": 12,
+  "('acuerdo', 'incorrecto')": 6,
+  "('desacuerdo', 'correcto')": 10,
+  "('desacuerdo', 'correcto', 'especial')": 8,
+  "('acuerdo', 'incorrecto', 'especial')": 2,
+  "('ninguna_config', 'GT')": 9
+ },
+ "thick600+thick450+spaeng300": {
+  "('acuerdo', 'correcto')": 390,
+  "('acuerdo', 'correcto', 'especial')": 93,
+  "('desacuerdo', 'incorrecto')": 26,
+  "('desacuerdo', 'incorrecto', 'especial')": 11,
+  "('acuerdo', 'incorrecto')": 3,
+  "('desacuerdo', 'correcto')": 17,
+  "('desacuerdo', 'correcto', 'especial')": 14,
+  "('ninguna_config', 'GT')": 4
+ }
+}

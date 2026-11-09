@@ -1,0 +1,309 @@
+{
+  "pages_new": [
+    102,
+    118
+  ],
+  "context_not_in_decision": [
+    95
+  ],
+  "criteria": {
+    "glottal_gain_min_points": 5.0,
+    "accent_loss_max_points": 2.0,
+    "f1_loss_max_per_page": 0.01
+  },
+  "per_page": {
+    "102": {
+      "ocr_actual": {
+        "tokens_ref": 218,
+        "F1": 0.972,
+        "glotal": "25/30",
+        "glotal_pct": 83.3,
+        "acentos": "23/24",
+        "acentos_pct": 95.8,
+        "exclam_en_palabra": 3,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.972
+      },
+      "thick600": {
+        "tokens_ref": 218,
+        "F1": 0.961,
+        "glotal": "25/30",
+        "glotal_pct": 83.3,
+        "acentos": "23/24",
+        "acentos_pct": 95.8,
+        "exclam_en_palabra": 3,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.961
+      },
+      "spaeng300": {
+        "tokens_ref": 218,
+        "F1": 0.989,
+        "glotal": "28/30",
+        "glotal_pct": 93.3,
+        "acentos": "22/24",
+        "acentos_pct": 91.7,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.989
+      }
+    },
+    "118": {
+      "ocr_actual": {
+        "tokens_ref": 208,
+        "F1": 0.954,
+        "glotal": "16/23",
+        "glotal_pct": 69.6,
+        "acentos": "32/35",
+        "acentos_pct": 91.4,
+        "exclam_en_palabra": 5,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.954
+      },
+      "thick600": {
+        "tokens_ref": 208,
+        "F1": 0.969,
+        "glotal": "19/23",
+        "glotal_pct": 82.6,
+        "acentos": "34/35",
+        "acentos_pct": 97.1,
+        "exclam_en_palabra": 2,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.969
+      },
+      "spaeng300": {
+        "tokens_ref": 208,
+        "F1": 0.973,
+        "glotal": "21/23",
+        "glotal_pct": 91.3,
+        "acentos": "32/35",
+        "acentos_pct": 91.4,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.973
+      }
+    },
+    "95": {
+      "ocr_actual": {
+        "tokens_ref": 226,
+        "F1": 0.942,
+        "glotal": "37/49",
+        "glotal_pct": 75.5,
+        "acentos": "32/35",
+        "acentos_pct": 91.4,
+        "exclam_en_palabra": 10,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.942
+      },
+      "thick600": {
+        "tokens_ref": 226,
+        "F1": 0.982,
+        "glotal": "46/49",
+        "glotal_pct": 93.9,
+        "acentos": "34/35",
+        "acentos_pct": 97.1,
+        "exclam_en_palabra": 1,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.982
+      },
+      "spaeng300": {
+        "tokens_ref": 226,
+        "F1": 0.96,
+        "glotal": "45/49",
+        "glotal_pct": 91.8,
+        "acentos": "26/35",
+        "acentos_pct": 74.3,
+        "exclam_en_palabra": 1,
+        "l_por_glotal_candidatos": null,
+        "F1_pagina": 0.96
+      }
+    }
+  },
+  "pooled_new": {
+    "ocr_actual": {
+      "tokens_ref": 426,
+      "F1": 0.964,
+      "glotal": "41/53",
+      "glotal_pct": 77.4,
+      "acentos": "55/59",
+      "acentos_pct": 93.2,
+      "exclam_en_palabra": 8,
+      "l_por_glotal_candidatos": null
+    },
+    "thick600": {
+      "tokens_ref": 426,
+      "F1": 0.965,
+      "glotal": "44/53",
+      "glotal_pct": 83.0,
+      "acentos": "57/59",
+      "acentos_pct": 96.6,
+      "exclam_en_palabra": 5,
+      "l_por_glotal_candidatos": null
+    },
+    "spaeng300": {
+      "tokens_ref": 426,
+      "F1": 0.981,
+      "glotal": "49/53",
+      "glotal_pct": 92.5,
+      "acentos": "54/59",
+      "acentos_pct": 91.5,
+      "exclam_en_palabra": 0,
+      "l_por_glotal_candidatos": null
+    }
+  },
+  "glottal_confusion_new": {
+    "ocr_actual": {
+      "exacto": 45,
+      "ausente": 2,
+      "'!'": 2,
+      "'l'": 1
+    },
+    "thick600": {
+      "exacto": 47,
+      "'!'": 4,
+      "ausente": 2,
+      "'l'": 1
+    },
+    "spaeng300": {
+      "exacto": 51
+    }
+  },
+  "decision_thick600": {
+    "glotal: thick600 >= actual + 5 pts": {
+      "valor": 5.6,
+      "cumple": true
+    },
+    "acentos: thick600 >= actual - 2 pts": {
+      "valor": 3.4,
+      "cumple": true
+    },
+    "F1 por pagina: ninguna baja mas de 0.01": {
+      "valor": {
+        "102": -0.011,
+        "118": 0.015
+      },
+      "cumple": false
+    },
+    "conclusion": "NO CUMPLE"
+  },
+  "ensemble_new": {
+    "todos": {
+      "acuerdo_correcto": 306,
+      "desacuerdo_incorrecto": 30,
+      "desacuerdo_correcto": 17,
+      "acuerdo_incorrecto": 1
+    },
+    "glotal_acento_exclam": {
+      "acuerdo_correcto": 80,
+      "desacuerdo_correcto": 16,
+      "desacuerdo_incorrecto": 17
+    }
+  },
+  "errors": {
+    "102": {
+      "ocr_actual": {
+        "no_leidos_glotal_o_acento": [
+          "cashen'tti",
+          "fue'ngatssi",
+          "ishoanzú'je",
+          "potacho'fa",
+          "zu'tta"
+        ],
+        "lecturas_distintas": [
+          "cashen!'tti",
+          "fue",
+          "ishoanzú!je",
+          "ngatssi",
+          "potacho!'fa",
+          "zutta"
+        ]
+      },
+      "thick600": {
+        "no_leidos_glotal_o_acento": [
+          "aya'fa",
+          "cashen'tti",
+          "changoeñe",
+          "fue'ngatssi",
+          "ma'ndeye",
+          "potacho'fa"
+        ],
+        "lecturas_distintas": [
+          "aya!fa",
+          "cashen!'tti",
+          "changoene",
+          "fue",
+          "ndeye",
+          "ngatssi",
+          "potacho!fa",
+          "vyarina"
+        ]
+      },
+      "spaeng300": {
+        "no_leidos_glotal_o_acento": [
+          "indián'cco",
+          "ishoanzú'je"
+        ],
+        "lecturas_distintas": [
+          "indian'cco",
+          "ishoanzi'je"
+        ]
+      }
+    },
+    "118": {
+      "ocr_actual": {
+        "no_leidos_glotal_o_acento": [
+          "chánchanchan'cho'a",
+          "noe'ngeye",
+          "picco'cho",
+          "qquipoé'suye",
+          "sataccu'cho",
+          "shondo'su",
+          "shondusu'cho",
+          "vergüenza"
+        ],
+        "lecturas_distintas": [
+          "chánchanchan'chola",
+          "ngeye",
+          "noe",
+          "picco'!cho",
+          "qquipoé!suye",
+          "sataccu!cho",
+          "shondo!su",
+          "shondusu'!cho",
+          "vergúenza"
+        ]
+      },
+      "thick600": {
+        "no_leidos_glotal_o_acento": [
+          "dyo'joye",
+          "noe'ngeye",
+          "oqquiccu'o",
+          "sataccu'cho",
+          "vergüenza"
+        ],
+        "lecturas_distintas": [
+          "!ngeye",
+          "dyo!joye",
+          "noe",
+          "ogquicculo",
+          "sataccu!cho",
+          "verguenza"
+        ]
+      },
+      "spaeng300": {
+        "no_leidos_glotal_o_acento": [
+          "chánchanchan'cho'a",
+          "maíz",
+          "noe'ngeye",
+          "vergüenza"
+        ],
+        "lecturas_distintas": [
+          "chanchanchan'cho'a",
+          "maiz",
+          "ngeye",
+          "noe",
+          "vergiienza"
+        ]
+      }
+    }
+  }
+}

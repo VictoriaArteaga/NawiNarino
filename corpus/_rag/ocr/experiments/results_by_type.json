@@ -1,0 +1,279 @@
+{
+  "types": {
+    "diccionario cofán→castellano (p41)": {
+      "ocr_actual": {
+        "tokens_ref": 297,
+        "F1": 0.963,
+        "glotal": "25/26",
+        "glotal_pct": 96.2,
+        "acentos": "34/36",
+        "acentos_pct": 94.4,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "thick600": {
+        "tokens_ref": 297,
+        "F1": 0.971,
+        "glotal": "26/26",
+        "glotal_pct": 100.0,
+        "acentos": "33/36",
+        "acentos_pct": 91.7,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "spaeng300": {
+        "tokens_ref": 297,
+        "F1": 0.966,
+        "glotal": "25/26",
+        "glotal_pct": 96.2,
+        "acentos": "34/36",
+        "acentos_pct": 94.4,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      }
+    },
+    "diccionario castellano→cofán (p95)": {
+      "ocr_actual": {
+        "tokens_ref": 226,
+        "F1": 0.942,
+        "glotal": "37/49",
+        "glotal_pct": 75.5,
+        "acentos": "32/35",
+        "acentos_pct": 91.4,
+        "exclam_en_palabra": 10,
+        "l_por_glotal_candidatos": null
+      },
+      "thick600": {
+        "tokens_ref": 226,
+        "F1": 0.982,
+        "glotal": "46/49",
+        "glotal_pct": 93.9,
+        "acentos": "34/35",
+        "acentos_pct": 97.1,
+        "exclam_en_palabra": 1,
+        "l_por_glotal_candidatos": null
+      },
+      "spaeng300": {
+        "tokens_ref": 226,
+        "F1": 0.96,
+        "glotal": "45/49",
+        "glotal_pct": 91.8,
+        "acentos": "26/35",
+        "acentos_pct": 74.3,
+        "exclam_en_palabra": 1,
+        "l_por_glotal_candidatos": null
+      }
+    },
+    "fauna (p69)": {
+      "ocr_actual": {
+        "tokens_ref": 322,
+        "F1": 0.983,
+        "glotal": "15/15",
+        "glotal_pct": 100.0,
+        "acentos": "17/17",
+        "acentos_pct": 100.0,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "thick600": {
+        "tokens_ref": 322,
+        "F1": 0.975,
+        "glotal": "15/15",
+        "glotal_pct": 100.0,
+        "acentos": "17/17",
+        "acentos_pct": 100.0,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "spaeng300": {
+        "tokens_ref": 322,
+        "F1": 0.995,
+        "glotal": "15/15",
+        "glotal_pct": 100.0,
+        "acentos": "17/17",
+        "acentos_pct": 100.0,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      }
+    },
+    "flora (p78)": {
+      "ocr_actual": {
+        "tokens_ref": 359,
+        "F1": 0.987,
+        "glotal": "24/26",
+        "glotal_pct": 92.3,
+        "acentos": "25/27",
+        "acentos_pct": 92.6,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "thick600": {
+        "tokens_ref": 359,
+        "F1": 0.989,
+        "glotal": "25/26",
+        "glotal_pct": 96.2,
+        "acentos": "25/27",
+        "acentos_pct": 92.6,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "spaeng300": {
+        "tokens_ref": 359,
+        "F1": 0.989,
+        "glotal": "24/26",
+        "glotal_pct": 92.3,
+        "acentos": "25/27",
+        "acentos_pct": 92.6,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      }
+    },
+    "gramática (p127, p129)": {
+      "ocr_actual": {
+        "tokens_ref": 571,
+        "F1": 0.993,
+        "glotal": "21/25",
+        "glotal_pct": 84.0,
+        "acentos": "84/84",
+        "acentos_pct": 100.0,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "thick600": {
+        "tokens_ref": 571,
+        "F1": 0.983,
+        "glotal": "19/25",
+        "glotal_pct": 76.0,
+        "acentos": "82/84",
+        "acentos_pct": 97.6,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      },
+      "spaeng300": {
+        "tokens_ref": 571,
+        "F1": 0.984,
+        "glotal": "24/25",
+        "glotal_pct": 96.0,
+        "acentos": "77/84",
+        "acentos_pct": 91.7,
+        "exclam_en_palabra": 0,
+        "l_por_glotal_candidatos": null
+      }
+    }
+  },
+  "criteria": {
+    "glottal_gain_min_points": 5.0,
+    "accent_loss_max_points": 2.0,
+    "f1_loss_max_per_page": 0.01
+  },
+  "alphabet_table": {
+    "ocr_actual": "40/42",
+    "thick600": "39/42",
+    "spaeng300": "40/42"
+  },
+  "pooled_new_pages": {
+    "ocr_actual": {
+      "tokens_ref": 1252,
+      "F1": 0.989,
+      "glotal": "60/66",
+      "glotal_pct": 90.9,
+      "acentos": "126/128",
+      "acentos_pct": 98.4,
+      "exclam_en_palabra": 0,
+      "l_por_glotal_candidatos": null
+    },
+    "thick600": {
+      "tokens_ref": 1252,
+      "F1": 0.983,
+      "glotal": "59/66",
+      "glotal_pct": 89.4,
+      "acentos": "124/128",
+      "acentos_pct": 96.9,
+      "exclam_en_palabra": 0,
+      "l_por_glotal_candidatos": null
+    },
+    "spaeng300": {
+      "tokens_ref": 1252,
+      "F1": 0.988,
+      "glotal": "63/66",
+      "glotal_pct": 95.5,
+      "acentos": "119/128",
+      "acentos_pct": 93.0,
+      "exclam_en_palabra": 0,
+      "l_por_glotal_candidatos": null
+    }
+  },
+  "pooled_all_refs": {
+    "ocr_actual": {
+      "tokens_ref": 1775,
+      "F1": 0.979,
+      "glotal": "122/141",
+      "glotal_pct": 86.5,
+      "acentos": "192/199",
+      "acentos_pct": 96.5,
+      "exclam_en_palabra": 10,
+      "l_por_glotal_candidatos": null
+    },
+    "thick600": {
+      "tokens_ref": 1775,
+      "F1": 0.981,
+      "glotal": "131/141",
+      "glotal_pct": 92.9,
+      "acentos": "191/199",
+      "acentos_pct": 96.0,
+      "exclam_en_palabra": 1,
+      "l_por_glotal_candidatos": null
+    },
+    "spaeng300": {
+      "tokens_ref": 1775,
+      "F1": 0.981,
+      "glotal": "133/141",
+      "glotal_pct": 94.3,
+      "acentos": "179/199",
+      "acentos_pct": 89.9,
+      "exclam_en_palabra": 1,
+      "l_por_glotal_candidatos": null
+    }
+  },
+  "f1_per_page": {
+    "ocr_actual": {
+      "41": 0.963,
+      "95": 0.942,
+      "69": 0.983,
+      "78": 0.987,
+      "127": 0.99,
+      "129": 0.996
+    },
+    "thick600": {
+      "41": 0.971,
+      "95": 0.982,
+      "69": 0.975,
+      "78": 0.989,
+      "127": 0.979,
+      "129": 0.988
+    },
+    "spaeng300": {
+      "41": 0.966,
+      "95": 0.96,
+      "69": 0.995,
+      "78": 0.989,
+      "127": 0.978,
+      "129": 0.992
+    }
+  },
+  "decision_thick600": {
+    "glotal: thick600 >= actual + 5 pts": {
+      "valor": -1.5,
+      "cumple": false
+    },
+    "acentos: thick600 >= actual - 2 pts": {
+      "valor": -1.5,
+      "cumple": true
+    },
+    "F1 por pagina nueva: peor diferencia >= -0.01": {
+      "valor": -0.011,
+      "cumple": false
+    },
+    "conclusion": "NO FAVORABLE"
+  }
+}

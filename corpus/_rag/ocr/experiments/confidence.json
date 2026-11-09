@@ -1,0 +1,627 @@
+{
+  "configs": {
+    "base300": {
+      "dpi": 300,
+      "lang": "spa",
+      "psm": 3
+    },
+    "dpi600": {
+      "dpi": 600,
+      "lang": "spa",
+      "psm": 3
+    },
+    "bin300": {
+      "dpi": 300,
+      "lang": "spa",
+      "psm": 3,
+      "pre": "otsu"
+    },
+    "bin600": {
+      "dpi": 600,
+      "lang": "spa",
+      "psm": 3,
+      "pre": "otsu"
+    },
+    "thick600": {
+      "dpi": 600,
+      "lang": "spa",
+      "psm": 3,
+      "pre": "otsu_thick"
+    },
+    "cols300": {
+      "dpi": 300,
+      "lang": "spa",
+      "psm": 6,
+      "cols": true
+    },
+    "spaeng300": {
+      "dpi": 300,
+      "lang": "spa+eng",
+      "psm": 3
+    },
+    "blacklist300": {
+      "dpi": 300,
+      "lang": "spa",
+      "psm": 3,
+      "extra": [
+        "-c",
+        "tessedit_char_blacklist=!|"
+      ]
+    },
+    "thick600_spaeng": {
+      "dpi": 600,
+      "lang": "spa+eng",
+      "psm": 3,
+      "pre": "otsu_thick"
+    },
+    "thick450": {
+      "dpi": 450,
+      "lang": "spa",
+      "psm": 3,
+      "pre": "otsu_thick"
+    },
+    "thick600_blacklist": {
+      "dpi": 600,
+      "lang": "spa",
+      "psm": 3,
+      "pre": "otsu_thick",
+      "extra": [
+        "-c",
+        "tessedit_char_blacklist=!|"
+      ]
+    }
+  },
+  "pages": {
+    "5": "introduccion (prosa)",
+    "12": "cofan-castellano, cabezas en negrita",
+    "41": "cofan-castellano (con referencia manual)",
+    "60": "cofan-castellano, fin de seccion",
+    "66": "lista de fauna (nombres latinos)",
+    "95": "castellano-cofan (con referencia manual)",
+    "118": "castellano-cofan",
+    "123": "alfabeto, tabla 1 (con referencia manual)",
+    "124": "alfabeto, tabla 2 (con referencia manual)",
+    "126": "apuntes de gramatica",
+    "69": "lista de fauna (con referencia manual)",
+    "78": "lista de flora (con referencia manual)",
+    "127": "gramatica, raices y ejemplos (con referencia manual)",
+    "129": "gramatica, sufijos verbales (con referencia manual)",
+    "102": "castellano-cofan, hoja-inclinado (con referencia manual)"
+  },
+  "results": {
+    "base300": {
+      "5": {
+        "mean_conf": 95.3,
+        "n_words": 301
+      },
+      "12": {
+        "mean_conf": 92.9,
+        "n_words": 288
+      },
+      "41": {
+        "mean_conf": 93.5,
+        "n_words": 303
+      },
+      "60": {
+        "mean_conf": 92.4,
+        "n_words": 314
+      },
+      "66": {
+        "mean_conf": 94.8,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 87.0,
+        "n_words": 234
+      },
+      "118": {
+        "mean_conf": 89.7,
+        "n_words": 209
+      },
+      "123": {
+        "mean_conf": 93.7,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 92.4,
+        "n_words": 273
+      },
+      "126": {
+        "mean_conf": 91.9,
+        "n_words": 281
+      },
+      "69": {
+        "mean_conf": 93.0,
+        "n_words": 323
+      },
+      "78": {
+        "mean_conf": 93.3,
+        "n_words": 359
+      },
+      "127": {
+        "mean_conf": 94.1,
+        "n_words": 312
+      },
+      "129": {
+        "mean_conf": 93.8,
+        "n_words": 259
+      },
+      "102": {
+        "mean_conf": 90.5,
+        "n_words": 220
+      },
+      "118": {
+        "mean_conf": 89.7,
+        "n_words": 209
+      }
+    },
+    "dpi600": {
+      "5": {
+        "mean_conf": 95.4,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 92.6,
+        "n_words": 292
+      },
+      "41": {
+        "mean_conf": 92.5,
+        "n_words": 303
+      },
+      "60": {
+        "mean_conf": 91.6,
+        "n_words": 316
+      },
+      "66": {
+        "mean_conf": 94.0,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 87.7,
+        "n_words": 234
+      },
+      "118": {
+        "mean_conf": 90.1,
+        "n_words": 211
+      },
+      "123": {
+        "mean_conf": 92.1,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 91.4,
+        "n_words": 269
+      },
+      "126": {
+        "mean_conf": 89.6,
+        "n_words": 283
+      }
+    },
+    "bin300": {
+      "5": {
+        "mean_conf": 95.2,
+        "n_words": 301
+      },
+      "12": {
+        "mean_conf": 92.6,
+        "n_words": 287
+      },
+      "41": {
+        "mean_conf": 92.8,
+        "n_words": 301
+      },
+      "60": {
+        "mean_conf": 92.2,
+        "n_words": 313
+      },
+      "66": {
+        "mean_conf": 94.4,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 87.4,
+        "n_words": 234
+      },
+      "118": {
+        "mean_conf": 90.3,
+        "n_words": 209
+      },
+      "123": {
+        "mean_conf": 92.8,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 92.1,
+        "n_words": 272
+      },
+      "126": {
+        "mean_conf": 91.5,
+        "n_words": 281
+      }
+    },
+    "bin600": {
+      "5": {
+        "mean_conf": 95.4,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 92.6,
+        "n_words": 292
+      },
+      "41": {
+        "mean_conf": 92.5,
+        "n_words": 303
+      },
+      "60": {
+        "mean_conf": 91.6,
+        "n_words": 316
+      },
+      "66": {
+        "mean_conf": 94.0,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 87.7,
+        "n_words": 234
+      },
+      "118": {
+        "mean_conf": 90.1,
+        "n_words": 211
+      },
+      "123": {
+        "mean_conf": 92.1,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 91.4,
+        "n_words": 269
+      },
+      "126": {
+        "mean_conf": 89.6,
+        "n_words": 283
+      }
+    },
+    "thick600": {
+      "5": {
+        "mean_conf": 95.2,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 93.2,
+        "n_words": 293
+      },
+      "41": {
+        "mean_conf": 93.0,
+        "n_words": 304
+      },
+      "60": {
+        "mean_conf": 92.7,
+        "n_words": 316
+      },
+      "66": {
+        "mean_conf": 94.5,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 89.0,
+        "n_words": 233
+      },
+      "118": {
+        "mean_conf": 90.8,
+        "n_words": 211
+      },
+      "123": {
+        "mean_conf": 92.5,
+        "n_words": 256
+      },
+      "124": {
+        "mean_conf": 91.5,
+        "n_words": 267
+      },
+      "126": {
+        "mean_conf": 90.4,
+        "n_words": 284
+      },
+      "69": {
+        "mean_conf": 93.0,
+        "n_words": 325
+      },
+      "78": {
+        "mean_conf": 93.1,
+        "n_words": 359
+      },
+      "127": {
+        "mean_conf": 93.5,
+        "n_words": 313
+      },
+      "129": {
+        "mean_conf": 93.4,
+        "n_words": 259
+      },
+      "102": {
+        "mean_conf": 88.4,
+        "n_words": 224
+      },
+      "118": {
+        "mean_conf": 90.8,
+        "n_words": 211
+      }
+    },
+    "cols300": {
+      "5": {
+        "mean_conf": 95.3,
+        "n_words": 301
+      },
+      "12": {
+        "mean_conf": 92.2,
+        "n_words": 303
+      },
+      "41": {
+        "mean_conf": 92.8,
+        "n_words": 307
+      },
+      "60": {
+        "mean_conf": 91.4,
+        "n_words": 318
+      },
+      "66": {
+        "mean_conf": 93.7,
+        "n_words": 400
+      },
+      "95": {
+        "mean_conf": 86.3,
+        "n_words": 235
+      },
+      "118": {
+        "mean_conf": 85.8,
+        "n_words": 232
+      },
+      "123": {
+        "mean_conf": 93.7,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 93.0,
+        "n_words": 280
+      },
+      "126": {
+        "mean_conf": 91.9,
+        "n_words": 281
+      }
+    },
+    "spaeng300": {
+      "5": {
+        "mean_conf": 95.3,
+        "n_words": 301
+      },
+      "12": {
+        "mean_conf": 93.6,
+        "n_words": 286
+      },
+      "41": {
+        "mean_conf": 93.7,
+        "n_words": 303
+      },
+      "60": {
+        "mean_conf": 92.9,
+        "n_words": 314
+      },
+      "66": {
+        "mean_conf": 94.6,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 89.6,
+        "n_words": 233
+      },
+      "118": {
+        "mean_conf": 91.9,
+        "n_words": 209
+      },
+      "123": {
+        "mean_conf": 94.4,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 93.0,
+        "n_words": 273
+      },
+      "126": {
+        "mean_conf": 93.9,
+        "n_words": 281
+      },
+      "69": {
+        "mean_conf": 94.0,
+        "n_words": 323
+      },
+      "78": {
+        "mean_conf": 94.1,
+        "n_words": 359
+      },
+      "127": {
+        "mean_conf": 94.6,
+        "n_words": 312
+      },
+      "129": {
+        "mean_conf": 94.3,
+        "n_words": 259
+      },
+      "102": {
+        "mean_conf": 92.2,
+        "n_words": 219
+      },
+      "118": {
+        "mean_conf": 91.9,
+        "n_words": 209
+      }
+    },
+    "blacklist300": {
+      "5": {
+        "mean_conf": 95.3,
+        "n_words": 301
+      },
+      "12": {
+        "mean_conf": 92.9,
+        "n_words": 288
+      },
+      "41": {
+        "mean_conf": 93.5,
+        "n_words": 303
+      },
+      "60": {
+        "mean_conf": 92.2,
+        "n_words": 314
+      },
+      "66": {
+        "mean_conf": 94.8,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 84.8,
+        "n_words": 234
+      },
+      "118": {
+        "mean_conf": 89.0,
+        "n_words": 209
+      },
+      "123": {
+        "mean_conf": 93.3,
+        "n_words": 255
+      },
+      "124": {
+        "mean_conf": 92.1,
+        "n_words": 273
+      },
+      "126": {
+        "mean_conf": 91.9,
+        "n_words": 281
+      }
+    },
+    "thick600_spaeng": {
+      "5": {
+        "mean_conf": 95.5,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 93.4,
+        "n_words": 293
+      },
+      "41": {
+        "mean_conf": 93.0,
+        "n_words": 304
+      },
+      "60": {
+        "mean_conf": 93.0,
+        "n_words": 316
+      },
+      "66": {
+        "mean_conf": 94.3,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 90.8,
+        "n_words": 232
+      },
+      "118": {
+        "mean_conf": 92.4,
+        "n_words": 210
+      },
+      "123": {
+        "mean_conf": 93.6,
+        "n_words": 256
+      },
+      "124": {
+        "mean_conf": 92.9,
+        "n_words": 267
+      },
+      "126": {
+        "mean_conf": 93.1,
+        "n_words": 284
+      }
+    },
+    "thick450": {
+      "5": {
+        "mean_conf": 95.1,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 93.1,
+        "n_words": 292
+      },
+      "41": {
+        "mean_conf": 93.0,
+        "n_words": 302
+      },
+      "60": {
+        "mean_conf": 92.0,
+        "n_words": 315
+      },
+      "66": {
+        "mean_conf": 94.4,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 88.8,
+        "n_words": 233
+      },
+      "118": {
+        "mean_conf": 92.1,
+        "n_words": 209
+      },
+      "123": {
+        "mean_conf": 92.7,
+        "n_words": 256
+      },
+      "124": {
+        "mean_conf": 91.2,
+        "n_words": 264
+      },
+      "126": {
+        "mean_conf": 90.4,
+        "n_words": 283
+      }
+    },
+    "thick600_blacklist": {
+      "5": {
+        "mean_conf": 95.2,
+        "n_words": 302
+      },
+      "12": {
+        "mean_conf": 92.9,
+        "n_words": 293
+      },
+      "41": {
+        "mean_conf": 93.0,
+        "n_words": 304
+      },
+      "60": {
+        "mean_conf": 92.7,
+        "n_words": 316
+      },
+      "66": {
+        "mean_conf": 94.5,
+        "n_words": 386
+      },
+      "95": {
+        "mean_conf": 88.7,
+        "n_words": 233
+      },
+      "118": {
+        "mean_conf": 89.7,
+        "n_words": 211
+      },
+      "123": {
+        "mean_conf": 92.0,
+        "n_words": 256
+      },
+      "124": {
+        "mean_conf": 91.0,
+        "n_words": 267
+      },
+      "126": {
+        "mean_conf": 89.5,
+        "n_words": 285
+      }
+    }
+  }
+}

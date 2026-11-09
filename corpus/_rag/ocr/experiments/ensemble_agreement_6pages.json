@@ -1,0 +1,32 @@
+{
+ "todas (6 paginas)": {
+  "acuerdo_correcto": 1104,
+  "acuerdo_incorrecto": 7,
+  "desacuerdo_correcto": 47,
+  "desacuerdo_incorrecto": 66,
+  "precision_acuerdo_pct": 99.4,
+  "errores_atrapados_pct": 90.4,
+  "tokens_a_revisar_pct": 9.2,
+  "solo_tokens_con_glotal_acento_o_!": {
+   "acuerdo_correcto": 206,
+   "acuerdo_incorrecto": 0,
+   "desacuerdo_correcto": 34,
+   "desacuerdo_incorrecto": 21
+  }
+ },
+ "paginas nuevas": {
+  "acuerdo_correcto": 718,
+  "acuerdo_incorrecto": 3,
+  "desacuerdo_correcto": 27,
+  "desacuerdo_incorrecto": 38,
+  "precision_acuerdo_pct": 99.6,
+  "errores_atrapados_pct": 92.7,
+  "tokens_a_revisar_pct": 8.3,
+  "solo_tokens_con_glotal_acento_o_!": {
+   "acuerdo_correcto": 117,
+   "acuerdo_incorrecto": 0,
+   "desacuerdo_correcto": 17,
+   "desacuerdo_incorrecto": 6
+  }
+ }
+}
