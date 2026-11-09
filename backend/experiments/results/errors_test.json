@@ -1,0 +1,2333 @@
+{
+ "S0": [
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-01-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice nueve en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "saku"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-03-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el numeral para doce en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     1
+    ],
+    [
+     "test-v2",
+     1
+    ]
+   ],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-03-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cómo se dice doce en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     1
+    ]
+   ],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-04-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cuál es el numeral para trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ],
+    [
+     "test-v2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-04-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cómo se dice trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-06-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el numeral para quince en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ],
+    [
+     "test-v1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-09-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cuál es el saludo del mediodía en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [
+    "ibar",
+    "ibur"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-09-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Con qué expresión se saluda al mediodía?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [
+    "ibar",
+    "ibur"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-10-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el saludo del anochecer en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-15-1",
+   "role": "conflict_pending",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para camino en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     2
+    ],
+    [
+     "test-p1",
+     2
+    ]
+   ],
+   "gold": [
+    "tanu",
+    "tenu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-15-2",
+   "role": "conflict_pending",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa camino en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     2
+    ],
+    [
+     "test-p1",
+     2
+    ]
+   ],
+   "gold": [
+    "tanu",
+    "tenu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-16-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para nube en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     3
+    ],
+    [
+     "test-v2",
+     3
+    ]
+   ],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-16-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa nube en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     3
+    ]
+   ],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ],
+    [
+     "test-p2",
+     3
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-20-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el sufijo del femenino?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     4
+    ],
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-p2",
+     3
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-22-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Dónde se celebra la Fiesta de Maíz Dormido?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     5
+    ],
+    [
+     "test-p1",
+     3
+    ]
+   ],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-22-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Maíz Dormido?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     5
+    ],
+    [
+     "test-p1",
+     3
+    ]
+   ],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-23-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Dónde se celebra la Fiesta de Río Alto?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     5
+    ],
+    [
+     "test-v2",
+     5
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  }
+ ],
+ "S1": [
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-01-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice nueve en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "saku"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-02-2",
+   "role": "agree",
+   "behavior": "answer",
+   "q": "¿Cómo se dice once en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "lowa"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-03-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el numeral para doce en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     1
+    ],
+    [
+     "test-v2",
+     1
+    ]
+   ],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-03-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cómo se dice doce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-04-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cuál es el numeral para trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ],
+    [
+     "test-v2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-04-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cómo se dice trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ],
+    [
+     "test-v2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-09-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cuál es el saludo del mediodía en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [
+    "ibar",
+    "ibur"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-09-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Con qué expresión se saluda al mediodía?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [
+    "ibar",
+    "ibur"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-15-1",
+   "role": "conflict_pending",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para camino en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     2
+    ],
+    [
+     "test-p1",
+     2
+    ]
+   ],
+   "gold": [
+    "tanu",
+    "tenu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-15-2",
+   "role": "conflict_pending",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa camino en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-p2",
+     2
+    ],
+    [
+     "test-p1",
+     2
+    ]
+   ],
+   "gold": [
+    "tanu",
+    "tenu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-16-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para nube en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     3
+    ],
+    [
+     "test-v2",
+     3
+    ]
+   ],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-16-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa nube en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     3
+    ],
+    [
+     "test-v2",
+     3
+    ]
+   ],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-22-1",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Dónde se celebra la Fiesta de Maíz Dormido?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     5
+    ],
+    [
+     "test-p1",
+     3
+    ]
+   ],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-22-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Maíz Dormido?",
+   "status": "answered",
+   "chosen": null,
+   "values": [],
+   "citations": [
+    [
+     "test-v1",
+     5
+    ],
+    [
+     "test-p1",
+     3
+    ]
+   ],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  }
+ ],
+ "S2": [
+  {
+   "id": "test-00-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-01-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice nueve en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "saku"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-02-1",
+   "role": "agree",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para once en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "lowa"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-02-2",
+   "role": "agree",
+   "behavior": "answer",
+   "q": "¿Cómo se dice once en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "lowa"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-03-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cómo se dice doce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-04-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cómo se dice trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "galu",
+   "values": [
+    "galu"
+   ],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-05-1",
+   "role": "pending_only",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para catorce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mupi"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-05-2",
+   "role": "pending_only",
+   "behavior": "answer",
+   "q": "¿Cómo se dice catorce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mupi"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "conflict_by_status",
+   "chosen": "nuko",
+   "values": [
+    "nuko",
+    "ibur"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-16-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para nube en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-16-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa nube en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-17-1",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el colectivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-17-2",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del colectivo?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "answered",
+   "chosen": "ficticio",
+   "values": [
+    "ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-19-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el posesivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-19-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del posesivo?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-21-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Sombra Larga?",
+   "status": "answered",
+   "chosen": "ulven",
+   "values": [
+    "ulven"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     5
+    ]
+   ],
+   "gold": [
+    "la cima de Ulven"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  },
+  {
+   "id": "test-24-2",
+   "role": "poly",
+   "behavior": "answer_any",
+   "q": "¿Cuál es el significado de ka?",
+   "status": "answered",
+   "chosen": "humo\" y \"sombra",
+   "values": [
+    "humo\" y \"sombra"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     6
+    ]
+   ],
+   "gold": [
+    "humo",
+    "sombra"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  }
+ ],
+ "S3": [
+  {
+   "id": "test-00-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para uno en la Lengua de Contraste?",
+   "status": "conflict_by_status",
+   "chosen": "kemba",
+   "values": [
+    "kemba",
+    "galu"
+   ],
+   "citations": [
+    [
+     "test-v1",
+     1
+    ],
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_conflict": true
+   }
+  },
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-07-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el numeral para veinte en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "galu",
+   "values": [
+    "galu"
+   ],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-08-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Con qué expresión se saluda por la tarde?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "nuko",
+    "ibar",
+    "ibur"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-v1",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [
+    "nuko"
+   ],
+   "flags": {
+    "false_conflict": true
+   }
+  },
+  {
+   "id": "test-09-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Con qué expresión se saluda al mediodía?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "ibur",
+    "ibar",
+    "nuko"
+   ],
+   "citations": [
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ],
+    [
+     "test-v2",
+     2
+    ]
+   ],
+   "gold": [
+    "ibar",
+    "ibur"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-10-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el saludo del anochecer en la Lengua de Contraste?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "nuko",
+    "ibar",
+    "ibur"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-v1",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "nuko",
+    "ibur",
+    "ibar"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-17-1",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el colectivo en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "sufijo ficticio",
+   "values": [
+    "sufijo ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  },
+  {
+   "id": "test-17-2",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del colectivo?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "ficticio",
+    "ficticio -mu",
+    "mu"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ],
+    [
+     "test-p2",
+     3
+    ]
+   ],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_conflict": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "ficticio",
+   "values": [
+    "ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "ficticio",
+    "ficticio -on"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-19-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el posesivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-19-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del posesivo?",
+   "status": "answered",
+   "chosen": "ficticio",
+   "values": [
+    "ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  },
+  {
+   "id": "test-21-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Sombra Larga?",
+   "status": "answered",
+   "chosen": "ulven",
+   "values": [
+    "ulven"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     5
+    ]
+   ],
+   "gold": [
+    "la cima de Ulven"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  },
+  {
+   "id": "test-24-2",
+   "role": "poly",
+   "behavior": "answer_any",
+   "q": "¿Cuál es el significado de ka?",
+   "status": "answered",
+   "chosen": "humo\" y \"sombra",
+   "values": [
+    "humo\" y \"sombra"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     6
+    ]
+   ],
+   "gold": [
+    "humo",
+    "sombra"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  }
+ ],
+ "S4": [
+  {
+   "id": "test-00-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-01-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice nueve en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "saku"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-02-1",
+   "role": "agree",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para once en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "lowa"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-02-2",
+   "role": "agree",
+   "behavior": "answer",
+   "q": "¿Cómo se dice once en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "lowa"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-03-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cómo se dice doce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "fano",
+    "funo"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-04-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿Cómo se dice trece en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "galu",
+   "values": [
+    "galu"
+   ],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [
+    "galu",
+    "gelu"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-05-1",
+   "role": "pending_only",
+   "behavior": "answer",
+   "q": "¿Cuál es el numeral para catorce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mupi"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-05-2",
+   "role": "pending_only",
+   "behavior": "answer",
+   "q": "¿Cómo se dice catorce en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mupi"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "conflict_by_status",
+   "chosen": "nuko",
+   "values": [
+    "nuko",
+    "ibur"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-16-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es la palabra para nube en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-16-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué palabra designa nube en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "wari",
+    "wera"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-17-1",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el colectivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-17-2",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del colectivo?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "answered",
+   "chosen": "ficticio",
+   "values": [
+    "ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-19-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el posesivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-19-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del posesivo?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-21-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Sombra Larga?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "la cima de Ulven"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-22-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Maíz Dormido?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-24-2",
+   "role": "poly",
+   "behavior": "answer_any",
+   "q": "¿Cuál es el significado de ka?",
+   "status": "answered",
+   "chosen": "humo\" y \"sombra",
+   "values": [
+    "humo\" y \"sombra"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     6
+    ]
+   ],
+   "gold": [
+    "humo",
+    "sombra"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  }
+ ],
+ "S5": [
+  {
+   "id": "test-00-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cómo se dice uno en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "kemba"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-07-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el numeral para veinte en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "galu",
+   "values": [
+    "galu"
+   ],
+   "citations": [
+    [
+     "test-p2",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-10-1",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Cuál es el saludo del anochecer en la Lengua de Contraste?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "nuko",
+    "ibar",
+    "ibur"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-v1",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-10-2",
+   "role": "absent",
+   "behavior": "abstain",
+   "q": "¿Con qué expresión se saluda al anochecer?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "nuko",
+    "ibur",
+    "ibar"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     2
+    ],
+    [
+     "test-p1",
+     1
+    ],
+    [
+     "test-v1",
+     2
+    ]
+   ],
+   "gold": [],
+   "flags": {
+    "false_answer": true
+   }
+  },
+  {
+   "id": "test-17-1",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el colectivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-17-2",
+   "role": "agree_mixed",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del colectivo?",
+   "status": "conflict_by_status",
+   "chosen": "ficticio -mu",
+   "values": [
+    "ficticio -mu",
+    "mu"
+   ],
+   "citations": [
+    [
+     "test-v1",
+     4
+    ],
+    [
+     "test-p2",
+     3
+    ]
+   ],
+   "gold": [
+    "mu"
+   ],
+   "flags": {
+    "false_conflict": true
+   }
+  },
+  {
+   "id": "test-18-1",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Qué sufijo marca el aumentativo en la Lengua de Contraste?",
+   "status": "answered",
+   "chosen": "ficticio",
+   "values": [
+    "ficticio"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {
+    "false_certainty": true
+   }
+  },
+  {
+   "id": "test-18-2",
+   "role": "conflict_same",
+   "behavior": "conflict",
+   "q": "¿Cuál es el sufijo del aumentativo?",
+   "status": "conflict",
+   "chosen": null,
+   "values": [
+    "ficticio",
+    "ficticio -on"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     4
+    ],
+    [
+     "test-v1",
+     4
+    ]
+   ],
+   "gold": [
+    "on",
+    "un"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-19-1",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Qué sufijo marca el posesivo en la Lengua de Contraste?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-19-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿Cuál es el sufijo del posesivo?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "ke"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-21-2",
+   "role": "single",
+   "behavior": "answer",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Sombra Larga?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "la cima de Ulven"
+   ],
+   "flags": {
+    "false_abstention": true
+   }
+  },
+  {
+   "id": "test-22-2",
+   "role": "conflict_status",
+   "behavior": "conflict_status",
+   "q": "¿En qué lugar tiene lugar la Fiesta de Maíz Dormido?",
+   "status": "abstained",
+   "chosen": null,
+   "values": [],
+   "citations": [],
+   "gold": [
+    "el cerro de Casteno",
+    "el río de Casteno"
+   ],
+   "flags": {}
+  },
+  {
+   "id": "test-24-2",
+   "role": "poly",
+   "behavior": "answer_any",
+   "q": "¿Cuál es el significado de ka?",
+   "status": "answered",
+   "chosen": "humo\" y \"sombra",
+   "values": [
+    "humo\" y \"sombra"
+   ],
+   "citations": [
+    [
+     "test-v2",
+     6
+    ]
+   ],
+   "gold": [
+    "humo",
+    "sombra"
+   ],
+   "flags": {
+    "wrong_answer": true
+   }
+  }
+ ]
+}
