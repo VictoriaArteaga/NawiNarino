@@ -1,0 +1,4 @@
+{
+  "_note": "Registro de AUTORIZACIONES ESCRITAS para usar documentos reales en el RAG. Vacío a propósito: ningún documento real está autorizado. Una entrada solo cuenta si cumple todos los requisitos de scripts/rag_authorization_check.py. No agregar entradas sin un documento de autorización verificable (carta/correo/acuerdo) archivado y referenciado en 'written_reference'.",
+  "entries": []
+}
