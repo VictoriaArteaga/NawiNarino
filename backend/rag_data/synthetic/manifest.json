@@ -1,0 +1,32 @@
+[
+  {
+    "file": "guia_sintetica_gramatica.md",
+    "metadata": {
+      "document_id": "synthetic__guia-gramatica-lengua-prueba",
+      "title": "Guía sintética de gramática de la Lengua de Prueba (documento ficticio)",
+      "language": "lengua_prueba",
+      "content_type": "linguistico",
+      "source": "Generado para pruebas de ÑAWI-Nariño; no corresponde a ninguna fuente real",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    }
+  },
+  {
+    "file": "relato_sintetico_territorio.md",
+    "metadata": {
+      "document_id": "synthetic__relato-territorio-valle-ficticio",
+      "title": "Relato sintético del Valle Ficticio (documento ficticio)",
+      "language": "lengua_prueba",
+      "content_type": "cultural_territorial",
+      "source": "Generado para pruebas de ÑAWI-Nariño; no corresponde a ninguna fuente real",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    }
+  }
+]
