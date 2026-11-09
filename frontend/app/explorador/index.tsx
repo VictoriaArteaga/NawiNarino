@@ -11,9 +11,9 @@ import { T } from "../../components/T";
 import { shadows, theme } from "../../constants/theme";
 
 const suggestions: { text: string; icon: IconName }[] = [
-  { text: "¿Qué significa una palabra en una lengua?", icon: "translate" },
-  { text: "¿Dónde se habla esta lengua?", icon: "pin" },
-  { text: "Háblame sobre un lugar de Nariño", icon: "waves" },
+  { text: "¿Cuál es el saludo de la mañana en la Lengua de Prueba?", icon: "translate" },
+  { text: "¿Qué pasa en la Fiesta de la Luna de Papel?", icon: "pin" },
+  { text: "¿Qué significa sa?", icon: "waves" },
 ];
 
 export default function ExplorerScreen() {
@@ -83,13 +83,13 @@ export default function ExplorerScreen() {
             <T f="display" w={700} s={13.5} c={theme.colors.purpleDeep}>
               Ñawi
             </T>
-            . Pronto podré ayudarte a resolver dudas sobre las lenguas, el
-            territorio y la cultura, usando información confiable y mostrando
-            siempre las fuentes.
+            . Busco en los documentos disponibles y te muestro los fragmentos
+            encontrados con su fuente y página. Si no hay evidencia suficiente,
+            te lo digo.
           </T>
         </View>
 
-        {/* Honest notice: no AI in this version */}
+        {/* Honest notice: demo corpus is synthetic */}
         <View
           accessibilityRole="alert"
           style={{
@@ -104,14 +104,15 @@ export default function ExplorerScreen() {
         >
           <Icon name="warning" size={18} color="#B9701A" />
           <T w={600} s={12.5} lh={18} c={theme.colors.mockText} style={{ flex: 1 }}>
-            Vista previa informativa: la IA y las respuestas automáticas aún no
-            están disponibles. No se envía ninguna pregunta a un servicio de IA.
+            Versión de demostración: Ñawi busca solo en documentos sintéticos
+            (ficticios) y no genera texto con IA. Lo que ves no es información
+            real sobre ninguna lengua ni comunidad.
           </T>
         </View>
 
         {/* Question box */}
         <Pressable
-          accessibilityHint="Abre la vista previa de la conversación"
+          accessibilityHint="Abre la conversación con Ñawi"
           accessibilityLabel="¿Qué te gustaría saber?"
           accessibilityRole="button"
           onPress={() => openConversation()}
