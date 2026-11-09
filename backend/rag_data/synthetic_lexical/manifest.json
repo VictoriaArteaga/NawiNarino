@@ -1,0 +1,17 @@
+[
+  {
+    "file": "glosario_sintetico.md",
+    "metadata": {
+      "document_id": "synthetic__glosario-lengua-prueba-lexica",
+      "title": "Glosario sintético de la Lengua de Prueba Léxica (documento ficticio)",
+      "language": "lengua_prueba_lexica",
+      "content_type": "linguistico",
+      "source": "Generado para pruebas de ÑAWI-Nariño; las formas son inventadas y no pertenecen a ninguna lengua real",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    }
+  }
+]
