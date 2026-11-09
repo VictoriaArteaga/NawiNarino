@@ -16,6 +16,22 @@ class Settings(BaseSettings):
         "http://127.0.0.1:8081",
     ]
 
+    # RAG (Explorador IA). Por defecto solo el corpus sintético de demostración.
+    rag_manifest_path: Path = Path(__file__).resolve().parents[2] / "rag_data" / "demo" / "manifest.json"
+    rag_retriever: Literal["auto", "hashing", "hybrid"] = "auto"
+    rag_ollama_host: str = "http://127.0.0.1:11434"
+    rag_dense_model: str = "bge-m3"
+    # Generación de explicaciones con un modelo local (Ollama). Mismo host que los embeddings.
+    rag_generation: Literal["auto", "off"] = "auto"
+    rag_gen_model: str = "llama3.2:3b"
+    rag_gen_temperature: float = 0.1
+    rag_gen_timeout: float = 90
+    rag_gen_num_predict: int = 260
+    rag_gen_num_ctx: int = 2048
+    rag_gen_max_context_chars: int = 3000
+    rag_top_k: int = 4
+    rag_min_score: float = 0.15
+
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parents[2] / ".env",
         env_file_encoding="utf-8",
