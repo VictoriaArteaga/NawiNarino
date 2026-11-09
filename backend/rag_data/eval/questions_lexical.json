@@ -1,0 +1,27 @@
+{
+  "_note": "Preguntas sobre rag_data/synthetic_lexical (glosario FICTICIO). Formas casi idénticas que difieren en una vocal, un diacrítico o un apóstrofo: ponen a prueba la coincidencia léxica exacta. tag: exact = forma exacta; meaning = pregunta por el significado en español; unknown_form = forma que NO está en el glosario; no_evidence = concepto ausente.",
+  "questions": [
+    {"id": "x01", "tag": "exact", "category": "specific_term", "q": "¿Qué significa tamu?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [1]}},
+    {"id": "x02", "tag": "exact", "category": "specific_term", "q": "¿Qué significa tamo?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [2]}},
+    {"id": "x03", "tag": "exact", "category": "specific_term", "q": "¿Qué significa tamú?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [3]}},
+    {"id": "x04", "tag": "exact", "category": "specific_term", "q": "¿Qué significa nupe?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [2]}},
+    {"id": "x05", "tag": "exact", "category": "specific_term", "q": "¿Qué significa nupá?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [3]}},
+    {"id": "x06", "tag": "exact", "category": "specific_term", "q": "¿Qué significa kiru?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [1]}},
+    {"id": "x07", "tag": "exact", "category": "specific_term", "q": "¿Qué significa kirú?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [3]}},
+    {"id": "x08", "tag": "exact", "category": "specific_term", "q": "¿Qué significa kiro?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [2]}},
+    {"id": "x09", "tag": "exact", "category": "specific_term", "q": "¿Qué significa ta'mu?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [4]}},
+    {"id": "x10", "tag": "exact", "category": "specific_term", "q": "¿Qué significa tamu'a?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [4]}},
+
+    {"id": "m01", "tag": "meaning", "category": "direct", "q": "¿Cuál es la palabra para lluvia?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [3]}},
+    {"id": "m02", "tag": "meaning", "category": "direct", "q": "¿Cómo se dice fuego?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [2]}},
+    {"id": "m03", "tag": "meaning", "category": "direct", "q": "¿Cómo se dice viento?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [4]}},
+    {"id": "m04", "tag": "meaning", "category": "direct", "q": "¿Qué palabra designa el maíz?", "expect": {"doc": "glosario-lengua-prueba-lexica", "pages": [3]}},
+
+    {"id": "u01", "tag": "unknown_form", "category": "no_evidence", "q": "¿Qué significa tamy?", "expect": "abstain"},
+    {"id": "u02", "tag": "unknown_form", "category": "no_evidence", "q": "¿Qué significa nupi?", "expect": "abstain"},
+    {"id": "u03", "tag": "unknown_form", "category": "no_evidence", "q": "¿Qué significa kiri?", "expect": "abstain"},
+    {"id": "u04", "tag": "unknown_form", "category": "no_evidence", "q": "¿Qué significa tamua?", "expect": "abstain"},
+    {"id": "u05", "tag": "no_evidence", "category": "no_evidence", "q": "¿Cómo se dice agua?", "expect": "abstain"},
+    {"id": "u06", "tag": "no_evidence", "category": "no_evidence", "q": "¿Cómo se dice sol?", "expect": "abstain"}
+  ]
+}
