@@ -31,11 +31,11 @@ The default works for a simulator running on the same computer. For a physical p
 
 ## Included features
 
-- Welcome, home, language list, language details, vocabulary, activities, progress, map, explore, profile and the (preview-only) Ñawi Explora screens, following the approved Spanish-language designs
+- Welcome, home, language list, language details, vocabulary, activities, progress, map, explore, profile and the Ñawi Explora screens, following the approved Spanish-language designs
 - Language overview, cultural content, and sample vocabulary
 - Demonstration lessons, multiple-choice activities, scoring, and persisted local progress
 - A schematic territory-marker view, heritage records, toponyms, and source placeholders
-- A static AI Explorer preview; it does not call an AI service or generate answers
+- Ñawi Explora conversation (`app/explorador/conversacion.tsx`) connected to the backend `POST /explorer/ask` RAG endpoint: shows the retrieved answer, cited documents with page, excerpts, synthetic/pending-validation notices, an abstention state, loading and error/retry states. Answers are extractive (no LLM) and, for now, come only from the synthetic test corpus
 - Loading, error, retry, and empty states
 - Axios service layer and TanStack Query hooks
 - Persistent app state with Zustand and AsyncStorage
@@ -53,10 +53,11 @@ Learning, territory, heritage, toponym, and source content is explicitly mock da
 The backend defaults to `DATA_SOURCE=mock` and uses in-memory demonstration
 records. PostgreSQL is not enabled by default; see the
 [`backend setup guide`](../backend/README.md) before explicitly configuring a
-local database. The AI Explorer is informational only. A future implementation
-must retrieve from validated documents, cite its sources, and indicate when
-there is insufficient evidence; no model, retrieval service, or AI dependency
-is included now.
+local database. The AI Explorer calls `POST /explorer/ask` (service `services/explorer.service.ts`,
+hook `hooks/useExplorer.ts`, types `types/explorer.ts`). The backend indexes only
+synthetic documents until indexing permissions are confirmed, cites document and
+page, and abstains when evidence is insufficient. No LLM is used; the frontend
+never composes answer text itself.
 
 ## Quality checks
 
@@ -65,3 +66,9 @@ npm run typecheck
 npx expo install --check
 npx expo-doctor
 ```
+
+## Android (APK)
+
+La URL del backend sale de `EXPO_PUBLIC_API_URL` (ver `.env.example`, `.env.production.example`); en producción no se admite `localhost` ni una URL ausente.
+Perfiles de compilación en `eas.json`; política HTTP/HTTPS en `app.config.js` (HTTPS obligatorio en producción; HTTP permitido solo en el perfil de demostración en LAN).
+Ollama y el modelo corren en el backend, no en el APK. Detalles, estado de verificación y pendientes: [`../backend/docs/android-apk.md`](../backend/docs/android-apk.md).
