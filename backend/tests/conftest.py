@@ -1,3 +1,8 @@
+import os
+
+os.environ.setdefault("RAG_RETRIEVER", "hashing")  # pruebas herméticas: sin Ollama
+os.environ.setdefault("RAG_GENERATION", "off")  # y sin modelo generativo
+
 from collections.abc import Iterator
 
 import pytest

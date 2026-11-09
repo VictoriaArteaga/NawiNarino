@@ -26,7 +26,7 @@ def test_health(client):
     response = client.get("/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "dataSource": "mock"}
+    assert response.json() == {"status": "ok", "dataSource": "mock", "explorerRetriever": "hashing", "explorerGenerator": {"mode": "off"}}
 
 
 def test_list_languages(client):
