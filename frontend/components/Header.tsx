@@ -1,8 +1,9 @@
-import { ArrowLeft } from "lucide-react-native";
-import { Link, type Href } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { type Href } from "expo-router";
+import { View } from "react-native";
 
 import { theme } from "../constants/theme";
+import { BackButton } from "./CircleButton";
+import { T } from "./T";
 
 interface HeaderProps {
   title: string;
@@ -11,68 +12,28 @@ interface HeaderProps {
   backLabel?: string;
 }
 
-export function Header({
-  title,
-  subtitle,
-  backHref,
-  backLabel = "Back",
-}: HeaderProps) {
+/** Simple title block with a round back button, for screens without an illustration. */
+export function Header({ title, subtitle, backHref, backLabel = "Volver" }: HeaderProps) {
   return (
-    <View className="mb-6">
+    <View style={{ marginBottom: theme.spacing.lg }}>
       {backHref ? (
-        <Link href={backHref} asChild>
-          <Pressable
-            accessibilityRole="link"
-            className="mb-5 flex-row items-center self-start"
-          >
-            <ArrowLeft color={theme.colors.primary} size={18} />
-            <Text
-              style={{
-                color: theme.colors.primary,
-                fontSize: 14,
-                fontWeight: "700",
-                marginLeft: theme.spacing.sm,
-              }}
-            >
-              {backLabel}
-            </Text>
-          </Pressable>
-        </Link>
+        <View style={{ marginBottom: theme.spacing.md }}>
+          <BackButton
+            fallback={backHref}
+            label={backLabel}
+            background={theme.colors.surface}
+            borderColor={theme.colors.border}
+          />
+        </View>
       ) : null}
-      <Text
-        style={{
-          color: theme.colors.primary,
-          fontSize: 12,
-          fontWeight: "800",
-          letterSpacing: 1.8,
-          marginBottom: theme.spacing.sm,
-        }}
-      >
-        ÑAWI-NARIÑO
-      </Text>
-      <Text
-        style={{
-          color: theme.colors.ink,
-          fontSize: 30,
-          fontWeight: "800",
-          letterSpacing: -0.6,
-        }}
-      >
+      <T f="display" w={800} s={28} lh={33} c={theme.colors.primaryDark}>
         {title}
-      </Text>
+      </T>
       {subtitle ? (
-        <Text
-          style={{
-            color: theme.colors.muted,
-            fontSize: 16,
-            lineHeight: 24,
-            marginTop: theme.spacing.sm,
-          }}
-        >
+        <T s={15} lh={22} c={theme.colors.muted} style={{ marginTop: theme.spacing.sm }}>
           {subtitle}
-        </Text>
+        </T>
       ) : null}
     </View>
   );
 }
-
