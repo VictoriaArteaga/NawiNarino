@@ -1,10 +1,11 @@
-import { Link, type Href } from "expo-router";
-import { ArrowRight } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
+import { useRouter, type Href } from "expo-router";
+import { Pressable, View } from "react-native";
 
 import { theme } from "../constants/theme";
 import { Card } from "./Card";
+import { Icon } from "./Icon";
 import { MockBadge } from "./MockBadge";
+import { T } from "./T";
 
 export function InfoCard({
   title,
@@ -17,39 +18,28 @@ export function InfoCard({
   href?: Href;
   mock?: boolean;
 }) {
+  const router = useRouter();
   const content = (
     <Card style={{ marginBottom: theme.spacing.md }}>
-      <View className="flex-row items-center">
-        <Text
-          style={{
-            color: theme.colors.ink,
-            flex: 1,
-            fontSize: 18,
-            fontWeight: "800",
-          }}
-        >
+      <View style={{ alignItems: "center", flexDirection: "row" }}>
+        <T f="display" w={700} s={17} c={theme.colors.ink} style={{ flex: 1 }}>
           {title}
-        </Text>
-        {href ? <ArrowRight color={theme.colors.primary} size={19} /> : null}
+        </T>
+        {href ? (
+          <Icon name="arrowRight" size={19} color={theme.colors.accent} strokeWidth={2.2} />
+        ) : null}
       </View>
-      <Text
-        style={{
-          color: theme.colors.muted,
-          fontSize: 14,
-          lineHeight: 21,
-          marginTop: theme.spacing.sm,
-        }}
-      >
+      <T s={14} lh={21} c={theme.colors.muted} style={{ marginTop: theme.spacing.sm }}>
         {description}
-      </Text>
+      </T>
       {mock ? <MockBadge /> : null}
     </Card>
   );
 
   if (!href) return content;
   return (
-    <Link href={href} asChild>
-      <Pressable accessibilityRole="link">{content}</Pressable>
-    </Link>
+    <Pressable accessibilityRole="link" onPress={() => router.push(href)}>
+      {content}
+    </Pressable>
   );
 }
