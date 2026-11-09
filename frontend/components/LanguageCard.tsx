@@ -1,91 +1,178 @@
-import { ArrowRight, Languages } from "lucide-react-native";
-import { Link } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { useId } from "react";
+import { Pressable, View, useWindowDimensions } from "react-native";
+import Svg, { Defs, LinearGradient, Mask, Rect, Stop } from "react-native-svg";
 
-import { theme } from "../constants/theme";
+import { getLanguageTheme } from "../constants/languages";
+import { shadows, theme } from "../constants/theme";
+import { useLanguageProgress } from "../hooks/useLearning";
 import type { Language } from "../types/language";
-import { Card } from "./Card";
+import { GradientBox } from "./GradientBox";
+import { Icon } from "./Icon";
+import { T } from "./T";
 
 interface LanguageCardProps {
   language: Language;
 }
 
 export function LanguageCard({ language }: LanguageCardProps) {
+  const router = useRouter();
+  const look = getLanguageTheme(language.name);
+  const progress = useLanguageProgress(language.id);
+  const percentage = progress.data?.percentage ?? 0;
+  const Portrait = look.Portrait;
+  const uid = `lc${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  const { width } = useWindowDimensions();
+  const cardWidth = Math.min(width, 520) - 40;
+
+  const subtitle = look.people
+    ? `Lengua del pueblo ${look.people}`
+    : "Lengua de demostración";
+
   return (
-    <Link
-      href={{
-        pathname: "/lenguas/[id]",
-        params: { id: String(language.id) },
-      }}
-      asChild
+    <Pressable
+      accessibilityLabel={`Abrir información de ${language.name}`}
+      accessibilityRole="link"
+      onPress={() =>
+        router.push({
+          pathname: "/lenguas/[id]",
+          params: { id: String(language.id) },
+        })
+      }
+      style={({ pressed }) => ({ opacity: pressed ? 0.92 : 1 })}
     >
-      <Pressable
-        accessibilityRole="link"
-        accessibilityLabel={`Open information about ${language.name}`}
+      <GradientBox
+        colors={[look.dark, look.light]}
+        direction="tr"
+        style={[{ borderRadius: 18, height: 142 }, shadows.card]}
       >
-        <Card style={{ marginBottom: theme.spacing.md }}>
-          <View className="flex-row items-start">
+        {/* Portrait fading into the card */}
+        <View style={{ height: 142, left: 0, position: "absolute", top: 0, width: 122 }}>
+          {Portrait ? (
+            <Portrait preserveAspectRatio="xMidYMid slice" />
+          ) : (
+            <View style={{ alignItems: "center", flex: 1, justifyContent: "center" }}>
+              <Icon name="translate" size={40} color="#FFFFFF" />
+            </View>
+          )}
+          {/* Re-draws the card gradient over the portrait's right edge, with a
+              mask that fades it in, so the portrait melts into the card. */}
+          <Svg
+            pointerEvents="none"
+            style={{ left: 0, position: "absolute", top: 0 }}
+            width={cardWidth}
+            height={142}
+          >
+            <Defs>
+              <LinearGradient id={`${uid}cg`} x1="0" y1="1" x2="1" y2="0">
+                <Stop offset="0" stopColor={look.dark} />
+                <Stop offset="1" stopColor={look.light} />
+              </LinearGradient>
+              <LinearGradient
+                id={`${uid}mg`}
+                gradientUnits="userSpaceOnUse"
+                x1="82"
+                y1="0"
+                x2="122"
+                y2="0"
+              >
+                <Stop offset="0" stopColor="#000000" />
+                <Stop offset="1" stopColor="#FFFFFF" />
+              </LinearGradient>
+              <Mask
+                id={`${uid}mk`}
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width={cardWidth}
+                height="142"
+              >
+                <Rect x="0" y="0" width="122" height="142" fill={`url(#${uid}mg)`} />
+              </Mask>
+            </Defs>
+            <Rect
+              width={cardWidth}
+              height="142"
+              fill={`url(#${uid}cg)`}
+              mask={`url(#${uid}mk)`}
+            />
+          </Svg>
+        </View>
+
+        <View style={{ left: 134, position: "absolute", right: 56, top: 22 }}>
+          <T
+            f="display"
+            w={700}
+            s={22}
+            lh={28}
+            c="#FFFFFF"
+            numberOfLines={1}
+            style={{ textShadowColor: "rgba(0,0,0,0.22)", textShadowOffset: { height: 1, width: 0 }, textShadowRadius: 3 }}
+          >
+            {language.name}
+          </T>
+          <T
+            s={13}
+            lh={18}
+            c="#FFFFFF"
+            numberOfLines={1}
+            style={{ marginTop: 8, textShadowColor: "rgba(0,0,0,0.25)", textShadowOffset: { height: 1, width: 0 }, textShadowRadius: 2 }}
+          >
+            {subtitle}
+          </T>
+          <View
+            style={{
+              backgroundColor: "rgba(255,255,255,0.38)",
+              borderRadius: 3,
+              height: 6,
+              marginTop: 15,
+              width: 158,
+            }}
+          >
             <View
               style={{
-                alignItems: "center",
-                backgroundColor: theme.colors.softGreen,
-                borderRadius: theme.radii.button,
-                height: 48,
-                justifyContent: "center",
-                marginRight: theme.spacing.md,
-                width: 48,
+                backgroundColor: "#FFFFFF",
+                borderRadius: 3,
+                height: 6,
+                width: `${Math.max(0, Math.min(100, percentage))}%`,
               }}
-            >
-              <Languages color={theme.colors.primary} size={22} />
-            </View>
-            <View className="flex-1">
-              <Text
-                style={{
-                  color: theme.colors.ink,
-                  fontSize: 19,
-                  fontWeight: "800",
-                }}
-              >
-                {language.name}
-              </Text>
-              <Text
-                style={{
-                  color: theme.colors.muted,
-                  fontSize: 14,
-                  lineHeight: 21,
-                  marginTop: theme.spacing.xs,
-                }}
-              >
-                {language.shortDescription}
-              </Text>
-              {language.isMock ? (
-                <Text
-                  style={{
-                    alignSelf: "flex-start",
-                    backgroundColor: theme.colors.mockBackground,
-                    borderRadius: theme.radii.pill,
-                    color: theme.colors.mockText,
-                    fontSize: 11,
-                    fontWeight: "800",
-                    marginTop: theme.spacing.md,
-                    overflow: "hidden",
-                    paddingHorizontal: theme.spacing.md,
-                    paddingVertical: theme.spacing.xs,
-                  }}
-                >
-                  DEMO DATA
-                </Text>
-              ) : null}
-            </View>
-            <ArrowRight
-              color={theme.colors.primary}
-              size={20}
-              style={{ marginLeft: theme.spacing.sm, marginTop: 4 }}
             />
           </View>
-        </Card>
-      </Pressable>
-    </Link>
+          <T
+            s={12}
+            lh={16}
+            c="#FFFFFF"
+            numberOfLines={1}
+            style={{ marginTop: 6, textShadowColor: "rgba(0,0,0,0.25)", textShadowOffset: { height: 1, width: 0 }, textShadowRadius: 2 }}
+          >
+            {progress.data
+              ? `${progress.data.completedActivities} / ${progress.data.totalActivities} actividades`
+              : "Cargando avance…"}
+          </T>
+        </View>
+
+        <View style={{ position: "absolute", right: 18, top: 59 }}>
+          <Icon name="arrowRight" size={24} color="#FFFFFF" strokeWidth={2.2} />
+        </View>
+
+        {language.isMock ? (
+          <View
+            style={{
+              backgroundColor: "rgba(255,255,255,0.88)",
+              borderRadius: theme.radii.pill,
+              paddingHorizontal: 8,
+              paddingVertical: 2,
+              position: "absolute",
+              right: 12,
+              top: 10,
+            }}
+          >
+            <T f="display" w={700} s={9.5} c={theme.colors.mockText} ls={0.4}>
+              DEMO
+            </T>
+          </View>
+        ) : null}
+      </GradientBox>
+    </Pressable>
   );
 }
-
