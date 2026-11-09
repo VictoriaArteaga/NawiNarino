@@ -1,53 +1,75 @@
-import { Link, useLocalSearchParams } from "expo-router";
-import { Pressable, ScrollView, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { Pressable } from "react-native";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
-import { Header } from "../../components/Header";
 import { Loading } from "../../components/Loading";
 import { MockBadge } from "../../components/MockBadge";
-import { useHeritageItem } from "../../hooks/useHeritage";
+import { InvalidIdScreen, PlainScreen } from "../../components/PlainScreen";
+import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
+import { useHeritageItem } from "../../hooks/useHeritage";
+import type { HeritageCategory } from "../../types/heritage";
+
+const categoryLabels: Record<HeritageCategory, string> = {
+  historical: "Histórico",
+  linguistic: "Lingüístico",
+  cultural: "Cultural",
+  toponymy: "Toponimia",
+};
 
 export default function HeritageDetailScreen() {
+  const router = useRouter();
   const { heritageId: rawId } = useLocalSearchParams<{ heritageId: string }>();
   const heritageId = Number(rawId);
   const validId = Number.isInteger(heritageId) && heritageId > 0;
   const query = useHeritageItem(heritageId);
 
   if (!validId) {
-    return (
-      <SafeAreaView className="flex-1 p-5" style={{ backgroundColor: theme.colors.canvas }}>
-        <ErrorMessage message="The heritage record identifier is not valid." />
-      </SafeAreaView>
-    );
+    return <InvalidIdScreen message="El identificador del registro patrimonial no es válido." />;
   }
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: theme.colors.canvas }}>
-      <ScrollView contentContainerStyle={{ padding: theme.spacing.lg, paddingBottom: theme.spacing.xxl }}>
-        <Header title={query.data?.title ?? "Heritage details"} subtitle="Demonstration record." backHref="/patrimonio" backLabel="Heritage" />
-        {query.isPending ? <Loading label="Loading heritage record..." /> : query.isError ? (
-          <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
-        ) : (
-          <Card>
-            <Text style={{ color: theme.colors.primary, fontWeight: "800", textTransform: "uppercase" }}>{query.data.category}</Text>
-            <Text style={{ color: theme.colors.muted, marginTop: theme.spacing.md }}>
-              {query.data.dateLabel ?? "Date pending validation"}
-            </Text>
-            <Text style={{ color: theme.colors.ink, lineHeight: 23, marginTop: theme.spacing.lg }}>{query.data.description}</Text>
-            {query.data.sourceId ? (
-              <Link href={{ pathname: "/fuentes/[sourceId]", params: { sourceId: String(query.data.sourceId) } }} asChild>
-                <Pressable accessibilityRole="link">
-                  <Text style={{ color: theme.colors.primary, fontWeight: "800", marginTop: theme.spacing.lg }}>Open associated source</Text>
-                </Pressable>
-              </Link>
-            ) : null}
-            <MockBadge />
-          </Card>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+    <PlainScreen
+      title={query.data?.title ?? "Detalle del patrimonio"}
+      subtitle="Registro de demostración."
+      backHref="/patrimonio"
+      backLabel="Explorar"
+    >
+      {query.isPending ? (
+        <Loading label="Cargando registro patrimonial..." />
+      ) : query.isError ? (
+        <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
+      ) : (
+        <Card>
+          <T f="display" w={700} s={12} ls={0.8} c={theme.colors.primary}>
+            {categoryLabels[query.data.category].toUpperCase()}
+          </T>
+          <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.md }}>
+            {query.data.dateLabel ?? "Fecha pendiente de validación"}
+          </T>
+          <T s={15} lh={23} c={theme.colors.ink} style={{ marginTop: theme.spacing.lg - 4 }}>
+            {query.data.description}
+          </T>
+          {query.data.sourceId ? (
+            <Pressable
+              accessibilityRole="link"
+              onPress={() =>
+                router.push({
+                  pathname: "/fuentes/[sourceId]",
+                  params: { sourceId: String(query.data.sourceId) },
+                })
+              }
+              style={{ marginTop: theme.spacing.lg - 4, minHeight: 44, justifyContent: "center" }}
+            >
+              <T f="display" w={700} s={14.5} c={theme.colors.accent}>
+                Abrir la fuente asociada
+              </T>
+            </Pressable>
+          ) : null}
+          {query.data.isMock ? <MockBadge /> : null}
+        </Card>
+      )}
+    </PlainScreen>
   );
 }
