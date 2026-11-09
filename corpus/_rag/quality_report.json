@@ -1,0 +1,390 @@
+{
+  "nasa-yuwe/ling-fi_dic-nasa.pdf": {
+    "pages": 8,
+    "pages_without_text": 0,
+    "total_words": 4291,
+    "avg_words_per_page": 536.4,
+    "function_word_ratio": 0.268,
+    "mixed_alnum_per_1000_words": 10.25,
+    "replacement_chars": 0,
+    "grade": "C",
+    "flags": [
+      "tokens_alfanumericos_mezclados: OCR ruidoso, requiere limpieza"
+    ],
+    "size_bytes": 245032
+  },
+  "nasa-yuwe/mincultura_lenguas-vivas_vol-IV-tomo-2_minga.pdf": {
+    "pages": 222,
+    "pages_without_text": 2,
+    "total_words": 77321,
+    "avg_words_per_page": 348.3,
+    "function_word_ratio": 0.388,
+    "mixed_alnum_per_1000_words": 0.06,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 1018873
+  },
+  "nasa-yuwe/mincultura_lenguas-vivas_vol-IV-tomo-I_nasa-yuwa-namtrik.pdf": {
+    "pages": 138,
+    "pages_without_text": 0,
+    "total_words": 34953,
+    "avg_words_per_page": 253.3,
+    "function_word_ratio": 0.31,
+    "mixed_alnum_per_1000_words": 7.32,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 1954370
+  },
+  "nasa-yuwe/proeib_pitto_transmision-del-nasa.pdf": {
+    "pages": 148,
+    "pages_without_text": 1,
+    "total_words": 48234,
+    "avg_words_per_page": 325.9,
+    "function_word_ratio": 0.37,
+    "mixed_alnum_per_1000_words": 0.0,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 1292413
+  },
+  "nasa-yuwe/redalyc_413635242005.pdf": {
+    "pages": 22,
+    "pages_without_text": 0,
+    "total_words": 8975,
+    "avg_words_per_page": 408.0,
+    "function_word_ratio": 0.395,
+    "mixed_alnum_per_1000_words": 0.89,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 176736
+  },
+  "nasa-yuwe/scielo_corpus-nasa-yuwe-etiquetado.pdf": {
+    "pages": 14,
+    "pages_without_text": 0,
+    "total_words": 6664,
+    "avg_words_per_page": 476.0,
+    "function_word_ratio": 0.302,
+    "mixed_alnum_per_1000_words": 3.45,
+    "replacement_chars": 204,
+    "grade": "C",
+    "flags": [
+      "caracteres_de_reemplazo_U+FFFD: codificacion rota"
+    ],
+    "size_bytes": 411611
+  },
+  "awapit/anu_curnow-1997_grammar-of-awa-pit.pdf": {
+    "pages": 422,
+    "pages_without_text": 8,
+    "total_words": 156147,
+    "avg_words_per_page": 370.0,
+    "function_word_ratio": 0.293,
+    "mixed_alnum_per_1000_words": 22.59,
+    "replacement_chars": 0,
+    "grade": "C",
+    "flags": [
+      "tokens_alfanumericos_mezclados: OCR ruidoso, requiere limpieza"
+    ],
+    "size_bytes": 262510448
+  },
+  "awapit/men_partes-cuerpo-cara-awapit.pdf": {
+    "pages": 3,
+    "pages_without_text": 3,
+    "total_words": 0,
+    "avg_words_per_page": 0.0,
+    "function_word_ratio": 0,
+    "mixed_alnum_per_1000_words": 0,
+    "replacement_chars": 0,
+    "grade": "E",
+    "flags": [
+      "sin_capa_de_texto: requiere OCR"
+    ],
+    "size_bytes": 548762
+  },
+  "awapit/unipa_alfabeto-awa.pdf": {
+    "pages": 1,
+    "pages_without_text": 0,
+    "total_words": 72,
+    "avg_words_per_page": 72.0,
+    "function_word_ratio": 0.056,
+    "mixed_alnum_per_1000_words": 0.0,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [
+      "pocas_palabras_funcionales_es/en: texto lengua indigena o ruido"
+    ],
+    "size_bytes": 6133474
+  },
+  "awapit/unipa_diccionario-awapit-espanol.pdf": {
+    "pages": 149,
+    "pages_without_text": 5,
+    "total_words": 27278,
+    "avg_words_per_page": 183.1,
+    "function_word_ratio": 0.108,
+    "mixed_alnum_per_1000_words": 0.07,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [
+      "pocas_palabras_funcionales_es/en: texto lengua indigena o ruido"
+    ],
+    "size_bytes": 1925685
+  },
+  "awapit/unipa_guia-aprendemos-awapit.pdf": {
+    "pages": 40,
+    "pages_without_text": 4,
+    "total_words": 5656,
+    "avg_words_per_page": 141.4,
+    "function_word_ratio": 0.221,
+    "mixed_alnum_per_1000_words": 0.35,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 4149000
+  },
+  "awapit/unipa_PEC-inkal-awa.pdf": {
+    "pages": 152,
+    "pages_without_text": 0,
+    "total_words": 36063,
+    "avg_words_per_page": 237.3,
+    "function_word_ratio": 0.391,
+    "mixed_alnum_per_1000_words": 0.03,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 2613825
+  },
+  "awapit/unipa_vivamos-aprendiendo-awapit-conjugaciones.pdf": {
+    "pages": 132,
+    "pages_without_text": 10,
+    "total_words": 19196,
+    "avg_words_per_page": 145.4,
+    "function_word_ratio": 0.053,
+    "mixed_alnum_per_1000_words": 0.0,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [
+      "pocas_palabras_funcionales_es/en: texto lengua indigena o ruido"
+    ],
+    "size_bytes": 3330961
+  },
+  "awapit/men_pieza-radial-1-awa.mp3": {
+    "pages": null,
+    "grade": "N/A",
+    "flags": [
+      "formato .mp3: no es texto; requiere transcripcion/ASR humana verificada"
+    ],
+    "size_bytes": 9397752
+  },
+  "awapit/men_pieza-radial-2-awa.mp3": {
+    "pages": null,
+    "grade": "N/A",
+    "flags": [
+      "formato .mp3: no es texto; requiere transcripcion/ASR humana verificada"
+    ],
+    "size_bytes": 8930850
+  },
+  "awapit/men_pieza-radial-3-awa.mp3": {
+    "pages": null,
+    "grade": "N/A",
+    "flags": [
+      "formato .mp3: no es texto; requiere transcripcion/ASR humana verificada"
+    ],
+    "size_bytes": 10328923
+  },
+  "ainga-cofan/anderbois-et-al_jipa_illustration-aingae.pdf": {
+    "pages": 14,
+    "pages_without_text": 0,
+    "total_words": 5137,
+    "avg_words_per_page": 366.9,
+    "function_word_ratio": 0.261,
+    "mixed_alnum_per_1000_words": 7.59,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 592934
+  },
+  "ainga-cofan/fischer-hengeveld_aingae-handbook-chapter-2023.pdf": {
+    "pages": 61,
+    "pages_without_text": 1,
+    "total_words": 17051,
+    "avg_words_per_page": 279.5,
+    "function_word_ratio": 0.252,
+    "mixed_alnum_per_1000_words": 3.58,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 4300085
+  },
+  "ainga-cofan/fischer-hengeveld_open-linguistics_operators_2018.pdf": {
+    "pages": 29,
+    "pages_without_text": 0,
+    "total_words": 10938,
+    "avg_words_per_page": 377.2,
+    "function_word_ratio": 0.267,
+    "mixed_alnum_per_1000_words": 5.85,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 484059
+  },
+  "ainga-cofan/hengeveld-fischer_ch3-phonology_2022-draft.pdf": {
+    "pages": 43,
+    "pages_without_text": 1,
+    "total_words": 10277,
+    "avg_words_per_page": 239.0,
+    "function_word_ratio": 0.286,
+    "mixed_alnum_per_1000_words": 3.11,
+    "replacement_chars": 23,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 839702
+  },
+  "ainga-cofan/hengeveld-fischer_ch5-syntax_2023-draft.pdf": {
+    "pages": 71,
+    "pages_without_text": 1,
+    "total_words": 22532,
+    "avg_words_per_page": 317.4,
+    "function_word_ratio": 0.192,
+    "mixed_alnum_per_1000_words": 7.9,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 664923
+  },
+  "ainga-cofan/sil-borman_vocabulario-cofan-1976.pdf": {
+    "pages": 130,
+    "pages_without_text": 130,
+    "total_words": 0,
+    "avg_words_per_page": 0.0,
+    "function_word_ratio": 0,
+    "mixed_alnum_per_1000_words": 0,
+    "replacement_chars": 0,
+    "grade": "E",
+    "flags": [
+      "sin_capa_de_texto: requiere OCR"
+    ],
+    "size_bytes": 10727169
+  },
+  "inga/cultural-survival_cartilla-cabildo-inga-santiago.pdf": {
+    "pages": 43,
+    "pages_without_text": 0,
+    "total_words": 8436,
+    "avg_words_per_page": 196.2,
+    "function_word_ratio": 0.308,
+    "mixed_alnum_per_1000_words": 0.12,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 5592473
+  },
+  "inga/unal_chasoy-et-al_numeracion-en-lengua-inga.pdf": {
+    "pages": 19,
+    "pages_without_text": 1,
+    "total_words": 6541,
+    "avg_words_per_page": 344.3,
+    "function_word_ratio": 0.383,
+    "mixed_alnum_per_1000_words": 0.46,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 3191475
+  },
+  "inga/uniremington_becerra_propuesta-diccionario-inga-yunguillo-2023.pdf": {
+    "pages": 24,
+    "pages_without_text": 0,
+    "total_words": 3922,
+    "avg_words_per_page": 163.4,
+    "function_word_ratio": 0.387,
+    "mixed_alnum_per_1000_words": 2.04,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 605229
+  },
+  "pasto-quillasinga/banrep_fian_5130.pdf": {
+    "pages": 29,
+    "pages_without_text": 0,
+    "total_words": 6513,
+    "avg_words_per_page": 224.6,
+    "function_word_ratio": 0.385,
+    "mixed_alnum_per_1000_words": 0.15,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 3666240
+  },
+  "pasto-quillasinga/icanh_rca_1843.pdf": {
+    "pages": 34,
+    "pages_without_text": 0,
+    "total_words": 12584,
+    "avg_words_per_page": 370.1,
+    "function_word_ratio": 0.404,
+    "mixed_alnum_per_1000_words": 1.11,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 1116440
+  },
+  "pasto-quillasinga/icanh_rca_1844.pdf": {
+    "pages": 18,
+    "pages_without_text": 2,
+    "total_words": 5057,
+    "avg_words_per_page": 280.9,
+    "function_word_ratio": 0.364,
+    "mixed_alnum_per_1000_words": 5.93,
+    "replacement_chars": 0,
+    "grade": "C",
+    "flags": [],
+    "size_bytes": 626176
+  },
+  "pasto-quillasinga/icanh_rca_1853.pdf": {
+    "pages": 5,
+    "pages_without_text": 0,
+    "total_words": 1818,
+    "avg_words_per_page": 363.6,
+    "function_word_ratio": 0.413,
+    "mixed_alnum_per_1000_words": 0.55,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 148861
+  },
+  "pasto-quillasinga/mincultura_pueblo-pastos.pdf": {
+    "pages": 3,
+    "pages_without_text": 0,
+    "total_words": 754,
+    "avg_words_per_page": 251.3,
+    "function_word_ratio": 0.395,
+    "mixed_alnum_per_1000_words": 3.98,
+    "replacement_chars": 0,
+    "grade": "B",
+    "flags": [],
+    "size_bytes": 440168
+  },
+  "pasto-quillasinga/mincultura_pueblo-quillacinga.pdf": {
+    "pages": 3,
+    "pages_without_text": 0,
+    "total_words": 746,
+    "avg_words_per_page": 248.7,
+    "function_word_ratio": 0.389,
+    "mixed_alnum_per_1000_words": 1.34,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 501591
+  },
+  "pasto-quillasinga/redalyc_ceballos_quillasinga-mocondino.pdf": {
+    "pages": 12,
+    "pages_without_text": 0,
+    "total_words": 7240,
+    "avg_words_per_page": 603.3,
+    "function_word_ratio": 0.393,
+    "mixed_alnum_per_1000_words": 1.52,
+    "replacement_chars": 0,
+    "grade": "A",
+    "flags": [],
+    "size_bytes": 130366
+  }
+}
