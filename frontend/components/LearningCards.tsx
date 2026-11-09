@@ -1,11 +1,13 @@
-import { Link } from "expo-router";
-import { ArrowRight, BookOpenCheck, CircleHelp } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, View } from "react-native";
 
 import { theme } from "../constants/theme";
 import type { Activity, Lesson } from "../types/learning";
 import { Card } from "./Card";
+import { Icon } from "./Icon";
 import { MockBadge } from "./MockBadge";
+import { ProgressBar } from "./ProgressBar";
+import { T } from "./T";
 
 export function LessonCard({
   lesson,
@@ -16,106 +18,90 @@ export function LessonCard({
   completed?: number;
   total?: number;
 }) {
+  const router = useRouter();
   const percentage = total ? Math.round((completed / total) * 100) : 0;
+
   return (
-    <Link
-      href={{ pathname: "/lecciones/[lessonId]", params: { lessonId: String(lesson.id) } }}
-      asChild
+    <Pressable
+      accessibilityRole="link"
+      onPress={() =>
+        router.push({
+          pathname: "/lecciones/[lessonId]",
+          params: { lessonId: String(lesson.id) },
+        })
+      }
     >
-      <Pressable accessibilityRole="link">
-        <Card style={{ marginBottom: theme.spacing.md }}>
-          <View className="flex-row items-center">
-            <BookOpenCheck color={theme.colors.primary} size={23} />
-            <Text
-              style={{
-                color: theme.colors.ink,
-                flex: 1,
-                fontSize: 18,
-                fontWeight: "800",
-                marginLeft: theme.spacing.md,
-              }}
-            >
-              {lesson.order}. {lesson.title}
-            </Text>
-            <ArrowRight color={theme.colors.primary} size={19} />
-          </View>
-          <Text
+      <Card style={{ marginBottom: theme.spacing.md }}>
+        <View style={{ alignItems: "center", flexDirection: "row", gap: 12 }}>
+          <View
             style={{
-              color: theme.colors.muted,
-              fontSize: 14,
-              lineHeight: 21,
-              marginTop: theme.spacing.sm,
+              alignItems: "center",
+              backgroundColor: theme.colors.softGreen,
+              borderRadius: 18,
+              height: 36,
+              justifyContent: "center",
+              width: 36,
             }}
           >
-            {lesson.description}
-          </Text>
-          <View style={{ marginTop: theme.spacing.md }}>
-            <Text style={{ color: theme.colors.muted, marginBottom: 6 }}>
-              Activities completed: {completed}/{total}
-            </Text>
-            <View
-              style={{
-                backgroundColor: theme.colors.border,
-                borderRadius: theme.radii.pill,
-                height: 7,
-              }}
-            >
-              <View
-                style={{
-                  backgroundColor: theme.colors.primary,
-                  borderRadius: theme.radii.pill,
-                  height: 7,
-                  width: `${percentage}%`,
-                }}
-              />
-            </View>
+            <Icon name="book" size={19} color={theme.colors.primary} />
           </View>
-          {lesson.isMock ? <MockBadge /> : null}
-        </Card>
-      </Pressable>
-    </Link>
+          <T f="display" w={700} s={17} c={theme.colors.ink} style={{ flex: 1 }}>
+            {lesson.order}. {lesson.title}
+          </T>
+          <Icon name="arrowRight" size={19} color={theme.colors.accent} strokeWidth={2.2} />
+        </View>
+        <T s={14} lh={21} c={theme.colors.muted} style={{ marginTop: theme.spacing.sm }}>
+          {lesson.description}
+        </T>
+        <View style={{ marginTop: theme.spacing.md }}>
+          <T w={600} s={12.5} c={theme.colors.muted} style={{ marginBottom: 6 }}>
+            Actividades completadas: {completed}/{total}
+          </T>
+          <ProgressBar percentage={percentage} />
+        </View>
+        {lesson.isMock ? <MockBadge /> : null}
+      </Card>
+    </Pressable>
   );
 }
 
 export function ActivityCard({ activity }: { activity: Activity }) {
+  const router = useRouter();
+
   return (
-    <Link
-      href={{
-        pathname: "/actividades/[activityId]",
-        params: { activityId: String(activity.id) },
-      }}
-      asChild
+    <Pressable
+      accessibilityRole="link"
+      onPress={() =>
+        router.push({
+          pathname: "/actividades/[activityId]",
+          params: { activityId: String(activity.id) },
+        })
+      }
     >
-      <Pressable accessibilityRole="link">
-        <Card style={{ marginBottom: theme.spacing.md }}>
-          <View className="flex-row items-center">
-            <CircleHelp color={theme.colors.accent} size={22} />
-            <Text
-              style={{
-                color: theme.colors.ink,
-                flex: 1,
-                fontSize: 17,
-                fontWeight: "800",
-                marginLeft: theme.spacing.md,
-              }}
-            >
-              {activity.title}
-            </Text>
-            <ArrowRight color={theme.colors.primary} size={19} />
-          </View>
-          <Text
+      <Card style={{ marginBottom: theme.spacing.md }}>
+        <View style={{ alignItems: "center", flexDirection: "row", gap: 12 }}>
+          <View
             style={{
-              color: theme.colors.muted,
-              fontSize: 14,
-              lineHeight: 21,
-              marginTop: theme.spacing.sm,
+              alignItems: "center",
+              backgroundColor: theme.colors.accentSoft,
+              borderRadius: 18,
+              height: 36,
+              justifyContent: "center",
+              width: 36,
             }}
           >
-            {activity.description}
-          </Text>
-          {activity.isMock ? <MockBadge /> : null}
-        </Card>
-      </Pressable>
-    </Link>
+            <Icon name="help" size={19} color={theme.colors.accent} />
+          </View>
+          <T f="display" w={700} s={16} c={theme.colors.ink} style={{ flex: 1 }}>
+            {activity.title}
+          </T>
+          <Icon name="arrowRight" size={19} color={theme.colors.accent} strokeWidth={2.2} />
+        </View>
+        <T s={14} lh={21} c={theme.colors.muted} style={{ marginTop: theme.spacing.sm }}>
+          {activity.description}
+        </T>
+        {activity.isMock ? <MockBadge /> : null}
+      </Card>
+    </Pressable>
   );
 }
