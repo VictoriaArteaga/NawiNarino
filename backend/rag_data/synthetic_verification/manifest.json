@@ -1,0 +1,32 @@
+[
+  {
+    "file": "guia_a.md",
+    "metadata": {
+      "document_id": "synthetic__verificacion-guia-a",
+      "title": "Guía A de la Lengua de Verificación (documento ficticio, 2025)",
+      "language": "lengua_verificacion",
+      "content_type": "linguistico",
+      "source": "Generado para pruebas de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2025,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    }
+  },
+  {
+    "file": "guia_b.md",
+    "metadata": {
+      "document_id": "synthetic__verificacion-guia-b",
+      "title": "Guía B de la Lengua de Verificación (documento ficticio, 2026)",
+      "language": "lengua_verificacion",
+      "content_type": "linguistico",
+      "source": "Generado para pruebas de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    }
+  }
+]
