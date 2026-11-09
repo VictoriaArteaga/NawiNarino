@@ -1,79 +1,73 @@
-import { AudioLines, BookOpen } from "lucide-react-native";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
-import { theme } from "../constants/theme";
+import { shadows, theme } from "../constants/theme";
 import type { Vocabulary } from "../types/vocabulary";
-import { Card } from "./Card";
+import { GradientBox } from "./GradientBox";
+import { Icon } from "./Icon";
+import { T } from "./T";
 
 interface VocabularyCardProps {
   item: Vocabulary;
+  /** Tag colors; chosen by the screen from the category. */
+  tagBackground: string;
+  tagColor: string;
 }
 
-export function VocabularyCard({ item }: VocabularyCardProps) {
+export function VocabularyCard({ item, tagBackground, tagColor }: VocabularyCardProps) {
   return (
-    <Card style={{ marginBottom: theme.spacing.md }}>
-      <View className="flex-row items-start justify-between">
-        <View className="flex-1 pr-3">
-          <Text
-            style={{
-              color: theme.colors.ink,
-              fontSize: 20,
-              fontWeight: "800",
-            }}
-          >
-            {item.word}
-          </Text>
-          <Text
-            style={{
-              color: theme.colors.primary,
-              fontSize: 16,
-              fontWeight: "700",
-              marginTop: theme.spacing.xs,
-            }}
-          >
-            {item.translation}
-          </Text>
-        </View>
-        {item.audioUrl ? (
-          <AudioLines color={theme.colors.primary} size={20} />
-        ) : (
-          <BookOpen color={theme.colors.primary} size={20} />
-        )}
+    <View
+      accessibilityLabel={`${item.word}: ${item.translation}. Categoría ${item.category}.`}
+      style={[
+        {
+          alignItems: "center",
+          backgroundColor: theme.colors.surface,
+          borderColor: theme.colors.border,
+          borderRadius: 18,
+          borderWidth: 1,
+          flexDirection: "row",
+          gap: 14,
+          minHeight: 84,
+          paddingHorizontal: 12,
+          paddingVertical: 12,
+        },
+        shadows.soft,
+      ]}
+    >
+      <GradientBox
+        colors={["#2F6F4E", "#4C8B6C"]}
+        direction="br"
+        style={{
+          alignItems: "center",
+          borderRadius: 25,
+          height: 50,
+          justifyContent: "center",
+          opacity: item.audioUrl ? 1 : 0.55,
+          width: 50,
+        }}
+      >
+        <Icon name="speaker" size={24} color="#FFFFFF" />
+      </GradientBox>
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <T f="display" w={800} s={21} lh={25} c={theme.colors.ink} numberOfLines={2}>
+          {item.word}
+        </T>
+        <T s={14} lh={18} c="#4B554F" numberOfLines={2}>
+          {item.translation}
+        </T>
       </View>
-      <Text
+      <View
         style={{
-          color: theme.colors.accent,
-          fontSize: 12,
-          fontWeight: "800",
-          marginTop: theme.spacing.md,
-          textTransform: "uppercase",
+          backgroundColor: tagBackground,
+          borderRadius: 12,
+          maxWidth: 110,
+          paddingHorizontal: 10,
+          paddingVertical: 3,
         }}
       >
-        {item.category}
-      </Text>
-      <Text
-        style={{
-          color: theme.colors.muted,
-          fontSize: 14,
-          lineHeight: 21,
-          marginTop: theme.spacing.sm,
-        }}
-      >
-        {item.description}
-      </Text>
-      {item.isMock ? (
-        <Text
-          style={{
-            color: theme.colors.mockText,
-            fontSize: 12,
-            fontWeight: "700",
-            marginTop: theme.spacing.md,
-          }}
-        >
-          Demonstration data · Pending validation
-        </Text>
-      ) : null}
-    </Card>
+        <T w={700} s={11.5} c={tagColor} numberOfLines={1}>
+          {item.category}
+        </T>
+      </View>
+    </View>
   );
 }
-
