@@ -1,14 +1,14 @@
 import { useLocalSearchParams } from "expo-router";
-import { ScrollView, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
-import { Header } from "../../components/Header";
+import { Field } from "../../components/Field";
 import { Loading } from "../../components/Loading";
 import { MockBadge } from "../../components/MockBadge";
-import { useTerritory } from "../../hooks/useTerritories";
+import { InvalidIdScreen, PlainScreen } from "../../components/PlainScreen";
+import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
+import { useTerritory } from "../../hooks/useTerritories";
 
 export default function TerritoryDetailScreen() {
   const { territoryId: rawId } = useLocalSearchParams<{ territoryId: string }>();
@@ -17,31 +17,35 @@ export default function TerritoryDetailScreen() {
   const query = useTerritory(territoryId);
 
   if (!validId) {
-    return (
-      <SafeAreaView className="flex-1 p-5" style={{ backgroundColor: theme.colors.canvas }}>
-        <ErrorMessage message="The territory identifier is not valid." />
-      </SafeAreaView>
-    );
+    return <InvalidIdScreen message="El identificador del territorio no es válido." />;
   }
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: theme.colors.canvas }}>
-      <ScrollView contentContainerStyle={{ padding: theme.spacing.lg, paddingBottom: theme.spacing.xxl }}>
-        <Header title={query.data?.name ?? "Territory"} subtitle="Demonstration territory details." backHref="/mapa" backLabel="Map" />
-        {query.isPending ? <Loading label="Loading territory..." /> : query.isError ? (
-          <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
-        ) : (
-          <Card>
-            <Text style={{ color: theme.colors.primary, fontSize: 12, fontWeight: "800" }}>REGION</Text>
-            <Text style={{ color: theme.colors.ink, fontSize: 17, marginTop: theme.spacing.xs }}>{query.data.region}</Text>
-            <Text style={{ color: theme.colors.muted, lineHeight: 22, marginTop: theme.spacing.lg }}>{query.data.description}</Text>
-            <Text style={{ color: theme.colors.muted, marginTop: theme.spacing.lg }}>
-              Coordinates: {query.data.latitude === null || query.data.longitude === null ? "pending validation" : `${query.data.latitude}, ${query.data.longitude}`}
-            </Text>
-            <MockBadge />
-          </Card>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+    <PlainScreen
+      title={query.data?.name ?? "Territorio"}
+      subtitle="Detalles de un territorio de demostración."
+      backHref="/mapa"
+      backLabel="Mapa"
+    >
+      {query.isPending ? (
+        <Loading label="Cargando territorio..." />
+      ) : query.isError ? (
+        <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
+      ) : (
+        <Card>
+          <Field first label="Región" value={query.data.region} />
+          <T s={14} lh={22} c={theme.colors.muted} style={{ marginTop: theme.spacing.lg - 4 }}>
+            {query.data.description}
+          </T>
+          <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.lg - 4 }}>
+            Coordenadas:{" "}
+            {query.data.latitude === null || query.data.longitude === null
+              ? "pendientes de validación"
+              : `${query.data.latitude}, ${query.data.longitude}`}
+          </T>
+          {query.data.isMock ? <MockBadge /> : null}
+        </Card>
+      )}
+    </PlainScreen>
   );
 }
