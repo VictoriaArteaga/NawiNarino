@@ -1,15 +1,18 @@
 import { useLocalSearchParams } from "expo-router";
-import { ScrollView, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
-import { Header } from "../../components/Header";
 import { ActivityCard } from "../../components/LearningCards";
 import { Loading } from "../../components/Loading";
+import { InvalidIdScreen, PlainScreen } from "../../components/PlainScreen";
 import { ProgressBar } from "../../components/ProgressBar";
-import { useLesson, useLanguageProgress, useLessonActivities } from "../../hooks/useLearning";
+import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
+import {
+  useLanguageProgress,
+  useLesson,
+  useLessonActivities,
+} from "../../hooks/useLearning";
 
 export default function LessonDetailScreen() {
   const { lessonId: rawId } = useLocalSearchParams<{ lessonId: string }>();
@@ -23,53 +26,50 @@ export default function LessonDetailScreen() {
   const completed = lessonActivities.filter((item) => completedIds.has(item.id)).length;
 
   if (!validId) {
-    return (
-      <SafeAreaView className="flex-1 p-5" style={{ backgroundColor: theme.colors.canvas }}>
-        <ErrorMessage message="The lesson identifier is not valid." />
-      </SafeAreaView>
-    );
+    return <InvalidIdScreen message="El identificador de la lección no es válido." />;
   }
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: theme.colors.canvas }}>
-      <ScrollView contentContainerStyle={{ padding: theme.spacing.lg, paddingBottom: theme.spacing.xxl }}>
-        <Header
-          title={lesson.data?.title ?? "Lesson"}
-          subtitle={lesson.data?.description}
-          backHref={lesson.data ? { pathname: "/lenguas/[id]/lecciones", params: { id: String(lesson.data.languageId) } } : "/lenguas"}
-          backLabel="Lessons"
-        />
-        {lesson.isPending || activities.isPending ? (
-          <Loading label="Loading lesson activities..." />
-        ) : lesson.isError ? (
-          <ErrorMessage message={lesson.error.message} onRetry={() => void lesson.refetch()} />
-        ) : activities.isError ? (
-          <ErrorMessage message={activities.error.message} onRetry={() => void activities.refetch()} />
-        ) : (
-          <>
-            <Card style={{ marginBottom: theme.spacing.lg }}>
-              <ProgressBar
-                percentage={lessonActivities.length ? (completed / lessonActivities.length) * 100 : 0}
-                label="Lesson progress"
-              />
-              <Text style={{ color: theme.colors.muted, marginTop: theme.spacing.md }}>
-                {completed} of {lessonActivities.length} activities completed
-              </Text>
+    <PlainScreen
+      title={lesson.data?.title ?? "Lección"}
+      subtitle={lesson.data?.description}
+      backHref={
+        lesson.data
+          ? { pathname: "/lenguas/[id]/lecciones", params: { id: String(lesson.data.languageId) } }
+          : "/lenguas"
+      }
+      backLabel="Lecciones"
+      nav="aprender"
+    >
+      {lesson.isPending || activities.isPending ? (
+        <Loading label="Cargando actividades de la lección..." />
+      ) : lesson.isError ? (
+        <ErrorMessage message={lesson.error.message} onRetry={() => void lesson.refetch()} />
+      ) : activities.isError ? (
+        <ErrorMessage message={activities.error.message} onRetry={() => void activities.refetch()} />
+      ) : (
+        <>
+          <Card style={{ marginBottom: theme.spacing.lg }}>
+            <ProgressBar
+              percentage={lessonActivities.length ? (completed / lessonActivities.length) * 100 : 0}
+              label="Avance en la lección"
+            />
+            <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.md }}>
+              {completed} de {lessonActivities.length} actividades completadas
+            </T>
+          </Card>
+          {lesson.data && progress.isError ? (
+            <ErrorMessage message={progress.error.message} onRetry={() => void progress.refetch()} />
+          ) : null}
+          {lessonActivities.length ? (
+            lessonActivities.map((activity) => <ActivityCard key={activity.id} activity={activity} />)
+          ) : (
+            <Card>
+              <T c={theme.colors.muted}>Aún no hay actividades disponibles.</T>
             </Card>
-            {lesson.data && progress.isError ? (
-              <ErrorMessage
-                message={progress.error.message}
-                onRetry={() => void progress.refetch()}
-              />
-            ) : null}
-            {lessonActivities.length ? (
-              lessonActivities.map((activity) => <ActivityCard key={activity.id} activity={activity} />)
-            ) : (
-              <Card><Text style={{ color: theme.colors.muted }}>No activities available yet.</Text></Card>
-            )}
-          </>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+          )}
+        </>
+      )}
+    </PlainScreen>
   );
 }
