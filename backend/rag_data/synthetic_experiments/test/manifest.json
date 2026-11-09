@@ -1,0 +1,74 @@
+[
+  {
+    "file": "v1.md",
+    "metadata": {
+      "document_id": "synthetic__test-v1",
+      "title": "Guía V1 de la Lengua de Contraste (test; documento ficticio)",
+      "language": "lengua_contraste",
+      "content_type": "linguistico",
+      "source": "Generado para experimentos de verificación de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2024,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    },
+    "experiment": {
+      "simulated_status": "validated"
+    }
+  },
+  {
+    "file": "v2.md",
+    "metadata": {
+      "document_id": "synthetic__test-v2",
+      "title": "Guía V2 de la Lengua de Contraste (test; documento ficticio)",
+      "language": "lengua_contraste",
+      "content_type": "linguistico",
+      "source": "Generado para experimentos de verificación de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2025,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    },
+    "experiment": {
+      "simulated_status": "validated"
+    }
+  },
+  {
+    "file": "p1.md",
+    "metadata": {
+      "document_id": "synthetic__test-p1",
+      "title": "Cuaderno P1 de la Lengua de Contraste (test; documento ficticio)",
+      "language": "lengua_contraste",
+      "content_type": "linguistico",
+      "source": "Generado para experimentos de verificación de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    },
+    "experiment": {
+      "simulated_status": "pending"
+    }
+  },
+  {
+    "file": "p2.md",
+    "metadata": {
+      "document_id": "synthetic__test-p2",
+      "title": "Cuaderno P2 de la Lengua de Contraste (test; documento ficticio)",
+      "language": "lengua_contraste",
+      "content_type": "linguistico",
+      "source": "Generado para experimentos de verificación de ÑAWI-Nariño; contenido inventado",
+      "author": "Equipo técnico ÑAWI-Nariño (sintético)",
+      "year": 2026,
+      "license": "Uso interno de pruebas; contenido ficticio",
+      "access_level": "synthetic",
+      "validation_status": "synthetic"
+    },
+    "experiment": {
+      "simulated_status": "pending"
+    }
+  }
+]
