@@ -1,4 +1,373 @@
 {
-  "_note": "Registro de AUTORIZACIONES ESCRITAS para usar documentos reales en el RAG. Vacío a propósito: ningún documento real está autorizado. Una entrada solo cuenta si cumple todos los requisitos de scripts/rag_authorization_check.py. No agregar entradas sin un documento de autorización verificable (carta/correo/acuerdo) archivado y referenciado en 'written_reference'.",
-  "entries": []
+  "_note": "Registro de autorizaciones para documentos reales. Las entradas de esta versión son una decisión del responsable del proyecto para una DEMO ACADÉMICA LOCAL; no sustituyen los permisos de los titulares de derechos ni de las comunidades (ver 'conditions'). Borman nunca se habilita.",
+  "entries": [
+    {
+      "document_id": "awapit__anu_curnow-1997_grammar-of-awa-pit",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "awapit__unipa_diccionario-awapit-espanol",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "awapit__unipa_vivamos-aprendiendo-awapit-conjugaciones",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "awapit__unipa_guia-aprendemos-awapit",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "awapit__unipa_PEC-inkal-awa",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-I_nasa-yuwa-namtrik",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "nasa-yuwe__mincultura_lenguas-vivas_vol-IV-tomo-2_minga",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "nasa-yuwe__proeib_pitto_transmision-del-nasa",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "nasa-yuwe__redalyc_413635242005",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "nasa-yuwe__scielo_corpus-nasa-yuwe-etiquetado",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "ainga-cofan__anderbois-et-al_jipa_illustration-aingae",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "ainga-cofan__fischer-hengeveld_aingae-handbook-chapter-2023",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "ainga-cofan__fischer-hengeveld_open-linguistics_operators_2018",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "ainga-cofan__hengeveld-fischer_ch3-phonology_2022-draft",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "ainga-cofan__hengeveld-fischer_ch5-syntax_2023-draft",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "inga__unal_chasoy-et-al_numeracion-en-lengua-inga",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__mincultura_pueblo-pastos",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__mincultura_pueblo-quillacinga",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__redalyc_ceballos_quillasinga-mocondino",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__banrep_fian_5130",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__icanh_rca_1843",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "pasto-quillasinga__icanh_rca_1844",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada."
+    },
+    {
+      "document_id": "awapit__unipa_alfabeto-awa",
+      "authorizer": {
+        "name": "María Victoria",
+        "role": "Responsable del proyecto ÑAWI-Nariño (NO es titular de derechos de este documento ni representante de la comunidad)",
+        "institution": "Proyecto académico ÑAWI-Nariño"
+      },
+      "written_reference": "Instrucción escrita del responsable del proyecto durante el desarrollo (2026-11-09): usar el corpus real en la demostración académica.",
+      "date": "2026-11-09",
+      "scope": [
+        "indexing",
+        "evaluation",
+        "quoting_excerpts"
+      ],
+      "conditions": "Solo demostración académica LOCAL. Sin redistribución del corpus, de los textos ni del índice. Los permisos de los titulares de derechos y de las comunidades siguen PENDIENTES; validación lingüística PENDIENTE: no presentar como información validada. Este documento se usa SOLO a partir de una transcripción contra la imagen hecha con asistencia de IA (rag_data/real/transcriptions/), no del texto extraído; la transcripción NO fue revisada por un hablante."
+    }
+  ]
 }
