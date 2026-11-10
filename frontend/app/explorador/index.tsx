@@ -11,9 +11,9 @@ import { T } from "../../components/T";
 import { shadows, theme } from "../../constants/theme";
 
 const suggestions: { text: string; icon: IconName }[] = [
-  { text: "¿Cuál es el saludo de la mañana en la Lengua de Prueba?", icon: "translate" },
-  { text: "¿Qué pasa en la Fiesta de la Luna de Papel?", icon: "pin" },
-  { text: "¿Qué significa sa?", icon: "waves" },
+  { text: "¿Qué es el pueblo Quillacinga?", icon: "pin" },
+  { text: "¿Qué es la Unidad Indígena del Pueblo Awá UNIPA?", icon: "translate" },
+  { text: "¿Cómo se transmite el nasa yuwe en las familias?", icon: "waves" },
 ];
 
 export default function ExplorerScreen() {
@@ -104,9 +104,10 @@ export default function ExplorerScreen() {
         >
           <Icon name="warning" size={18} color="#B9701A" />
           <T w={600} s={12.5} lh={18} c={theme.colors.mockText} style={{ flex: 1 }}>
-            Versión de demostración: Ñawi busca solo en documentos sintéticos
-            (ficticios) y no genera texto con IA. Lo que ves no es información
-            real sobre ninguna lengua ni comunidad.
+            Versión de demostración: Ñawi busca solo en los documentos cargados
+            y explica con un modelo local a partir de sus fragmentos. Los documentos
+            no están validados por hablantes ni por las comunidades: no los tomes
+            como información verificada.
           </T>
         </View>
 

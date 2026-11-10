@@ -16,14 +16,13 @@ import { ApiError } from "../../services/api";
 import { ApiConfigError } from "../../services/config";
 import type { ExplorerCitation } from "../../types/explorer";
 
-// Preguntas de la demostración: tres que el corpus SINTÉTICO de demo puede
-// responder (incluye una con varios fragmentos y una palabra con dos sentidos)
-// y una que demuestra la abstención (no hay fuente autorizada sobre awapit).
+// Preguntas de la demostración sobre el corpus cargado (documentos académicos e institucionales,
+// sin validación de hablantes ni comunidades) y una fuera del corpus que demuestra la abstención.
 const suggestions = [
-  "¿Qué pasa en la Fiesta de la Luna de Papel?",
-  "¿Cuál es el saludo de la mañana en la Lengua de Prueba?",
-  "¿Qué significa sa?",
-  "¿Cómo se dice agua en awapit?",
+  "¿Qué es el pueblo Quillacinga?",
+  "¿Qué es la Unidad Indígena del Pueblo Awá UNIPA?",
+  "¿Cómo se transmite el nasa yuwe en las familias?",
+  "¿Cuál es la capital de Francia?",
 ];
 
 const MIN_QUESTION_LENGTH = 3; // igual que el backend (min_length=3)
@@ -32,6 +31,8 @@ function validationLabel(status: string): string {
   switch (status) {
     case "synthetic":
       return "Contenido sintético de prueba";
+    case "project_approved":
+      return "Aprobado por el equipo · sin validación de hablantes";
     case "pending_validation":
       return "Pendiente de validación";
     case "specialist_validated":
@@ -58,7 +59,8 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
   const unverified =
     citation.isSynthetic ||
     citation.validationStatus === "synthetic" ||
-    citation.validationStatus === "pending_validation";
+    citation.validationStatus === "pending_validation" ||
+    citation.validationStatus === "project_approved";
   return (
     <View
       style={{
@@ -97,7 +99,7 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
             {citation.title}
           </T>
           <T s={11.5} lh={15} c="#5E5A6B">
-            Página {citation.page}
+            {citation.isSynthetic ? `Página ${citation.page}` : `p. ${citation.page} del PDF`}
             {byline ? ` · ${byline}` : ""}
           </T>
           <View
