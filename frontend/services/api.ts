@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import { useAuthStore } from "../store/authStore";
 import { resolveApiBaseUrl } from "./config";
 
 interface ApiErrorResponse {
@@ -27,7 +28,7 @@ function getDetailMessage(detail: unknown): string | undefined {
       "msg" in issue &&
       typeof issue.msg === "string"
     ) {
-      return [issue.msg];
+      return [issue.msg.replace(/^Value error, /, "")];
     }
     return [];
   });
@@ -50,6 +51,8 @@ apiClient.interceptors.request.use((config) => {
   } catch (error) {
     return Promise.reject(error); // ApiConfigError llega tal cual a la interfaz
   }
+  const token = useAuthStore.getState().token;
+  if (token) config.headers.set("Authorization", `Bearer ${token}`);
   return config;
 });
 
@@ -58,6 +61,11 @@ apiClient.interceptors.response.use(
   (error: unknown) => {
     if (axios.isAxiosError<ApiErrorResponse>(error)) {
       const status = error.response?.status;
+      const isCredentialCall = /\/auth\/(login|register)$/.test(error.config?.url ?? "");
+      // Sesión vencida o revocada: se cierra y la pantalla de acceso se muestra sola.
+      if (status === 401 && !isCredentialCall && useAuthStore.getState().token) {
+        useAuthStore.getState().clearSession();
+      }
       const serverMessage = getDetailMessage(error.response?.data?.detail);
       const message =
         status !== undefined && status >= 500

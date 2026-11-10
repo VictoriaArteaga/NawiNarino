@@ -12,9 +12,11 @@ import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
 import { getLanguageTheme, sortLanguages } from "../constants/languages";
 import { theme } from "../constants/theme";
+import { useLogout } from "../hooks/useAuth";
 import { useLanguages } from "../hooks/useLanguages";
 import { useLanguageProgress, useProgress } from "../hooks/useLearning";
 import { useAppStore } from "../store/appStore";
+import { useAuthStore } from "../store/authStore";
 import type { Language } from "../types/language";
 
 interface MenuItem {
@@ -25,6 +27,7 @@ interface MenuItem {
   href?: Href;
   badge?: string;
   danger?: boolean;
+  action?: "logout";
 }
 
 export default function ProfileScreen() {
@@ -33,6 +36,8 @@ export default function ProfileScreen() {
   const languages = useLanguages();
   const progress = useProgress();
   const savedCount = useAppStore((s) => s.savedLanguageIds.length);
+  const user = useAuthStore((s) => s.user);
+  const logout = useLogout();
 
   const learnItems: MenuItem[] = [
     { label: "Mi progreso", icon: "chart", bg: "#E4EFE6", color: "#2F6F4E", href: "/progreso" },
@@ -49,7 +54,7 @@ export default function ProfileScreen() {
   const accountItems: MenuItem[] = [
     { label: "Ajustes", icon: "sliders", bg: "#DCEAF6", color: "#1D4A75", badge: "Pronto" },
     { label: "Ayuda y soporte", icon: "help", bg: "#F8E4C0", color: "#8A5200", badge: "Pronto" },
-    { label: "Volver a la bienvenida", icon: "logout", bg: "#FBE4E1", color: "#A3281C", href: "/", danger: true },
+    { label: "Cerrar sesión", icon: "logout", bg: "#FBE4E1", color: "#A3281C", danger: true, action: "logout" },
   ];
 
   return (
@@ -69,10 +74,10 @@ export default function ProfileScreen() {
       <View style={{ alignItems: "center", marginTop: -58 }}>
         <Avatar size={96} ring progress={progress.data?.percentage ?? 0} />
         <T f="display" w={800} s={22} lh={27} c={theme.colors.ink} style={{ marginTop: 8 }}>
-          Explorador/a Ñawi
+          {user?.name ?? "Explorador/a Ñawi"}
         </T>
         <T s={13.5} c={theme.colors.muted}>
-          Perfil de demostración en este dispositivo
+          {user?.email ?? "Sin sesión iniciada"}
         </T>
         <View style={{ alignItems: "center", flexDirection: "row", gap: 8, marginTop: 12 }}>
           <Chip bg={theme.colors.gold} color="#2B1D05" icon="star" label={`${Math.round(progress.data?.percentage ?? 0)}% total`} />
@@ -123,7 +128,13 @@ export default function ProfileScreen() {
         <MenuCard items={learnItems} onOpen={(href) => router.push(href)} />
         <MenuCard
           items={accountItems}
-          onOpen={(href) => (href === "/" ? router.replace("/") : router.push(href))}
+          onAction={(action) => {
+            if (action === "logout") {
+              logout();
+              router.replace("/");
+            }
+          }}
+          onOpen={(href) => router.push(href)}
         />
       </View>
 
@@ -193,9 +204,11 @@ function LanguageChip({ language }: { language: Language }) {
 function MenuCard({
   items,
   onOpen,
+  onAction,
 }: {
   items: MenuItem[];
   onOpen: (href: Href) => void;
+  onAction?: (action: NonNullable<MenuItem["action"]>) => void;
 }) {
   return (
     <View
@@ -209,7 +222,7 @@ function MenuCard({
       }}
     >
       {items.map((item, index) => {
-        const disabled = !item.href;
+        const disabled = !item.href && !item.action;
         const textColor = item.danger ? theme.colors.danger : theme.colors.ink;
         return (
           <Pressable
@@ -217,7 +230,10 @@ function MenuCard({
             accessibilityRole={disabled ? "text" : "link"}
             accessibilityState={{ disabled }}
             disabled={disabled}
-            onPress={() => item.href && onOpen(item.href)}
+            onPress={() => {
+              if (item.action) onAction?.(item.action);
+              else if (item.href) onOpen(item.href);
+            }}
             style={({ pressed }) => ({
               alignItems: "center",
               borderBottomColor: "#F0E6D3",
