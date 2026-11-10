@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
+from app.core.auth import get_optional_user, resolve_progress_user
 from app.core.database import get_db
+from app.models.user import User
 from app.repositories.lesson_repository import LessonRepository
 from app.repositories.progress_repository import ProgressRepository
 from app.schemas.activity import ActivityResult, ActivitySubmission
@@ -19,13 +21,16 @@ def get_activity_service(session: Session = Depends(get_db)) -> ActivityService:
 def submit_activity(
     activity_id: PositivePathId,
     submission: ActivitySubmission,
-    user_id: str = Query(
-        default="local-demo-user",
+    user_id: str | None = Query(
+        default=None,
         alias="userId",
         min_length=1,
         max_length=100,
     ),
+    user: User | None = Depends(get_optional_user),
     service: ActivityService = Depends(get_activity_service),
 ) -> dict[str, int | bool | str]:
-    result, _progress = service.submit(activity_id, user_id, submission)
+    result, _progress = service.submit(
+        activity_id, resolve_progress_user(user_id, user), submission
+    )
     return result

@@ -9,6 +9,7 @@ from app.core.config import get_settings
 from app.core.database import initialize_mock_database
 from app.routers import (
     activities,
+    auth,
     explorer,
     heritage,
     languages,
@@ -39,6 +40,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+app.include_router(auth.router)
 app.include_router(languages.router)
 app.include_router(vocabulary.router)
 app.include_router(lessons.router)
