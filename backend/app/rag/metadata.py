@@ -25,6 +25,9 @@ class AccessLevel(str, Enum):
 class ValidationStatus(str, Enum):
     SYNTHETIC = "synthetic"
     PENDING = "pending_validation"
+    # Aprobado por el RESPONSABLE DEL PROYECTO para la demostración local. NO es validación de hablantes,
+    # de especialistas ni de las comunidades: no debe presentarse como tal.
+    PROJECT_APPROVED = "project_approved"
     SPECIALIST_VALIDATED = "specialist_validated"
     COMMUNITY_VALIDATED = "community_validated"
 
@@ -48,6 +51,8 @@ class DocumentMetadata(BaseModel):
     indexing_authorized: bool = False
     authorization_ref: str | None = None
     validation_status: ValidationStatus = ValidationStatus.PENDING
+    # Documento real habilitado SOLO para una demostración académica local (sin redistribución).
+    local_demo_only: bool = False
 
     @model_validator(mode="after")
     def check_consistency(self) -> "DocumentMetadata":
@@ -82,8 +87,10 @@ def assert_indexable(meta: DocumentMetadata) -> None:
             f"{meta.document_id}: sin autorización expresa de indexación "
             "(se requiere indexing_authorized=true y authorization_ref)"
         )
-    if meta.access_level is AccessLevel.COMMUNITY_PERMISSION_REQUIRED and (
-        meta.validation_status is ValidationStatus.PENDING
+    if (
+        meta.access_level is AccessLevel.COMMUNITY_PERMISSION_REQUIRED
+        and meta.validation_status is ValidationStatus.PENDING
+        and not meta.local_demo_only
     ):
         raise IndexingNotAllowedError(
             f"{meta.document_id}: requiere permiso comunitario y validación"
@@ -106,3 +113,5 @@ class ChunkMetadata(BaseModel):
     validation_status: ValidationStatus
     page: int  # número de página del archivo (1 = primera)
     is_synthetic: bool
+    # Clase de evidencia del documento (corpus real): permite distinguir fuentes de vocabulario de textos sobre el tema.
+    evidence_class: str | None = None

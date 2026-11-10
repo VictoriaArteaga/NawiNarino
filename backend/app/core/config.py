@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     ]
 
     # RAG (Explorador IA). Por defecto solo el corpus sintético de demostración.
+    # Corpus: "demo" (ficticio, por defecto) o "real" (corpus/_rag, SOLO documentos habilitados en
+    # rag_data/real/authorizations.json; uso local de demostración).
+    rag_corpus: Literal["demo", "real"] = "demo"
+    rag_index_dir: Path = Path(__file__).resolve().parents[2] / "rag_data" / "index_cache"
     rag_manifest_path: Path = Path(__file__).resolve().parents[2] / "rag_data" / "demo" / "manifest.json"
     rag_retriever: Literal["auto", "hashing", "hybrid"] = "auto"
     rag_ollama_host: str = "http://127.0.0.1:11434"

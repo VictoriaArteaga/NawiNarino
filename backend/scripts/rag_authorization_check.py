@@ -17,48 +17,15 @@ Borman y los ids de app.rag.metadata.BLOCKED_DOCUMENT_IDS no se habilitan nunca.
 import argparse
 import json
 import sys
-from datetime import date
 from pathlib import Path
 
-from app.rag.metadata import BLOCKED_DOCUMENT_IDS
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCUMENTS = ROOT / "corpus" / "_rag" / "documents.json"
 REGISTRY = Path(__file__).resolve().parents[1] / "rag_data" / "real" / "authorizations.json"
-REQUIRED_SCOPE = {"indexing", "evaluation", "quoting_excerpts"}
-
-
-class NotAuthorizedError(Exception):
-    pass
-
-
-def problems(entry: dict, known_ids: set[str]) -> list[str]:
-    out: list[str] = []
-    doc = entry.get("document_id", "")
-    if doc not in known_ids:
-        out.append("document_id no existe en corpus/_rag/documents.json")
-    if doc in BLOCKED_DOCUMENT_IDS:
-        out.append("documento bloqueado explícitamente")
-    a = entry.get("authorizer") or {}
-    if not all(a.get(k) for k in ("name", "role", "institution")):
-        out.append("falta authorizer {name, role, institution}")
-    if not entry.get("written_reference"):
-        out.append("falta written_reference (documento de autorización archivado)")
-    try:
-        if date.fromisoformat(entry.get("date", "")) > date.today():
-            out.append("fecha futura")
-    except ValueError:
-        out.append("falta fecha ISO válida")
-    missing = REQUIRED_SCOPE - set(entry.get("scope") or [])
-    if missing:
-        out.append(f"scope incompleto, falta: {sorted(missing)}")
-    return out
-
-
-def cleared_documents(registry: dict, known_ids: set[str]) -> dict[str, dict]:
-    return {
-        e["document_id"]: e for e in registry.get("entries", []) if "document_id" in e and not problems(e, known_ids)
-    }
+from app.rag.authorization import (  # noqa: E402,F401
+    REQUIRED_SCOPE, NotAuthorizedError, cleared_documents, problems, require_cleared,
+)
 
 
 def load(registry_path: Path = REGISTRY, documents_path: Path = DOCUMENTS) -> tuple[dict, set[str], list[dict]]:
