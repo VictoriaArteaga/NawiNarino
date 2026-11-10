@@ -20,3 +20,7 @@ backend/rag_data/index.json
 
 backend/experiments/cache/
 !.env.*.example
+
+backend/rag_data/index_cache/
+# Transcripción derivada de un documento con permisos pendientes: solo local, no se redistribuye
+backend/rag_data/real/transcriptions/
