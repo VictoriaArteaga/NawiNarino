@@ -37,6 +37,9 @@ no usar reglas que perjudiquen respuestas correctas). Se implementó la alternat
 - Las 6 preguntas respondibles de la demo siguen `direct` (varios fragmentos y dos sentidos incluidos); abstenciones sin cambio.
 - Verificado en Chrome; `tests/test_evidence_support.py` (29 casos, incluidos los tres problemáticos) y toda la suite: 169 pruebas pasan.
 
+## Ampliación (corpus real): búsqueda de palabras
+Para «¿cómo se dice X?» / «¿qué significa X?», la palabra debe figurar en una fuente de vocabulario; si no, se etiqueta `related` con un aviso específico (`lookup_gap` en `app/rag/support.py`; ver `corpus-real-demo.md`).
+
 ## Limitaciones
 - **No es una verificación de que el fragmento responda**: es coincidencia léxica exacta (sin tildes/mayúsculas). Un fragmento puede contener todos
   los términos y no contestar (p. ej. términos presentes pero con otro sentido). `direct` significa «los términos están», no «respuesta correcta».

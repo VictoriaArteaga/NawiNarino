@@ -5,6 +5,8 @@
 No se procesa ningún documento real (no existe autorización escrita; ver `rag-real-evaluation-blocker.md`).
 
 ## Qué hace la demo
+**Corpus real:** con `RAG_CORPUS=real` la demo responde con el corpus real de `corpus/` (solo uso local, validación pendiente). Ver [`corpus-real-demo.md`](corpus-real-demo.md); con `demo` usa el corpus ficticio de abajo.
+
 **Actualización:** además de los extractos, Ñawi redacta una explicación con un modelo local (`llama3.2:3b` vía Ollama), validada en el backend y con fallback extractivo. Instalación, variables, validación y límites: [`generacion-local.md`](generacion-local.md). Para solo extractivo: `RAG_GENERATION=off`. Con generación, la primera respuesta tras un arranque en frío puede tardar más de 1 minuto; precalentar con una pregunta antes de presentar.
 
 `POST /explorer/ask` → recupera fragmentos del corpus de demo → responde con **extractos literales** de los fragmentos,

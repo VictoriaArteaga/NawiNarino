@@ -1,5 +1,7 @@
 # Evaluación del RAG con documentación real: estado y procedimiento
 
+> **Actualización:** el responsable del proyecto habilitó el corpus real **solo para la demostración local** y dio por aprobada la revisión lingüística humana (estado `project_approved`, que NO equivale a validación de hablantes) (ver [`corpus-real-demo.md`](corpus-real-demo.md)). Eso NO equivale a los permisos de los titulares ni de las comunidades, que siguen pendientes, y la **evaluación con preguntas validadas sigue sin hacerse**; el análisis de abajo sobre permisos y procedimiento sigue vigente.
+
 ## Estado: BLOQUEADA — no hay autorización escrita para ningún documento real
 
 Medido hoy (`python -m scripts.rag_authorization_check` → código de salida 1):
