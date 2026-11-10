@@ -15,7 +15,7 @@ from pydantic import BaseModel
 
 from app.rag.embeddings import content_tokens
 from app.rag.retrieval import Hit
-from app.rag.support import unmatched_terms
+from app.rag.support import lookup_gap, unmatched_terms
 
 ABSTENTION_MESSAGE = (
     "No encontré evidencia suficiente en las fuentes autorizadas del corpus "
@@ -119,19 +119,36 @@ def build_answer(question: str, hits: list[Hit], max_sources: int = 3) -> Answer
             )
         )
     notices: list[str] = []
-    missing = unmatched_terms(question, hits[:max_sources])
-    if missing:
+    cited_hits = hits[:max_sources]
+    general = unmatched_terms(question, cited_hits)
+    gap = [w for w in lookup_gap(question, cited_hits) if w not in general]
+    missing = general + gap
+    if gap:
+        notices.append(
+            f"No encontré información sobre {', '.join('«' + w + '»' for w in gap)} en las fuentes de vocabulario "
+            "(diccionario, alfabeto, conjugaciones): lo que se muestra es contenido relacionado, no su traducción ni su significado."
+        )
+    if general:
         notices.append(
             "Los fragmentos son del mismo tema, pero no contienen directamente lo que preguntas "
-            f"(no aparece: {', '.join(missing)}). No los tomes como una respuesta confirmada."
+            f"(no aparece: {', '.join(general)}). No los tomes como una respuesta confirmada."
         )
     if any(c.is_synthetic for c in citations):
         notices.append(
             "Contenido sintético de prueba: no es información real sobre "
             "ninguna lengua ni comunidad."
         )
+    if any(c.validation_status == "project_approved" for c in citations):
+        notices.append(
+            "Contenido aprobado por el responsable del proyecto para esta demostración; NO ha sido validado por hablantes, "
+            "especialistas ni comunidades. Documento real de uso local: no lo tomes como información validada."
+        )
     if any(c.validation_status == "pending_validation" for c in citations):
-        notices.append("Fuente pendiente de validación lingüística o comunitaria.")
+        notices.append(
+            "Fuente pendiente de validación lingüística o comunitaria."
+            + (" Documento real usado solo en una demostración académica local: no lo tomes como información validada."
+               if any(not c.is_synthetic for c in citations) else "")
+        )
     return Answer(
         question=question,
         answer="Según las fuentes del corpus: " + " ".join(lines),

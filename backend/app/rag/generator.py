@@ -120,11 +120,14 @@ def build_messages(
         text = excerpts[n - 1] if excerpts and n <= len(excerpts) and excerpts[n - 1] else hit.chunk.text
         blocks.append(f"FRAGMENTO [{n}] — {m.title}, página {m.page}\n<<<\n{_clean_fragment(text, per_fragment)}\n>>>")
     mode = MODE_RELATED.format(missing=", ".join(unmatched) or "lo preguntado") if evidence == "related" else MODE_DIRECT
-    synthetic = (
-        "Los fragmentos provienen de documentos SINTÉTICOS (ficticios) de demostración, no de fuentes reales.\n"
-        if any(h.chunk.metadata.is_synthetic for h in hits)
-        else ""
-    )
+    if all(h.chunk.metadata.is_synthetic for h in hits):
+        synthetic = "Los fragmentos provienen de documentos SINTÉTICOS (ficticios) de demostración, no de fuentes reales.\n"
+    else:
+        synthetic = (
+            "Los fragmentos provienen de documentos reales (académicos o institucionales) SIN validación lingüística ni "
+            "comunitaria: preséntalos como lo que dice cada documento, no como información verificada. Los textos pueden "
+            "contener ruido de extracción (letras o símbolos mal leídos): no los corrijas ni los completes.\n"
+        )
     user = (
         f"{mode}\n{synthetic}\nPREGUNTA: {_FENCE.sub(' ', question).strip()[:500]}\n\n"
         + "\n\n".join(blocks)

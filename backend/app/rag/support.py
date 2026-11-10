@@ -33,6 +33,14 @@ GENERIC_QUESTION_WORDS = frozenset(
 )
 _WORD = re.compile(r"\w+", re.UNICODE)
 
+# Preguntas de «búsqueda de palabra» (traducción o significado de un término).
+_LOOKUP = re.compile(r"\b(como se dice|se dice|que significa|significado de|traduccion|traducir|palabra para|como se llama|que palabra)\b")
+# Nombres de lenguas/idiomas: no son la palabra buscada.
+LANGUAGE_WORDS = frozenset(
+    "awapit awa awá pit nasa yuwe nasayuwe inga ingae aingae cofan cofán pasto pastos quillasinga quillacinga lengua idioma lenguas".split()
+)
+VOCABULARY_CLASS_PREFIX = "primary_linguistic_data"  # diccionarios, alfabetos, listas de conjugación
+
 
 def _fold(word: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", word.lower()) if not unicodedata.combining(c))
@@ -52,3 +60,29 @@ def unmatched_terms(question: str, hits: list[Hit]) -> list[str]:
         if folded not in evidence and word.lower() not in missing:
             missing.append(word.lower())
     return missing
+
+
+def lookup_gap(question: str, hits: list[Hit]) -> list[str]:
+    """Palabras buscadas («¿cómo se dice X?») que NO figuran en ninguna fuente de vocabulario citada.
+
+    Un texto que solo habla del tema (p. ej. del agua en el territorio) no es una entrada de vocabulario: no
+    prueba cómo se dice «agua». Solo se aplica cuando se conoce la clase de evidencia de los fragmentos (corpus
+    real); sin ella (corpus de demo) no se aplica, para no cambiar su comportamiento.
+    """
+    if not _LOOKUP.search(" ".join(_fold(w) for w in _WORD.findall(question))):
+        return []
+    known = [h for h in hits if h.chunk.metadata.evidence_class]
+    if not known:
+        return []
+    vocab_tokens: set[str] = set()
+    for h in known:
+        if h.chunk.metadata.evidence_class.startswith(VOCABULARY_CLASS_PREFIX):
+            vocab_tokens |= set(tokenize(h.chunk.text))
+    gap: list[str] = []
+    for word in _WORD.findall(question):
+        folded = _fold(word)
+        if len(folded) <= 1 or folded in STOPWORDS or folded in GENERIC_QUESTION_WORDS or folded in LANGUAGE_WORDS:
+            continue
+        if folded not in vocab_tokens and word.lower() not in gap:
+            gap.append(word.lower())
+    return gap
