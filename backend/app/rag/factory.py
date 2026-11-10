@@ -16,6 +16,7 @@ import json
 import logging
 import threading
 import urllib.request
+from pathlib import Path
 
 from app.core.config import Settings
 from app.rag.embedders_optional import OllamaEmbedder
@@ -23,6 +24,8 @@ from app.rag.generation import Answer, build_answer
 from app.rag.generator import GenerationError, OllamaGenerator
 from app.rag.hybrid import HybridRetriever
 from app.rag.pipeline import RagPipeline
+from app.rag.real_corpus import corpus_signature, iter_real_chunks
+from app.rag.vectorstore import IndexedChunk, IndexMismatchError, VectorStore
 
 log = logging.getLogger("explorer")
 
@@ -90,8 +93,38 @@ class ExplorerEngine:
         return answer
 
 
+def real_index_path(settings: Settings, embedder_name: str) -> Path:
+    return settings.rag_index_dir / f"real-{embedder_name}.json"
+
+
+def fill_real_store(p: RagPipeline, settings: Settings, require_cache: bool) -> None:
+    """Llena el pipeline con el corpus real habilitado (compuerta de autorización + filtros de calidad).
+
+    Con embeddings externos (bge-m3) el índice se carga de caché (``scripts.rag_build_index``); si falta o
+    está obsoleto y ``require_cache``, falla para que el motor use el recuperador de respaldo en vez de
+    bloquear el arranque minutos.
+    """
+    chunks = list(iter_real_chunks())
+    if not chunks:
+        raise RuntimeError("No hay documentos reales habilitados en rag_data/real/authorizations.json")
+    sig = corpus_signature(chunks)
+    cache = real_index_path(settings, p.embedder.name)
+    if require_cache:
+        try:
+            p.use_store(VectorStore.load(cache, p.embedder.name, p.embedder.dim, sig))
+            return
+        except (OSError, IndexMismatchError, KeyError, ValueError) as exc:
+            raise RuntimeError(f"Índice real de {p.embedder.name} no disponible ({exc}); ejecuta: python -m scripts.rag_build_index") from exc
+    for c in chunks:  # hashing: rápido, se construye en memoria
+        p.store.add(IndexedChunk(metadata=c.meta, text=c.text, vector=p.embedder.embed(c.text)))
+    p.store.signature = sig
+
+
 def _hashing(settings: Settings) -> RagPipeline:
     p = RagPipeline(top_k=settings.rag_top_k, min_score=settings.rag_min_score)
+    if settings.rag_corpus == "real":
+        fill_real_store(p, settings, require_cache=False)
+        return p
     report = p.ingest(settings.rag_manifest_path)
     if report.rejected:
         log.warning("Documentos rechazados por la compuerta de permisos: %s", report.rejected)
@@ -101,7 +134,10 @@ def _hashing(settings: Settings) -> RagPipeline:
 def _hybrid(settings: Settings) -> RagPipeline:
     emb = OllamaEmbedder(settings.rag_dense_model, settings.rag_ollama_host, timeout=30)
     p = RagPipeline(emb, top_k=settings.rag_top_k)
-    p.ingest(settings.rag_manifest_path)
+    if settings.rag_corpus == "real":
+        fill_real_store(p, settings, require_cache=True)
+    else:
+        p.ingest(settings.rag_manifest_path)
     p.retriever = HybridRetriever(
         p.store, emb, "bm25", alpha=HYBRID_ALPHA, top_k=settings.rag_top_k,
         min_score=HYBRID_MIN_SCORE, relative_min=HYBRID_RELATIVE_MIN,
