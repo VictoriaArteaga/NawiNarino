@@ -1,3 +1,4 @@
+import secrets
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
@@ -11,6 +12,10 @@ class Settings(BaseSettings):
     environment: str = "development"
     data_source: Literal["mock", "database"] = "mock"
     database_url: str | None = None
+    # Autenticación. AUTH_SECRET debe fijarse en .env; si falta se genera uno temporal
+    # (las sesiones dejan de valer al reiniciar el servidor).
+    auth_secret: str = ""
+    access_token_minutes: int = 60 * 24 * 7
     cors_origins: list[str] = [
         "http://localhost:8081",
         "http://127.0.0.1:8081",
@@ -48,6 +53,14 @@ class Settings(BaseSettings):
         if isinstance(value, str) and not value.strip():
             return None
         return value
+
+    @model_validator(mode="after")
+    def ensure_auth_secret(self) -> "Settings":
+        if not self.auth_secret:
+            self.auth_secret = secrets.token_urlsafe(48)
+        elif len(self.auth_secret) < 32:
+            raise ValueError("AUTH_SECRET must have at least 32 characters")
+        return self
 
     @model_validator(mode="after")
     def require_database_url_for_database_mode(self) -> "Settings":

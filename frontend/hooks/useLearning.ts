@@ -9,6 +9,7 @@ import {
   getProgress,
   submitActivity,
 } from "../services/learning.service";
+import { selectProgressUserId, useAuthStore } from "../store/authStore";
 import type { ActivitySubmission } from "../types/learning";
 
 export function useLessons(languageId: number) {
@@ -56,16 +57,18 @@ export function useSubmitActivity(activityId: number) {
 }
 
 export function useProgress() {
+  const userId = useAuthStore(selectProgressUserId);
   return useQuery({
-    queryKey: ["progress", "local-demo-user"],
-    queryFn: () => getProgress(),
+    queryKey: ["progress", userId],
+    queryFn: () => getProgress(userId),
   });
 }
 
 export function useLanguageProgress(languageId: number) {
+  const userId = useAuthStore(selectProgressUserId);
   return useQuery({
-    queryKey: ["progress", "local-demo-user", languageId],
-    queryFn: () => getLanguageProgress("local-demo-user", languageId),
+    queryKey: ["progress", userId, languageId],
+    queryFn: () => getLanguageProgress(userId, languageId),
     enabled: Number.isInteger(languageId) && languageId > 0,
   });
 }

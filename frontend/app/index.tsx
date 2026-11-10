@@ -20,6 +20,7 @@ import { Portrait } from "../components/Portrait";
 import { T } from "../components/T";
 import { getLanguageTheme } from "../constants/languages";
 import { shadows, theme } from "../constants/theme";
+import { useAuthStore } from "../store/authStore";
 
 const peoples = ["Awá Pit", "Inga", "Nasa Yuwe", "Cofán"] as const;
 
@@ -63,6 +64,7 @@ function useNudge() {
 
 export default function WelcomeScreen() {
   const router = useRouter();
+  const isAuthenticated = useAuthStore((s) => s.token !== null);
   const insets = useSafeAreaInsets();
   const nudge = useNudge();
   const bottom = Math.max(insets.bottom, 0);
@@ -196,10 +198,10 @@ export default function WelcomeScreen() {
         }}
       >
         <Pressable
-          accessibilityHint="Abre la pantalla de inicio"
+          accessibilityHint={isAuthenticated ? "Abre la pantalla de inicio" : "Abre la pantalla de acceso"}
           accessibilityLabel="Desliza para comenzar"
           accessibilityRole="button"
-          onPress={() => router.replace("/inicio")}
+          onPress={() => router.replace(isAuthenticated ? "/inicio" : "/login")}
           style={[
             {
               alignItems: "center",

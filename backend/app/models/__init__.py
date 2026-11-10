@@ -9,6 +9,7 @@ from app.models.progress import Progress
 from app.models.source import Source
 from app.models.territory import Territory
 from app.models.toponym import Toponym
+from app.models.user import User
 from app.models.vocabulary import Vocabulary
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "Source",
     "Territory",
     "Toponym",
+    "User",
     "Vocabulary",
 ]
