@@ -25,6 +25,20 @@ class OllamaEmbedder:
         self.name = f"ollama-{model}"
         self.dim = dim or len(self.embed("dimensión"))
 
+    def embed_many(self, texts: list[str]) -> list[list[float]]:
+        """Embeddings por lotes (mucho más rápido para indexar corpus grandes)."""
+        body = json.dumps({"model": self.model, "input": texts}).encode("utf-8")
+        request = urllib.request.Request(
+            f"{self.host}/api/embed", data=body, headers={"Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(request, timeout=max(self.timeout, 300)) as response:
+            vectors = json.loads(response.read())["embeddings"]
+        out = []
+        for v in vectors:
+            norm = math.sqrt(sum(x * x for x in v)) or 1.0
+            out.append([x / norm for x in v])
+        return out
+
     def embed(self, text: str) -> list[float]:
         if text in self._cache:
             return self._cache[text]

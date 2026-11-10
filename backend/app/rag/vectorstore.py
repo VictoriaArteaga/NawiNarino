@@ -27,6 +27,7 @@ class VectorStore:
         self.embedder_name = embedder_name
         self.dim = dim
         self.chunks: list[IndexedChunk] = []
+        self.signature: str | None = None  # huella del corpus indexado (invalida cachés obsoletas)
 
     def add(self, chunk: IndexedChunk) -> None:
         if len(chunk.vector) != self.dim:
@@ -57,18 +58,22 @@ class VectorStore:
         payload = {
             "embedder": self.embedder_name,
             "dim": self.dim,
+            "signature": self.signature,
             "chunks": [c.model_dump(mode="json") for c in self.chunks],
         }
         path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
     @classmethod
-    def load(cls, path: Path, embedder_name: str, dim: int) -> "VectorStore":
+    def load(cls, path: Path, embedder_name: str, dim: int, signature: str | None = None) -> "VectorStore":
         payload = json.loads(path.read_text(encoding="utf-8"))
         if payload["embedder"] != embedder_name or payload["dim"] != dim:
             raise IndexMismatchError(
                 f"índice creado con {payload['embedder']}; reindexar con "
                 f"{embedder_name}"
             )
+        if signature is not None and payload.get("signature") != signature:
+            raise IndexMismatchError("el índice no corresponde al corpus actual; reconstruir")
         store = cls(embedder_name, dim)
+        store.signature = payload.get("signature")
         store.chunks = [IndexedChunk.model_validate(c) for c in payload["chunks"]]
         return store

@@ -113,6 +113,11 @@ class RagPipeline:
             min_coverage=min_coverage,
         )
 
+    def use_store(self, store: VectorStore) -> None:
+        """Sustituye el almacén (p. ej. uno cargado de caché) manteniendo el recuperador."""
+        self.store = store
+        self.retriever.store = store
+
     def ingest(self, manifest_path: Path) -> IngestReport:
         return ingest_manifest(manifest_path, self.embedder, self.store)
 
