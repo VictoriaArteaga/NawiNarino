@@ -27,10 +27,11 @@ def entry(**over):
     return e
 
 
-def test_repository_registry_has_no_cleared_documents():
+def test_registry_clears_only_usable_documents_and_never_borman():
     registry, known, _ = gate.load()
-    assert registry["entries"] == []
-    assert gate.cleared_documents(registry, known) == {}
+    cleared = gate.cleared_documents(registry, known)
+    assert cleared and not (set(cleared) & BLOCKED_DOCUMENT_IDS)
+    assert all(e["written_reference"] and "PENDIENTES" in e["conditions"] for e in cleared.values())
 
 
 def test_every_real_document_is_still_unauthorized_in_the_corpus_register():
@@ -62,9 +63,9 @@ def test_require_cleared_refuses_uncleared_documents():
     gate.require_cleared(["awapit__unipa_alfabeto-awa"], {"entries": [entry()]}, KNOWN)  # no lanza
 
 
-def test_script_exit_code_is_blocked_while_registry_is_empty(capsys):
-    assert gate.main([]) == 1
-    assert "BLOQUEADO" in capsys.readouterr().out
+def test_script_reports_cleared_documents(capsys):
+    assert gate.main([]) == 0
+    assert "habilitados:" in capsys.readouterr().out
 
 
 def test_no_real_manifest_exists_and_production_manifest_is_synthetic_only():

@@ -1,6 +1,8 @@
 import os
 
 os.environ.setdefault("RAG_RETRIEVER", "hashing")  # pruebas herméticas: sin Ollama
+os.environ.setdefault("DATA_SOURCE", "mock")  # nunca tocar la base de datos real desde las pruebas
+os.environ.setdefault("RAG_CORPUS", "demo")  # corpus ficticio en pruebas
 os.environ.setdefault("RAG_GENERATION", "off")  # y sin modelo generativo
 
 from collections.abc import Iterator
