@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { PhoneFrame } from "../components/PhoneFrame";
 import { theme } from "../constants/theme";
 import { ApiError } from "../services/api";
 import { useAuthStore } from "../store/authStore";
@@ -93,14 +94,16 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style={dark ? "light" : "dark"} />
-        <AuthGate />
-        <Stack
-          screenOptions={{
-            contentStyle: { backgroundColor: theme.colors.canvas },
-            headerShown: false,
-          }}
-        />
+        <PhoneFrame>
+          <StatusBar style={dark ? "light" : "dark"} />
+          <AuthGate />
+          <Stack
+            screenOptions={{
+              contentStyle: { backgroundColor: theme.colors.canvas },
+              headerShown: false,
+            }}
+          />
+        </PhoneFrame>
       </QueryClientProvider>
     </SafeAreaProvider>
   );

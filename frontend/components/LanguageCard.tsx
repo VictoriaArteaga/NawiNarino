@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { useId } from "react";
-import { View, useWindowDimensions } from "react-native";
+import { View } from "react-native";
 import { Pressable } from "./Pressable";
 import Svg, { Defs, LinearGradient, Mask, Rect, Stop } from "react-native-svg";
 
@@ -10,6 +10,7 @@ import { useLanguageProgress } from "../hooks/useLearning";
 import type { Language } from "../types/language";
 import { GradientBox } from "./GradientBox";
 import { Icon } from "./Icon";
+import { useScreenWidth } from "./PhoneFrame";
 import { T } from "./T";
 
 interface LanguageCardProps {
@@ -23,7 +24,7 @@ export function LanguageCard({ language }: LanguageCardProps) {
   const percentage = progress.data?.percentage ?? 0;
   const Portrait = look.Portrait;
   const uid = `lc${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-  const { width } = useWindowDimensions();
+  const width = useScreenWidth();
   const cardWidth = Math.min(width, 520) - 40;
 
   const subtitle = look.people
