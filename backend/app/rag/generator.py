@@ -42,6 +42,8 @@ REGLAS OBLIGATORIAS
 5. No presentes hipótesis como hechos. Si algo no aparece en los fragmentos, dilo expresamente.
 6. Presenta el contenido como "lo que dicen los fragmentos", no como una verdad absoluta.
 7. Menciona entre comillas TODAS las formas que aparecen entre comillas en los fragmentos. Si una forma tiene varios significados, menciónalos todos.
+8. Las comillas son SOLO para texto copiado letra por letra de un fragmento (palabras en lengua indígena o frases textuales). NUNCA pongas entre comillas el título de un documento, la pregunta, un tema ni una paráfrasis. Para referirte a una fuente escribe "el fragmento [1]". Tampoco uses comillas para nombres de pueblos o lenguas (cofán, nasa yuwe, Quillacinga) ni para palabras de la pregunta. Si dudas, NO uses comillas.
+9. Redacta con las mismas palabras de los fragmentos siempre que puedas, en 1 a 3 oraciones. No agregues contexto, definiciones ni explicaciones propias, aunque sean ciertas. Si el fragmento solo da un dato breve, limítate a ese dato.
 
 EJEMPLO 1 (datos inventados, solo para mostrar el formato)
 FRAGMENTO [1]: La fiesta del Pueblo Ejemplo se celebra en la plaza.
