@@ -58,10 +58,10 @@ export function WelcomeScene(props: SvgProps) {
       </G>
       <Circle cx="120" cy="520" r="30" fill="#F59B45" />
       <G fill="#E8A33D" opacity=".8">
-        <Use href="#ws-spk" transform="translate(40,420) scale(.8)" />
+        <Use href="#ws-spk" transform="translate(34,492) scale(.8)" />
         <Use href="#ws-spk" transform="translate(352,452) scale(.7)" />
-        <Use href="#ws-spk" transform="translate(206,402) scale(.6)" />
-        <Use href="#ws-spk" transform="translate(300,330) scale(.6)" />
+        <Use href="#ws-spk" transform="translate(214,500) scale(.6)" />
+        <Use href="#ws-spk" transform="translate(372,424) scale(.6)" />
       </G>
       <G fill="#fff" opacity=".62">
         <Ellipse cx="70" cy="60" rx="56" ry="9" />
@@ -105,8 +105,8 @@ export function WelcomeScene(props: SvgProps) {
         <Path d="M390 844 C370 800 330 784 272 790 C300 820 340 836 390 844Z" fill="#D9702F" />
         <Path d="M370 844 C350 808 310 796 272 800 C296 824 328 840 370 844Z" fill="#E8A33D" />
       </G>
-      <Use href="#ws-bird" fill="#2B2A26" transform="translate(70,440) scale(.9)" />
-      <Use href="#ws-bird" fill="#2B2A26" transform="translate(112,420) scale(.6)" />
+      <Use href="#ws-bird" fill="#2B2A26" transform="translate(62,512) scale(.9)" />
+      <Use href="#ws-bird" fill="#2B2A26" transform="translate(100,496) scale(.6)" />
     </Svg>
   );
 }

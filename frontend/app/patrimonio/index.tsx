@@ -372,7 +372,6 @@ export default function ExploreScreen() {
 
         {/* More to explore */}
         <View style={{ flexDirection: "row", gap: 10, marginTop: 16 }}>
-          <MoreLink label="Topónimos" onPress={() => router.push("/toponimos")} />
           <MoreLink label="Fuentes" onPress={() => router.push("/fuentes")} />
         </View>
       </View>

@@ -38,6 +38,8 @@ export function T({
       style={[
         {
           color: c,
+          // Que ningún texto se salga de su caja: puede encogerse y partirse en líneas.
+          flexShrink: 1,
           fontFamily: fontFamily(f, w, italic),
           fontSize: s,
           letterSpacing: ls,
