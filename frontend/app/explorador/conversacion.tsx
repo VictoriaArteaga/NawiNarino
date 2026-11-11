@@ -131,11 +131,13 @@ export default function ConversationScreen() {
   const tr = useTr();
   const insets = useSafeAreaInsets();
   const headerTop = useHeaderTop();
-  const { q } = useLocalSearchParams<{ q?: string }>();
+  const { q, label } = useLocalSearchParams<{ q?: string; label?: string }>();
+  const initialLabel = typeof label === "string" ? label.trim() : "";
   const initialQuestion = typeof q === "string" ? q.trim() : "";
 
   const ask = useAskExplorer();
   const [question, setQuestion] = useState("");
+  const [shown, setShown] = useState("");
   const [draft, setDraft] = useState("");
   const [focused, setFocused] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
@@ -144,18 +146,19 @@ export default function ConversationScreen() {
   const canSend = !ask.isPending && draft.trim().length >= MIN_QUESTION_LENGTH;
   const tooShort = draft.trim().length > 0 && draft.trim().length < MIN_QUESTION_LENGTH;
 
-  const send = (text: string) => {
+  const send = (text: string, display?: string) => {
     const trimmed = text.trim();
     if (trimmed.length < MIN_QUESTION_LENGTH || ask.isPending) return;
     lastSent.current = trimmed;
     setQuestion(trimmed);
+    setShown(display?.trim() || trimmed);
     setDraft("");
     ask.mutate({ question: trimmed });
   };
 
   // Pregunta recibida desde la pantalla anterior: se envía una sola vez.
   useEffect(() => {
-    if (initialQuestion && initialQuestion !== lastSent.current) send(initialQuestion);
+    if (initialQuestion && initialQuestion !== lastSent.current) send(initialQuestion, initialLabel);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuestion]);
 
@@ -226,7 +229,7 @@ export default function ConversationScreen() {
                   ]}
                 >
                   <T w={600} s={14.5} c="#FFFFFF">
-                    {question}
+                    {shown || question}
                   </T>
                 </View>
               </View>

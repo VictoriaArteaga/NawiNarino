@@ -167,7 +167,7 @@ export default function ExploreScreen() {
 
   return (
     <ScreenLayout nav="explorar" band>
-      <Hero height={150} art={<ExploreHero preserveAspectRatio="xMidYMin slice" />}>
+      <Hero height={184} art={<ExploreHero preserveAspectRatio="xMidYMin slice" />}>
         <View style={{ left: 14, position: "absolute", top: headerTop }}>
           <BackButton fallback="/inicio" />
         </View>
@@ -180,7 +180,7 @@ export default function ExploreScreen() {
           s={14}
           lh={19}
           c="#33423B"
-          style={{ left: 24, position: "absolute", top: headerTop + 49, width: 230 }}
+          style={{ left: 24, position: "absolute", top: headerTop + 42, width: 220 }}
         >
           Lugares, cultura y patrimonio de Nariño.
         </T>

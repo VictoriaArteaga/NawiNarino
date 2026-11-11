@@ -1,3 +1,4 @@
+import { useQueries } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 
 import { Card } from "../../../components/Card";
@@ -10,6 +11,7 @@ import { T } from "../../../components/T";
 import { theme } from "../../../constants/theme";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { useLanguageProgress, useLessons } from "../../../hooks/useLearning";
+import { getLessonActivities } from "../../../services/learning.service";
 
 import { useAppearance } from "../../../store/settingsStore";
 export default function LessonsScreen() {
@@ -20,6 +22,17 @@ export default function LessonsScreen() {
   const language = useLanguage(languageId);
   const lessons = useLessons(languageId);
   const progress = useLanguageProgress(languageId);
+
+  // Actividades de cada lección (misma clave de caché que la pantalla de la lección) para contar las completadas.
+  const lessonActivities = useQueries({
+    queries: (lessons.data ?? []).map((lesson) => ({
+      queryKey: ["lessons", lesson.id, "activities"],
+      queryFn: () => getLessonActivities(lesson.id),
+    })),
+  });
+  const completedIds = new Set(
+    (progress.data?.activities ?? []).filter((item) => item.status === "completed").map((item) => item.activityId),
+  );
 
   if (!validId) {
     return <InvalidIdScreen message="El identificador de la lengua no es válido." />;
@@ -56,9 +69,18 @@ export default function LessonsScreen() {
           {progress.isError ? (
             <ErrorMessage message={progress.error.message} onRetry={() => void progress.refetch()} />
           ) : null}
-          {lessons.data.map((lesson) => (
-            <LessonCard key={lesson.id} lesson={lesson} />
-          ))}
+          {lessons.data.map((lesson, index) => {
+            const activities = lessonActivities[index]?.data;
+            const ready = progress.isSuccess && activities !== undefined;
+            return (
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                completed={ready ? activities.filter((a) => completedIds.has(a.id)).length : undefined}
+                total={ready ? activities.length : undefined}
+              />
+            );
+          })}
         </>
       )}
     </PlainScreen>

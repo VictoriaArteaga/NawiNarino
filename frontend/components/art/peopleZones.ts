@@ -1,3 +1,4 @@
+import cellData from "./narinoCells.json";
 import data from "./peopleZones.json";
 
 export type PeopleKey = "awa" | "pasto" | "quillacinga" | "inga" | "aingae" | "nasa";
@@ -56,3 +57,46 @@ export function smoothPath(points: number[][]): string {
   }
   return `${d}Z`;
 }
+
+/** Celda del mosaico del mapa: pertenece a un pueblo (k) o a «otras comunidades» (null). */
+export interface MapCell {
+  p: string; // puntos del polígono
+  cx: number;
+  cy: number;
+  k: PeopleKey | null;
+  g: "nar" | "put"; // dibujada dentro de Nariño o solo dentro de Putumayo
+  s: number; // variación de tono (-1 a 1) para que el mosaico no se vea plano
+}
+
+export const mapCells = cellData.cells as MapCell[];
+
+/** Tonos de arena para el territorio donde no vive ninguno de los pueblos de la app. */
+export const OTHER_COLORS = ["#EBDDBB", "#E4D5AE", "#F0E3C6", "#DFD1AA", "#E8DBB8"];
+
+function shade(hex: string, s: number): string {
+  const channels = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  const t = Math.abs(s) * 0.16;
+  const target = s > 0 ? 255 : 0;
+  const [r, g, b] = channels.map((v) => Math.round(v + (target - v) * t));
+  return `#${[r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+}
+
+export function cellColor(cell: MapCell, index: number): string {
+  return cell.k ? shade(peopleByKey(cell.k).color, cell.s) : OTHER_COLORS[index % OTHER_COLORS.length];
+}
+
+/**
+ * Pregunta que el botón de ubicación le hace a Ñawi sobre el territorio de cada pueblo.
+ * `query` es lo que se busca en los documentos (los de a'ingae están en inglés); `label` es lo que ve la persona.
+ */
+export const askAbout: Record<PeopleKey, { query: string; label: string }> = {
+  awa: { query: "¿Qué es el territorio del pueblo Awá?", label: "Háblame del territorio del pueblo Awá" },
+  pasto: { query: "Háblame del territorio del pueblo Pasto", label: "Háblame del territorio del pueblo Pasto" },
+  quillacinga: { query: "¿Qué es el pueblo Quillacinga?", label: "Háblame del territorio del pueblo Quillacinga" },
+  inga: { query: "¿Dónde se habla el inga?", label: "Háblame del territorio del pueblo Inga" },
+  aingae: {
+    query: "A'ingae speakers Colombia Ecuador Putumayo Nariño",
+    label: "Háblame del territorio del pueblo A'ingae (Cofán)",
+  },
+  nasa: { query: "¿Dónde se habla el nasa yuwe?", label: "Háblame del territorio del pueblo Nasa" },
+};

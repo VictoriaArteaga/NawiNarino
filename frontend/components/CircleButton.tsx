@@ -48,7 +48,7 @@ export function CircleButton({
           opacity: pressed ? 0.8 : 1,
           width: size,
         },
-        borderColor ? undefined : shadows.soft,
+        borderColor || background === "transparent" ? undefined : shadows.soft,
         style,
       ]}
     >

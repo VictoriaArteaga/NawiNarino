@@ -23,7 +23,8 @@ export default function LessonDetailScreen() {
   const lesson = useLesson(lessonId);
   const activities = useLessonActivities(lessonId);
   const progress = useLanguageProgress(lesson.data?.languageId ?? 0);
-  const completedIds = new Set(progress.data?.activities.map((item) => item.activityId) ?? []);
+  const records = progress.data?.activities ?? [];
+  const completedIds = new Set(records.filter((item) => item.status === "completed").map((item) => item.activityId));
   const lessonActivities = activities.data ?? [];
   const completed = lessonActivities.filter((item) => completedIds.has(item.id)).length;
 
@@ -57,14 +58,22 @@ export default function LessonDetailScreen() {
               label="Avance en la lección"
             />
             <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.md }}>
-              {completed} de {lessonActivities.length} actividades completadas
+              {lessonActivities.length > 0 && completed === lessonActivities.length
+                ? "¡Lección completada!"
+                : `${completed} de ${lessonActivities.length} actividades completadas`}
             </T>
           </Card>
           {lesson.data && progress.isError ? (
             <ErrorMessage message={progress.error.message} onRetry={() => void progress.refetch()} />
           ) : null}
           {lessonActivities.length ? (
-            lessonActivities.map((activity) => <ActivityCard key={activity.id} activity={activity} />)
+            lessonActivities.map((activity) => (
+              <ActivityCard
+                key={activity.id}
+                activity={activity}
+                record={records.find((item) => item.activityId === activity.id)}
+              />
+            ))
           ) : (
             <Card>
               <T c={theme.colors.muted}>Aún no hay actividades disponibles.</T>

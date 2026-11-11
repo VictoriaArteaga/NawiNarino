@@ -7,6 +7,8 @@ import { NarinoMap } from "../components/art/NarinoMap";
 import { SceneArt } from "../components/art/SceneArt";
 import type { SceneKey } from "../components/art/placeScenes";
 import {
+  askAbout,
+  OTHER_COLORS,
   peopleByKey,
   peopleForTerritory,
   peopleZones,
@@ -70,7 +72,13 @@ export default function MapScreen() {
   return (
     <ScreenLayout nav="mapa" bottomSpace={12}>
       <View style={{ backgroundColor: "#EFE6CF", height: 520 }}>
-        <NarinoMap selected={selected?.key} />
+        <NarinoMap
+          selected={selected?.key}
+          onSelect={(key) => {
+            const hit = entries.find((entry) => entry.key === key);
+            if (hit) setSelectedId(hit.territory.id);
+          }}
+        />
 
         <View
           style={{
@@ -88,7 +96,7 @@ export default function MapScreen() {
           </T>
         </View>
 
-        {/* Leyenda: un color por pueblo (borde punteado = pueblo sin lengua propia en uso) */}
+        {/* Leyenda: un color por pueblo y arena para las demás comunidades */}
         <View
           style={[
             {
@@ -111,25 +119,98 @@ export default function MapScreen() {
           ]}
         >
           {peopleZones.map((item) => (
-            <View key={item.key} style={{ alignItems: "center", flexDirection: "row", gap: 8, width: 96 }}>
-              <View
-                style={{
-                  backgroundColor: item.color,
-                  borderColor: item.livingLanguage ? item.color : "#7A6A4F",
-                  borderRadius: 6,
-                  borderStyle: item.livingLanguage ? "solid" : "dashed",
-                  borderWidth: 1.5,
-                  height: 12,
-                  opacity: item.livingLanguage ? 1 : 0.8,
-                  width: 12,
-                }}
-              />
+            <View key={item.key} style={{ alignItems: "center", flexDirection: "row", width: 96 }}>
+              <View style={{ backgroundColor: item.color, borderRadius: 6, height: 12, marginRight: 8, width: 12 }} />
               <T w={700} s={12.5}>
                 {item.label}
               </T>
             </View>
           ))}
+          <View style={{ alignItems: "center", flexDirection: "row", width: 210 }}>
+            <View
+              style={{
+                backgroundColor: OTHER_COLORS[1],
+                borderColor: "#B9AD8D",
+                borderRadius: 6,
+                borderWidth: 1,
+                height: 12,
+                marginRight: 8,
+                width: 12,
+              }}
+            />
+            <T w={700} s={12.5}>
+              Otras comunidades
+            </T>
+          </View>
         </View>
+
+        {/* Botón de ubicación: Ñawi cuenta sobre el territorio elegido */}
+        {selected ? (
+          <View style={{ alignItems: "center", flexDirection: "row", position: "absolute", right: 14, top: 128 }}>
+            <View
+              style={[
+                {
+                  backgroundColor: "rgba(251,247,238,0.96)",
+                  borderColor: "#B9A5DB",
+                  borderRadius: 14,
+                  borderWidth: 1,
+                  marginRight: 8,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                },
+                shadows.soft,
+              ]}
+            >
+              <T f="display" w={700} s={11.5} c="#4A2F78">
+                Pregúntale a Ñawi
+              </T>
+            </View>
+            <Pressable
+              accessibilityHint="Abre la conversación con Ñawi con información de este territorio"
+              accessibilityLabel={`Ubicación: Ñawi te cuenta sobre el territorio de ${people?.label ?? ""}`}
+              accessibilityRole="button"
+              onPress={() => {
+                const about = askAbout[selected.key];
+                router.push({
+                  pathname: "/explorador/conversacion",
+                  params: { q: about.query, label: about.label },
+                });
+              }}
+              style={[
+                {
+                  alignItems: "center",
+                  backgroundColor: "#FBF7EE",
+                  borderColor: "#B9A5DB",
+                  borderRadius: 26,
+                  borderWidth: 2,
+                  height: 52,
+                  justifyContent: "center",
+                  width: 52,
+                },
+                shadows.float,
+              ]}
+            >
+              <Icon name="locate" size={26} color="#1F4D3A" strokeWidth={2} />
+              <View
+                style={{
+                  alignItems: "center",
+                  backgroundColor: "#6B4A9E",
+                  borderColor: "#FFFFFF",
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  height: 20,
+                  justifyContent: "center",
+                  position: "absolute",
+                  right: -4,
+                  top: -4,
+                  width: 20,
+                }}
+              >
+                <Icon name="sparkle" size={11} color="#FFFFFF" strokeWidth={1.8} />
+              </View>
+            </Pressable>
+          </View>
+        ) : null}
       </View>
 
       {/* Pueblo seleccionado */}
