@@ -21,7 +21,7 @@ from pathlib import Path
 from app.core.config import Settings
 from app.rag.embedders_optional import OllamaEmbedder
 from app.rag.generation import Answer, build_answer
-from app.rag.generator import GenerationError, OllamaGenerator
+from app.rag.generator import GenerationError, OllamaGenerator, OpenAICompatGenerator
 from app.rag.hybrid import HybridRetriever
 from app.rag.pipeline import RagPipeline
 from app.rag.real_corpus import corpus_signature, iter_real_chunks
@@ -48,7 +48,7 @@ class ExplorerEngine:
         primary: RagPipeline,
         mode: str,
         fallback: RagPipeline | None = None,
-        generator: OllamaGenerator | None = None,
+        generator: OllamaGenerator | OpenAICompatGenerator | None = None,
     ) -> None:
         self.primary, self.fallback, self.mode, self.generator = primary, fallback, mode, generator
         self.chunks = len(primary.store.chunks)
@@ -79,10 +79,10 @@ class ExplorerEngine:
         except GenerationError as exc:
             log.warning("Generación no disponible (%s): %s", exc.kind, exc)
             reason = {
-                "unavailable": "el modelo local no está disponible",
+                "unavailable": "el modelo no está disponible",
                 "timeout": "el modelo tardó demasiado",
                 "invalid": "la explicación generada no pasó la verificación contra los fragmentos",
-            }.get(exc.kind, "falló el modelo local")
+            }.get(exc.kind, "falló el modelo")
             answer.generation_mode = "extractive_fallback"
             answer.generation_note = f"{exc.kind}: {exc}"
             answer.notices.append(f"No se pudo generar la explicación ({reason}); se muestran los extractos con sus citas.")
@@ -145,9 +145,18 @@ def _hybrid(settings: Settings) -> RagPipeline:
     return p
 
 
-def _generator(settings: Settings) -> OllamaGenerator | None:
+def _generator(settings: Settings) -> OllamaGenerator | OpenAICompatGenerator | None:
     if settings.rag_generation == "off":
         return None
+    if settings.rag_gen_provider == "api":
+        api = OpenAICompatGenerator(
+            settings.rag_gen_api_url, settings.rag_gen_api_key, settings.rag_gen_model,
+            settings.rag_gen_temperature, min(settings.rag_gen_timeout, 30), settings.rag_gen_num_predict,
+            settings.rag_gen_max_context_chars,
+        )
+        if not api.status().get("available"):
+            log.warning("Generación por API: %s", api.status().get("reason"))
+        return api
     g = OllamaGenerator(
         settings.rag_ollama_host, settings.rag_gen_model, settings.rag_gen_temperature, settings.rag_gen_timeout,
         settings.rag_gen_num_predict, settings.rag_gen_num_ctx, settings.rag_gen_max_context_chars,

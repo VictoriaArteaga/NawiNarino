@@ -277,3 +277,81 @@ class OllamaGenerator:
             raise GenerationError(f"respuesta inválida de Ollama: {exc}", "error") from exc
         text = validate_explanation(payload.get("message", {}).get("content", ""), hits, question, evidence, unmatched, excerpts)
         return GenerationResult(text, self.model, int((time.perf_counter() - t0) * 1000))
+
+
+class OpenAICompatGenerator:
+    """Generador por API compatible con OpenAI (Groq, OpenRouter, Gemini-compat…).
+
+    Misma interfaz que ``OllamaGenerator`` y la misma validación de la salida. La clave solo vive en
+    el servidor (variable de entorno); nunca se envía al cliente.
+    """
+
+    def __init__(
+        self,
+        base_url: str,
+        api_key: str,
+        model: str,
+        temperature: float = 0.1,
+        timeout: float = 30,
+        max_tokens: int = 260,
+        max_context_chars: int = 3000,
+        cooldown: float = 20,
+    ) -> None:
+        self.base_url, self.api_key, self.model = base_url.rstrip("/"), api_key, model
+        self.temperature, self.timeout, self.max_tokens = temperature, timeout, max_tokens
+        self.max_context_chars, self.cooldown = max_context_chars, cooldown
+        self._down_until = 0.0
+
+    def status(self, ttl: float = 10.0) -> dict:  # noqa: ARG002 - misma firma que OllamaGenerator
+        if not self.api_key:
+            return {"mode": "api", "model": self.model, "available": False, "reason": "falta la clave de la API"}
+        if time.monotonic() < self._down_until:
+            return {"mode": "api", "model": self.model, "available": False, "reason": "en pausa tras un fallo reciente"}
+        return {"mode": "api", "model": self.model, "available": True}
+
+    def warm(self) -> None:
+        return None  # nada que precargar en un servicio remoto
+
+    def generate(
+        self, question: str, hits: list[Hit], evidence: str, unmatched: list[str], excerpts: list[str] | None = None
+    ) -> GenerationResult:
+        if not self.api_key:
+            raise GenerationError("falta la clave de la API", "unavailable")
+        if time.monotonic() < self._down_until:
+            raise GenerationError("servicio generativo en pausa tras un fallo reciente", "unavailable")
+        messages = build_messages(question, hits, evidence, unmatched, self.max_context_chars, excerpts)
+        body = json.dumps({
+            "model": self.model, "messages": messages, "temperature": self.temperature,
+            "max_tokens": self.max_tokens, "seed": 7,
+        }).encode("utf-8")
+        request = urllib.request.Request(
+            f"{self.base_url}/chat/completions", data=body,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.api_key}",
+                "User-Agent": "nawi-narino-api/1.0",  # algunos proveedores rechazan el UA por defecto de urllib
+            },
+        )
+        t0 = time.perf_counter()
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as r:
+                payload = json.loads(r.read())
+        except urllib.error.HTTPError as exc:
+            # 429 = límite del plan gratuito; 401/403 = clave inválida. Se pausa para no insistir.
+            self._down_until = time.monotonic() + self.cooldown
+            raise GenerationError(f"la API respondió {exc.code}", "unavailable") from exc
+        except TimeoutError as exc:
+            self._down_until = time.monotonic() + self.cooldown
+            raise GenerationError("tiempo de espera agotado", "timeout") from exc
+        except urllib.error.URLError as exc:
+            kind = "timeout" if "timed out" in str(exc.reason) else "unavailable"
+            self._down_until = time.monotonic() + self.cooldown
+            raise GenerationError(f"la API no respondió: {exc.reason}", kind) from exc
+        except (OSError, ValueError) as exc:
+            raise GenerationError(f"respuesta inválida de la API: {exc}", "error") from exc
+        try:
+            content = payload["choices"][0]["message"]["content"] or ""
+        except (KeyError, IndexError, TypeError) as exc:
+            raise GenerationError("respuesta de la API sin contenido", "error") from exc
+        text = validate_explanation(content, hits, question, evidence, unmatched, excerpts)
+        return GenerationResult(text, self.model, int((time.perf_counter() - t0) * 1000))

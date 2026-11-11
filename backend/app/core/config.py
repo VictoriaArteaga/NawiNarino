@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     rag_dense_model: str = "bge-m3"
     # Generación de explicaciones con un modelo local (Ollama). Mismo host que los embeddings.
     rag_generation: Literal["auto", "off"] = "auto"
+    # Proveedor: "ollama" (local) o "api" (compatible con OpenAI, p. ej. Groq). La clave solo va en el servidor.
+    rag_gen_provider: Literal["ollama", "api"] = "ollama"
+    rag_gen_api_url: str = "https://api.groq.com/openai/v1"
+    rag_gen_api_key: str = ""
     rag_gen_model: str = "llama3.2:3b"
     rag_gen_temperature: float = 0.1
     rag_gen_timeout: float = 90

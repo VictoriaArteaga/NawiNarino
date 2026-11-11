@@ -1,0 +1,39 @@
+# Despliegue del backend en Render (plan gratuito). Los secretos NO van aquí: se cargan en el panel de Render.
+services:
+  - type: web
+    name: nawi-narino-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: ENVIRONMENT
+        value: production
+      - key: DATA_SOURCE
+        value: database
+      - key: RAG_CORPUS
+        value: real            # corpus real: exige repositorio PRIVADO con corpus/_rag/pages.jsonl
+      - key: RAG_RETRIEVER
+        value: hashing         # sin Ollama en el servidor
+      - key: RAG_GENERATION
+        value: auto
+      - key: RAG_GEN_PROVIDER
+        value: api
+      - key: RAG_GEN_API_URL
+        value: https://api.groq.com/openai/v1
+      - key: RAG_GEN_MODEL
+        value: openai/gpt-oss-120b
+      - key: RAG_GEN_NUM_PREDICT
+        value: "1000"          # gpt-oss gasta tokens en razonar antes de responder
+      - key: CORS_ORIGINS
+        value: '[]'            # la app nativa no usa CORS; añade el dominio si publicas la web
+      - key: DATABASE_URL      # Supabase (pooler), con prefijo postgresql+psycopg://
+        sync: false
+      - key: AUTH_SECRET       # python -c "import secrets;print(secrets.token_urlsafe(48))"
+        sync: false
+      - key: RAG_GEN_API_KEY   # clave de Groq (console.groq.com)
+        sync: false
