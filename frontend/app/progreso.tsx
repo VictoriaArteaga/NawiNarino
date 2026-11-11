@@ -150,7 +150,7 @@ export default function ProgressScreen() {
                   <ErrorMessage message={languages.error.message} onRetry={() => void languages.refetch()} />
                 ) : languages.data.length === 0 ? (
                   <T s={14} c={theme.colors.muted}>
-                    Completa una actividad de demostración para ver tu avance aquí.
+                    Completa una actividad para ver tu avance aquí.
                   </T>
                 ) : (
                   sortLanguages(languages.data).map((language) => <LanguageBar key={language.id} language={language} />)

@@ -23,7 +23,7 @@ export default function SourceDetailScreen() {
   return (
     <PlainScreen
       title={query.data?.title ?? "Fuente"}
-      subtitle="Registro de cita de demostración."
+      subtitle="Documento del corpus."
       backHref="/fuentes"
       backLabel="Fuentes"
     >
@@ -34,7 +34,7 @@ export default function SourceDetailScreen() {
       ) : (
         <Card>
           <T f="display" w={700} s={16}>
-            {query.data.author} · {query.data.year ?? "Año pendiente de validación"}
+            {query.data.author} · {query.data.year ?? "Sin año"}
           </T>
           <Field label="Tipo" value={query.data.type} />
           <Field label="Referencia" value={query.data.reference} />

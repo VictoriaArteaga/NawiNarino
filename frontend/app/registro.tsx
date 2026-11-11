@@ -41,7 +41,7 @@ export default function RegisterScreen() {
   }
 
   return (
-    <AuthLayout title="Crea tu cuenta" subtitle="Guarda tu progreso y sigue aprendiendo las lenguas de Nariño.">
+    <AuthLayout tab="registro" title="Crea tu cuenta" subtitle="Guarda tu progreso y sigue aprendiendo las lenguas de Nariño.">
       <TextField
         autoCapitalize="words"
         autoComplete="name"

@@ -23,7 +23,7 @@ export default function TerritoryDetailScreen() {
   return (
     <PlainScreen
       title={query.data?.name ?? "Territorio"}
-      subtitle="Detalles de un territorio de demostración."
+      subtitle="Detalles del territorio."
       backHref="/mapa"
       backLabel="Mapa"
     >
@@ -37,12 +37,11 @@ export default function TerritoryDetailScreen() {
           <T s={14} lh={22} c={theme.colors.muted} style={{ marginTop: theme.spacing.lg - 4 }}>
             {query.data.description}
           </T>
-          <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.lg - 4 }}>
-            Coordenadas:{" "}
-            {query.data.latitude === null || query.data.longitude === null
-              ? "pendientes de validación"
-              : `${query.data.latitude}, ${query.data.longitude}`}
-          </T>
+          {query.data.latitude !== null && query.data.longitude !== null ? (
+            <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.lg - 4 }}>
+              Coordenadas: {query.data.latitude}, {query.data.longitude}
+            </T>
+          ) : null}
           {query.data.isMock ? <MockBadge /> : null}
         </Card>
       )}

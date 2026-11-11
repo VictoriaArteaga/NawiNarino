@@ -28,7 +28,7 @@ export default function LoginScreen() {
   }
 
   return (
-    <AuthLayout title="Bienvenido/a de nuevo" subtitle="Inicia sesión para continuar con tu aprendizaje.">
+    <AuthLayout tab="login" title="Bienvenido/a de nuevo" subtitle="Inicia sesión para continuar con tu aprendizaje.">
       <TextField
         autoCapitalize="none"
         autoComplete="email"

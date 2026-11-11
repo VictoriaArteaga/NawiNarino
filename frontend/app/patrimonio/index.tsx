@@ -67,7 +67,7 @@ export default function ExploreScreen() {
       key: `t${territory.id}`,
       title: territory.name,
       subtitle: territory.region,
-      tag: territory.isMock ? "Territorio · Demo" : "Territorio",
+      tag: "Territorio",
       scene: placeScenes[index % placeScenes.length],
       href: {
         pathname: "/territorios/[territoryId]",
@@ -83,10 +83,8 @@ export default function ExploreScreen() {
       .map((record) => ({
         key: `h${record.id}`,
         title: record.title,
-        subtitle: record.dateLabel ?? "Fecha pendiente de validación",
-        tag: record.isMock
-          ? `${categoryLabels[record.category]} · Demo`
-          : categoryLabels[record.category],
+        subtitle: record.dateLabel ?? "Sin fecha",
+        tag: categoryLabels[record.category],
         scene: heritageScenes[record.category],
         href: {
           pathname: "/patrimonio/[heritageId]",
@@ -309,9 +307,6 @@ export default function ExploreScreen() {
           <MoreLink label="Topónimos" onPress={() => router.push("/toponimos")} />
           <MoreLink label="Fuentes" onPress={() => router.push("/fuentes")} />
         </View>
-        <T s={12} lh={17} c={theme.colors.muted} style={{ marginTop: 10 }}>
-          Los registros son de demostración y están pendientes de validación.
-        </T>
       </View>
     </ScreenLayout>
   );

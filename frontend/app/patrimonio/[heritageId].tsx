@@ -32,7 +32,7 @@ export default function HeritageDetailScreen() {
   return (
     <PlainScreen
       title={query.data?.title ?? "Detalle del patrimonio"}
-      subtitle="Registro de demostración."
+      subtitle="Registro del patrimonio."
       backHref="/patrimonio"
       backLabel="Explorar"
     >
@@ -46,7 +46,7 @@ export default function HeritageDetailScreen() {
             {categoryLabels[query.data.category].toUpperCase()}
           </T>
           <T s={14} c={theme.colors.muted} style={{ marginTop: theme.spacing.md }}>
-            {query.data.dateLabel ?? "Fecha pendiente de validación"}
+            {query.data.dateLabel ?? "Sin fecha"}
           </T>
           <T s={15} lh={23} c={theme.colors.ink} style={{ marginTop: theme.spacing.lg - 4 }}>
             {query.data.description}

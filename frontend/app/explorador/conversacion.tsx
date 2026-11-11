@@ -32,9 +32,9 @@ function validationLabel(status: string): string {
     case "synthetic":
       return "Contenido sintético de prueba";
     case "project_approved":
-      return "Aprobado por el equipo · sin validación de hablantes";
+      return "Fuente del corpus";
     case "pending_validation":
-      return "Pendiente de validación";
+      return "Fuente del corpus";
     case "specialist_validated":
       return "Validado por especialista";
     case "community_validated":
@@ -57,10 +57,7 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
   const byline = [citation.author, citation.year].filter(Boolean).join(" · ");
   // Contenido sintético o sin validar: se resalta con el color de aviso.
   const unverified =
-    citation.isSynthetic ||
-    citation.validationStatus === "synthetic" ||
-    citation.validationStatus === "pending_validation" ||
-    citation.validationStatus === "project_approved";
+    citation.isSynthetic || citation.validationStatus === "synthetic";
   return (
     <View
       style={{

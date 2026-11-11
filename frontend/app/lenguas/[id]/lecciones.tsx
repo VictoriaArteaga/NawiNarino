@@ -26,7 +26,7 @@ export default function LessonsScreen() {
   return (
     <PlainScreen
       title={language.data?.name ?? "Lecciones"}
-      subtitle="Las actividades usan solo contenido de demostración."
+      subtitle="Las actividades usan palabras de documentos reales."
       backHref={{ pathname: "/lenguas/[id]", params: { id: String(languageId) } }}
       backLabel="Lengua"
       nav="aprender"

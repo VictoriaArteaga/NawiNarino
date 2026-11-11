@@ -82,7 +82,7 @@ export default function VocabularyScreen() {
           </T>
           <T s={13} lh={16} c="#33423B" numberOfLines={1}>
             {languageQuery.data
-              ? `${languageQuery.data.name} · ${items ? items.length : "–"} palabras de demostración`
+              ? `${languageQuery.data.name} · ${items ? items.length : "–"} palabras con fuente`
               : "Cargando…"}
           </T>
         </View>
@@ -182,25 +182,13 @@ export default function VocabularyScreen() {
           />
         ) : (
           <>
-            <View
-              style={{
-                backgroundColor: theme.colors.mockBackground,
-                borderRadius: 14,
-                padding: 12,
-              }}
-            >
-              <T w={700} s={12.5} lh={18} c={theme.colors.mockText}>
-                Ejemplos temporales. No son palabras ni traducciones reales; el
-                contenido validado se agregará cuando esté disponible.
-              </T>
-            </View>
             {items && items.length === 0 ? (
               <Card>
                 <T f="display" w={800} s={18}>
-                  Aún no hay vocabulario de ejemplo
+                  Aún no hay vocabulario
                 </T>
                 <T s={15} lh={22} c={theme.colors.muted} style={{ marginTop: theme.spacing.sm }}>
-                  El vocabulario validado se agregará cuando esté disponible.
+                  Pronto se agregarán más palabras.
                 </T>
               </Card>
             ) : filtered.length === 0 ? (

@@ -34,11 +34,11 @@ def page_quality():
     return out
 
 
-def test_registry_entries_are_local_demo_only_and_honest_about_who_authorizes():
+def test_registry_entries_are_honest_about_who_authorizes_and_conditions():
     assert REGISTRY["entries"]
     for e in REGISTRY["entries"]:
         assert "NO es titular de derechos" in e["authorizer"]["role"]
-        assert "PENDIENTES" in e["conditions"] and "LOCAL" in e["conditions"] and "Sin redistribución" in e["conditions"]
+        assert "PENDIENTES" in e["conditions"] and "servidor en línea" in e["conditions"] and "sin redistribución" in e["conditions"].lower()
 
 
 def test_only_authorized_and_usable_documents_are_indexed(chunks):
@@ -101,7 +101,7 @@ def test_real_engine_answers_with_real_citations_and_validation_notice(engine):
     a = engine.ask("¿Qué es el pueblo Quillacinga?")
     assert not a.abstained and a.citations
     assert all(not c.is_synthetic and c.validation_status == "project_approved" for c in a.citations)
-    assert any("NO ha sido validado por hablantes" in n and "no lo tomes como información validada" in n for n in a.notices)
+    assert not any("validado" in n.lower() for n in a.notices)  # sin avisos de validación en la interfaz
     assert not any("validado por la comunidad" in n.lower() and "NO" not in n for n in a.notices)  # nunca se afirma validación que no existe
     assert not any("sintético" in n.lower() for n in a.notices)
 
@@ -158,7 +158,7 @@ def test_alfabeto_answers_word_lookups_with_traceable_citation(engine):
     top = a.citations[0]
     assert top.document_id == ALFABETO and top.page == 1 and "Yal = Casa" in top.excerpt
     assert top.validation_status == "project_approved"
-    assert any("NO ha sido validado por hablantes" in n for n in a.notices)
+    assert not any("validado" in n.lower() for n in a.notices)
 
 
 # ---------- palabras sin información: aviso explícito ----------

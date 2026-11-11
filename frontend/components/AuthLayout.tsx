@@ -1,16 +1,25 @@
+import { useRouter } from "expo-router";
 import type { PropsWithChildren } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BrandEmblem } from "./art/BrandEmblem";
+import { Icon } from "./Icon";
 import { PatternBand } from "./PatternBand";
 import { T } from "./T";
-import { theme } from "../constants/theme";
+import { shadows, theme } from "../constants/theme";
 
 interface AuthLayoutProps extends PropsWithChildren {
   title: string;
   subtitle: string;
+  /** Pestaña activa del selector Iniciar sesión / Registrarse. */
+  tab: "login" | "registro";
 }
+
+const TABS = [
+  { key: "login", label: "Iniciar sesión", href: "/login" },
+  { key: "registro", label: "Registrarse", href: "/registro" },
+] as const;
 
 const PEOPLES = ["Awá Pit", "Inga", "Nasa Yuwe", "A'ingae"];
 
@@ -18,8 +27,9 @@ const PEOPLES = ["Awá Pit", "Inga", "Nasa Yuwe", "A'ingae"];
  * Marco común de las pantallas de acceso: encabezado verde con la marca y, encima,
  * una hoja crema con el formulario. La franja de patrón cierra la pantalla.
  */
-export function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
+export function AuthLayout({ title, subtitle, tab, children }: AuthLayoutProps) {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   return (
     <KeyboardAvoidingView
@@ -39,6 +49,27 @@ export function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
             paddingTop: Math.max(insets.top, 24) + 14,
           }}
         >
+          <Pressable
+            accessibilityLabel="Volver a la bienvenida"
+            accessibilityRole="button"
+            hitSlop={10}
+            onPress={() => router.replace("/")}
+            style={({ pressed }) => ({
+              alignItems: "center",
+              flexDirection: "row",
+              gap: 6,
+              left: 18,
+              opacity: pressed ? 0.7 : 1,
+              position: "absolute",
+              top: Math.max(insets.top, 24) + 12,
+              zIndex: 2,
+            })}
+          >
+            <Icon name="arrowLeft" size={20} color={theme.colors.surface} strokeWidth={2.4} />
+            <T f="display" w={600} s={13.5} c={theme.colors.surface}>
+              Inicio
+            </T>
+          </Pressable>
           <View accessibilityLabel="Emblema de ÑAWI" accessibilityRole="image" style={{ height: 66, width: 120 }}>
             <BrandEmblem onDark />
           </View>
@@ -77,11 +108,51 @@ export function AuthLayout({ title, subtitle, children }: AuthLayoutProps) {
               alignSelf: "center",
               maxWidth: 460,
               paddingHorizontal: 24,
-              paddingTop: 28,
+              paddingTop: 22,
               width: "100%",
             }}
           >
-            <T accessibilityRole="header" f="display" w={800} s={26} lh={31} c={theme.colors.ink}>
+            {/* Selector Iniciar sesión / Registrarse */}
+            <View
+              accessibilityRole="tablist"
+              style={{
+                backgroundColor: theme.colors.track,
+                borderRadius: 16,
+                flexDirection: "row",
+                gap: 4,
+                padding: 4,
+              }}
+            >
+              {TABS.map((t) => {
+                const active = t.key === tab;
+                return (
+                  <Pressable
+                    key={t.key}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected: active }}
+                    onPress={() => {
+                      if (!active) router.replace(t.href);
+                    }}
+                    style={[
+                      {
+                        alignItems: "center",
+                        backgroundColor: active ? theme.colors.surfaceWhite : "transparent",
+                        borderRadius: 12,
+                        flex: 1,
+                        justifyContent: "center",
+                        minHeight: 44,
+                      },
+                      active ? shadows.soft : undefined,
+                    ]}
+                  >
+                    <T f="display" w={active ? 700 : 600} s={14.5} c={active ? theme.colors.accent : theme.colors.muted}>
+                      {t.label}
+                    </T>
+                  </Pressable>
+                );
+              })}
+            </View>
+            <T accessibilityRole="header" f="display" w={800} s={26} lh={31} c={theme.colors.ink} style={{ marginTop: 22 }}>
               {title}
             </T>
             <T s={15} lh={22} c={theme.colors.body} style={{ marginTop: 4 }}>

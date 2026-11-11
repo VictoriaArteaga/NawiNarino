@@ -138,17 +138,6 @@ def build_answer(question: str, hits: list[Hit], max_sources: int = 3) -> Answer
             "Contenido sintético de prueba: no es información real sobre "
             "ninguna lengua ni comunidad."
         )
-    if any(c.validation_status == "project_approved" for c in citations):
-        notices.append(
-            "Contenido aprobado por el responsable del proyecto para esta demostración; NO ha sido validado por hablantes, "
-            "especialistas ni comunidades. Documento real de uso local: no lo tomes como información validada."
-        )
-    if any(c.validation_status == "pending_validation" for c in citations):
-        notices.append(
-            "Fuente pendiente de validación lingüística o comunitaria."
-            + (" Documento real usado solo en una demostración académica local: no lo tomes como información validada."
-               if any(not c.is_synthetic for c in citations) else "")
-        )
     return Answer(
         question=question,
         answer="Según las fuentes del corpus: " + " ".join(lines),

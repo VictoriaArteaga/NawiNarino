@@ -13,7 +13,7 @@ export default function SourcesScreen() {
   return (
     <PlainScreen
       title="Fuentes"
-      subtitle="Las referencias de demostración no son publicaciones reales."
+      subtitle="Documentos reales del corpus, con autor, año y enlace."
       backHref="/patrimonio"
       backLabel="Explorar"
     >
@@ -30,7 +30,7 @@ export default function SourcesScreen() {
           <InfoCard
             key={source.id}
             title={source.title}
-            description={`${source.author} · ${source.year ?? "Año pendiente de validación"} · ${source.type}`}
+            description={`${source.author} · ${source.year ?? "Sin año"} · ${source.type}`}
             href={{ pathname: "/fuentes/[sourceId]", params: { sourceId: String(source.id) } }}
             mock={source.isMock}
           />

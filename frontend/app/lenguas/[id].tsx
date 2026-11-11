@@ -103,7 +103,7 @@ export default function LanguageDetailScreen() {
             {language?.name ?? "Lengua"}
           </T>
           <T f="display" w={600} s={15} lh={20} c={theme.colors.body}>
-            {look.people ? `Lengua del pueblo ${look.people}` : "Lengua de demostración"}
+            {look.people ? `Lengua del pueblo ${look.people}` : "Lengua de Nariño"}
           </T>
         </View>
 

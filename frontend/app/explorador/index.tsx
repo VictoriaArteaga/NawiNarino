@@ -104,10 +104,8 @@ export default function ExplorerScreen() {
         >
           <Icon name="warning" size={18} color="#B9701A" />
           <T w={600} s={12.5} lh={18} c={theme.colors.mockText} style={{ flex: 1 }}>
-            Versión de demostración: Ñawi busca solo en los documentos cargados
-            y explica con un modelo local a partir de sus fragmentos. Los documentos
-            no están validados por hablantes ni por las comunidades: no los tomes
-            como información verificada.
+            Ñawi busca solo en los documentos cargados y explica con un modelo
+            de lenguaje a partir de sus fragmentos.
           </T>
         </View>
 
@@ -235,7 +233,7 @@ export default function ExplorerScreen() {
         >
           <Icon name="library" size={18} color={theme.colors.purple} />
           <T f="display" w={600} s={14.5} c={theme.colors.purpleDeep}>
-            Revisar fuentes de demostración
+            Revisar las fuentes
           </T>
         </Pressable>
       </View>

@@ -95,7 +95,7 @@ export default function MapScreen() {
           }}
         >
           <T w={700} s={11} lh={14} c={theme.colors.muted}>
-            Esquema ilustrativo: las zonas no son una distribución validada.
+            Esquema ilustrativo del territorio.
           </T>
         </View>
       </View>
@@ -103,7 +103,7 @@ export default function MapScreen() {
       {/* Selected territory */}
       <View style={{ marginTop: -6, paddingHorizontal: 16 }}>
         {query.isPending ? (
-          <Loading label="Cargando territorios de demostración..." />
+          <Loading label="Cargando territorios..." />
         ) : query.isError ? (
           <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
         ) : !selected ? (
@@ -116,7 +116,7 @@ export default function MapScreen() {
               padding: 16,
             }}
           >
-            <T c={theme.colors.muted}>No hay territorios de demostración disponibles.</T>
+            <T c={theme.colors.muted}>No hay territorios disponibles.</T>
           </View>
         ) : (
           <View

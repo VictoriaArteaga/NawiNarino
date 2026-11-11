@@ -11,7 +11,7 @@ export function InfoCard({
   title,
   description,
   href,
-  mock = true,
+  mock = false,
 }: {
   title: string;
   description: string;

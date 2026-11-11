@@ -12,7 +12,7 @@ import { T } from "./T";
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   disabled?: boolean;
   /** Muestra un indicador de carga junto al título y bloquea el botón. */
   loading?: boolean;
@@ -29,7 +29,8 @@ export function Button({
 }: ButtonProps) {
   const isPrimary = variant === "primary";
   const inactive = disabled || loading;
-  const textColor = isPrimary ? "#FFFFFF" : theme.colors.primaryDark;
+  const isOutline = variant === "outline";
+  const textColor = isPrimary ? "#FFFFFF" : isOutline ? theme.colors.accent : theme.colors.primaryDark;
 
   return (
     <Pressable
@@ -42,8 +43,12 @@ export function Button({
           alignItems: "center",
           backgroundColor: isPrimary
             ? theme.colors.accent
-            : theme.colors.softGreen,
+            : isOutline
+              ? "rgba(251,243,230,0.96)"
+              : theme.colors.softGreen,
+          borderColor: isOutline ? theme.colors.accent : "transparent",
           borderRadius: 15,
+          borderWidth: isOutline ? 2 : 0,
           justifyContent: "center",
           minHeight: 52,
           opacity: inactive && !loading ? 0.55 : pressed ? 0.86 : 1,

@@ -1,0 +1,26 @@
+# Archivos que NO deben subirse a EAS Build (solo se necesita frontend/).
+# OJO: con .easignore presente EAS ya no lee .gitignore, por eso se repiten sus reglas.
+/backend/
+/corpus/
+/.venv/
+/_dc_tmp/
+/.claude/
+/.kilo/
+/.git/
+/.pytest_cache/
+/node_modules/
+/*.png
+/*.jpg
+/*.jpeg
+/*.svg
+/*.docx
+node_modules/
+.expo/
+dist/
+web-build/
+.env
+.env.*
+!.env.example
+!.env.production.example
+*.tsbuildinfo
+__pycache__/

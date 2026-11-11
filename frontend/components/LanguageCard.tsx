@@ -27,7 +27,7 @@ export function LanguageCard({ language }: LanguageCardProps) {
 
   const subtitle = look.people
     ? `Lengua del pueblo ${look.people}`
-    : "Lengua de demostración";
+    : "Lengua de Nariño";
 
   return (
     <Pressable
@@ -154,24 +154,6 @@ export function LanguageCard({ language }: LanguageCardProps) {
         <View style={{ position: "absolute", right: 18, top: 59 }}>
           <Icon name="arrowRight" size={24} color="#FFFFFF" strokeWidth={2.2} />
         </View>
-
-        {language.isMock ? (
-          <View
-            style={{
-              backgroundColor: "rgba(255,255,255,0.88)",
-              borderRadius: theme.radii.pill,
-              paddingHorizontal: 8,
-              paddingVertical: 2,
-              position: "absolute",
-              right: 12,
-              top: 10,
-            }}
-          >
-            <T f="display" w={700} s={9.5} c={theme.colors.mockText} ls={0.4}>
-              DEMO
-            </T>
-          </View>
-        ) : null}
       </GradientBox>
     </Pressable>
   );

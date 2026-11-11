@@ -78,8 +78,8 @@ class ActivityService:
                 "is_correct": is_correct,
                 "score": score,
                 "attempts": progress.attempts,
-                "feedback": "Resultado de demostración.",
-                "is_mock": True,
+                "feedback": "Resultado de demostración." if activity.is_mock else "¡Respuesta registrada!",
+                "is_mock": activity.is_mock,
             },
             ProgressResponse.model_validate(progress),
         )

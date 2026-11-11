@@ -8,7 +8,6 @@ import { ErrorMessage } from "../../components/ErrorMessage";
 import { useHeaderTop } from "../../components/Hero";
 import { Icon } from "../../components/Icon";
 import { Loading } from "../../components/Loading";
-import { MockBadge } from "../../components/MockBadge";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
 import { shadows, theme } from "../../constants/theme";
@@ -263,8 +262,6 @@ export default function ActivityScreen() {
               );
             })}
           </View>
-
-          <MockBadge />
 
           {submission.isError ? (
             <View style={{ marginTop: 12 }}>

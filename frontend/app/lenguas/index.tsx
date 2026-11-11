@@ -60,19 +60,6 @@ export default function LanguagesScreen() {
           </Card>
         ) : (
           <>
-            <View
-              style={{
-                backgroundColor: theme.colors.mockBackground,
-                borderRadius: 14,
-                marginBottom: 14,
-                padding: 12,
-              }}
-            >
-              <T w={700} s={12.5} lh={18} c={theme.colors.mockText}>
-                Son registros de demostración. Los nombres y cualquier contenido
-                futuro deben confirmarse antes de presentarse como verificados.
-              </T>
-            </View>
             <View style={{ gap: 14 }}>
               {sortLanguages(languagesQuery.data).map((language) => (
                 <LanguageCard key={language.id} language={language} />

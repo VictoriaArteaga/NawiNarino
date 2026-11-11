@@ -20,7 +20,7 @@ export default function ToponymsScreen() {
   return (
     <PlainScreen
       title="Topónimos"
-      subtitle="Los nombres y sus significados siguen pendientes de validación."
+      subtitle="Nombres de lugares y sus significados."
       backHref="/patrimonio"
       backLabel="Explorar"
     >
@@ -40,9 +40,9 @@ export default function ToponymsScreen() {
       >
         <Icon name="search" size={20} color={theme.colors.primary} strokeWidth={2} />
         <TextInput
-          accessibilityLabel="Buscar nombres de lugares de demostración"
+          accessibilityLabel="Buscar nombres de lugares"
           onChangeText={setSearch}
-          placeholder="Buscar nombres de demostración"
+          placeholder="Buscar nombres de lugares"
           placeholderTextColor="#8A8472"
           style={{
             color: theme.colors.ink,
@@ -60,7 +60,7 @@ export default function ToponymsScreen() {
         <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
       ) : query.data.length === 0 ? (
         <Card>
-          <T c={theme.colors.muted}>No hay nombres de demostración que coincidan.</T>
+          <T c={theme.colors.muted}>Aún no hay topónimos registrados.</T>
         </Card>
       ) : (
         query.data.map((item) => (

@@ -1,20 +1,11 @@
 import { useRouter } from "expo-router";
-import { useEffect, useRef } from "react";
-import {
-  AccessibilityInfo,
-  Animated,
-  Easing,
-  Platform,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
 import { BrandEmblem } from "../components/art/BrandEmblem";
 import { WelcomeScene } from "../components/art/WelcomeScene";
-import { Icon } from "../components/Icon";
+import { Button } from "../components/Button";
 import { PatternBand } from "../components/PatternBand";
 import { Portrait } from "../components/Portrait";
 import { T } from "../components/T";
@@ -24,49 +15,10 @@ import { useAuthStore } from "../store/authStore";
 
 const peoples = ["Awá Pit", "Inga", "Nasa Yuwe", "Cofán"] as const;
 
-/** Moves a small knob to the right to invite a swipe/tap. Respects "reduce motion". */
-function useNudge() {
-  const value = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    let loop: Animated.CompositeAnimation | undefined;
-    let cancelled = false;
-
-    void AccessibilityInfo.isReduceMotionEnabled().then((reduced) => {
-      if (cancelled || reduced) return;
-      loop = Animated.loop(
-        Animated.sequence([
-          Animated.timing(value, {
-            duration: 900,
-            easing: Easing.inOut(Easing.ease),
-            toValue: 9,
-            useNativeDriver: Platform.OS !== "web",
-          }),
-          Animated.timing(value, {
-            duration: 900,
-            easing: Easing.inOut(Easing.ease),
-            toValue: 0,
-            useNativeDriver: Platform.OS !== "web",
-          }),
-        ]),
-      );
-      loop.start();
-    });
-
-    return () => {
-      cancelled = true;
-      loop?.stop();
-    };
-  }, [value]);
-
-  return value;
-}
-
 export default function WelcomeScreen() {
   const router = useRouter();
   const isAuthenticated = useAuthStore((s) => s.token !== null);
   const insets = useSafeAreaInsets();
-  const nudge = useNudge();
   const bottom = Math.max(insets.bottom, 0);
 
   return (
@@ -197,53 +149,27 @@ export default function WelcomeScreen() {
           right: 0,
         }}
       >
-        <Pressable
-          accessibilityHint={isAuthenticated ? "Abre la pantalla de inicio" : "Abre la pantalla de acceso"}
-          accessibilityLabel="Desliza para comenzar"
-          accessibilityRole="button"
-          onPress={() => router.replace(isAuthenticated ? "/inicio" : "/login")}
-          style={[
-            {
-              alignItems: "center",
-              backgroundColor: "rgba(251,243,230,0.96)",
-              borderRadius: 30,
-              flexDirection: "row",
-              height: 60,
-              justifyContent: "center",
-              paddingLeft: 46,
-              width: 288,
-            },
-            shadows.float,
-          ]}
-        >
-          <Animated.View
-            style={{
-              alignItems: "center",
-              backgroundColor: theme.colors.accent,
-              borderRadius: 25,
-              height: 50,
-              justifyContent: "center",
-              left: 5,
-              position: "absolute",
-              top: 5,
-              transform: [{ translateX: nudge }],
-              width: 50,
-            }}
-          >
-            <Icon name="arrowRight" size={24} color="#FFFFFF" strokeWidth={2.6} />
-          </Animated.View>
-          <T f="display" w={600} s={15} c={theme.colors.primaryDark}>
-            Desliza para comenzar
-          </T>
-          <View style={{ marginLeft: 6, opacity: 0.55 }}>
-            <Icon
-              name="chevronDoubleRight"
-              size={18}
-              color={theme.colors.accent}
-              strokeWidth={2.6}
+        {isAuthenticated ? (
+          <Button
+            onPress={() => router.replace("/inicio")}
+            style={[{ width: 288 }, shadows.float]}
+            title="Continuar"
+          />
+        ) : (
+          <View style={{ flexDirection: "row", gap: 10, width: 288 }}>
+            <Button
+              onPress={() => router.push("/login")}
+              style={[{ flex: 1, paddingHorizontal: 8 }, shadows.float]}
+              title="Iniciar sesión"
+            />
+            <Button
+              onPress={() => router.push("/registro")}
+              style={[{ flex: 1, paddingHorizontal: 8 }, shadows.float]}
+              title="Registrarse"
+              variant="outline"
             />
           </View>
-        </Pressable>
+        )}
       </View>
 
       <View

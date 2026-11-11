@@ -7,8 +7,10 @@ import { CircleButton } from "../../components/CircleButton";
 import { GradientBox } from "../../components/GradientBox";
 import { Hero, useHeaderTop } from "../../components/Hero";
 import { Icon, type IconName } from "../../components/Icon";
+import { Portrait } from "../../components/Portrait";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
+import { getLanguageTheme } from "../../constants/languages";
 import { useLanguages } from "../../hooks/useLanguages";
 import { useProgress } from "../../hooks/useLearning";
 import { useVocabulary } from "../../hooks/useVocabulary";
@@ -17,34 +19,76 @@ import { shadows, theme } from "../../constants/theme";
 interface FeatureCard {
   href: Href;
   icon: IconName;
-  title: [string, string];
+  title: string;
+  tag?: string;
   description: string;
   colors: [string, string];
 }
 
-const features: FeatureCard[] = [
-  {
-    href: "/lenguas",
-    icon: "book",
-    title: ["Aprende", "lenguas"],
-    description: "Vocabulario, frases, pronunciación y más.",
-    colors: ["#D0643A", "#DA7448"],
-  },
+const learn: FeatureCard = {
+  href: "/lenguas",
+  icon: "book",
+  title: "Aprende lenguas",
+  description: "Vocabulario, frases, pronunciación y más.",
+  colors: ["#C8461A", "#E0783F"],
+};
+
+const tiles: FeatureCard[] = [
   {
     href: "/mapa",
     icon: "map",
-    title: ["Explora", "territorio"],
+    title: "Explora territorio",
     description: "Mapa, lugares, cultura y patrimonio.",
-    colors: ["#436B56", "#5B8872"],
+    colors: ["#2F6F4E", "#5B9378"],
   },
   {
     href: "/explorador",
     icon: "sparkle",
-    title: ["Ñawi Explora", "IA + Fuentes"],
+    title: "Ñawi Explora",
+    tag: "IA + Fuentes",
     description: "Pregunta, descubre, conoce más.",
-    colors: ["#7A4B86", "#8A5A95"],
+    colors: ["#6B3F7C", "#9460A3"],
   },
 ];
+
+const LEARN_LANGUAGES = ["Awá Pit", "Inga", "Nasa Yuwe", "A'ingae"] as const;
+
+/** Círculo translúcido de fondo: da profundidad a las cards sin usar patrones. */
+function Glow({ size, top, right }: { size: number; top: number; right: number }) {
+  return (
+    <View
+      pointerEvents="none"
+      style={{
+        backgroundColor: "rgba(255,255,255,0.13)",
+        borderRadius: size / 2,
+        height: size,
+        position: "absolute",
+        right,
+        top,
+        width: size,
+      }}
+    />
+  );
+}
+
+function IconBubble({ name, size = 54 }: { name: IconName; size?: number }) {
+  return (
+    <View
+      style={{
+        alignItems: "center",
+        backgroundColor: "rgba(255,255,255,0.22)",
+        borderColor: "rgba(255,255,255,0.7)",
+        borderRadius: size / 2,
+        borderWidth: 1.5,
+        height: size,
+        justifyContent: "center",
+        width: size,
+      }}
+    >
+      <Icon name={name} size={size * 0.48} color="#FFFFFF" strokeWidth={1.8} />
+    </View>
+  );
+}
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -56,7 +100,7 @@ export default function HomeScreen() {
   const wordOfTheDay = vocabulary.data?.[0];
 
   return (
-    <ScreenLayout nav="inicio" band>
+    <ScreenLayout nav="inicio">
       <Hero height={330} art={<HomeHero preserveAspectRatio="xMidYMin slice" />}>
         {/* Brand and quick actions */}
         <View
@@ -168,7 +212,7 @@ export default function HomeScreen() {
             </View>
             <View style={{ flex: 1 }}>
               <T f="body" w={700} s={11} lh={13} c={theme.colors.muted} ls={0.3}>
-                PALABRA DEL DÍA · DEMO
+                PALABRA DEL DÍA
               </T>
               <T f="display" w={700} s={16} lh={20} numberOfLines={1}>
                 {wordOfTheDay ? wordOfTheDay.word : "Próximamente"}
@@ -212,7 +256,7 @@ export default function HomeScreen() {
       </Hero>
 
       {/* Explora Nariño */}
-      <View style={{ paddingHorizontal: 20, paddingTop: 4 }}>
+      <View style={{ paddingHorizontal: 20, paddingTop: 6 }}>
         <T f="display" w={800} s={23} lh={28} c={theme.colors.primaryDark}>
           Explora Nariño
         </T>
@@ -220,77 +264,139 @@ export default function HomeScreen() {
           El territorio también se habla.
         </T>
 
-        <View style={{ gap: 10, marginTop: 14 }}>
-          {features.map((feature) => (
-            <Pressable
-              key={feature.title.join(" ")}
-              accessibilityLabel={`${feature.title.join(" ")}. ${feature.description}`}
-              accessibilityRole="link"
-              onPress={() => router.push(feature.href)}
-              style={({ pressed }) => ({ opacity: pressed ? 0.9 : 1 })}
+        <View style={{ gap: 12, marginTop: 16 }}>
+          {/* Aprende lenguas: la acción principal */}
+          <Pressable
+            accessibilityLabel={`${learn.title}. ${learn.description}`}
+            accessibilityRole="link"
+            onPress={() => router.push(learn.href)}
+            style={({ pressed }) => ({ opacity: pressed ? 0.92 : 1 })}
+          >
+            <GradientBox
+              colors={learn.colors}
+              direction="br"
+              style={[{ borderRadius: 24, overflow: "hidden", padding: 18 }, shadows.card]}
             >
-              <GradientBox
-                colors={feature.colors}
-                direction="br"
-                style={[
-                  {
-                    alignItems: "center",
-                    borderRadius: 18,
-                    flexDirection: "row",
-                    gap: 14,
-                    height: 92,
-                    paddingLeft: 16,
-                    paddingRight: 18,
-                  },
-                  shadows.card,
-                ]}
+              <Glow size={170} top={-60} right={-40} />
+              <Glow size={90} top={70} right={60} />
+              <View style={{ alignItems: "center", flexDirection: "row", gap: 14 }}>
+                <IconBubble name={learn.icon} size={58} />
+                <View style={{ flex: 1 }}>
+                  <T f="display" w={800} s={23} lh={27} c="#FFFFFF">
+                    {learn.title}
+                  </T>
+                  <T s={13} lh={18} c="#FFFFFF" style={{ marginTop: 2, opacity: 0.95 }}>
+                    {learn.description}
+                  </T>
+                </View>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginTop: 18,
+                }}
               >
+                <View style={{ alignItems: "center", flexDirection: "row", gap: 10 }}>
+                  <View style={{ flexDirection: "row" }}>
+                    {LEARN_LANGUAGES.map((name, index) => (
+                      <View key={name} style={{ marginLeft: index === 0 ? 0 : -9 }}>
+                        <Portrait
+                          language={getLanguageTheme(name)}
+                          size={34}
+                          ring={2.5}
+                          accessibilityLabel={`Retrato del pueblo ${name}`}
+                        />
+                      </View>
+                    ))}
+                  </View>
+                  <T f="display" w={700} s={13} c="#FFFFFF">
+                    {languages.data ? `${languages.data.length} lenguas` : "Lenguas"}
+                  </T>
+                </View>
                 <View
                   style={{
                     alignItems: "center",
-                    borderColor: "rgba(255,255,255,0.85)",
-                    borderRadius: 26,
-                    borderWidth: 2,
-                    height: 52,
-                    justifyContent: "center",
-                    width: 52,
+                    backgroundColor: "#FFFFFF",
+                    borderRadius: 20,
+                    flexDirection: "row",
+                    gap: 6,
+                    paddingHorizontal: 14,
+                    paddingVertical: 8,
                   }}
                 >
-                  <Icon name={feature.icon} size={26} color="#FFFFFF" strokeWidth={1.7} />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <T f="display" w={700} s={18} lh={21} c="#FFFFFF">
-                    {feature.title[0]}
-                    {"\n"}
-                    {feature.title[1]}
+                  <T f="display" w={700} s={13.5} c={theme.colors.accent}>
+                    Empezar
                   </T>
-                  <T s={12} lh={16} c="#FFFFFF" style={{ marginTop: 4, opacity: 0.95 }}>
-                    {feature.description}
-                  </T>
+                  <Icon name="arrowRight" size={16} color={theme.colors.accent} strokeWidth={2.6} />
                 </View>
-                <Icon name="arrowRight" size={24} color="#FFFFFF" strokeWidth={2.2} />
-              </GradientBox>
-            </Pressable>
-          ))}
-        </View>
+              </View>
+            </GradientBox>
+          </Pressable>
 
-        {/* Honest notice: this build uses temporary demonstration records. */}
-        <View
-          style={{
-            backgroundColor: theme.colors.mockBackground,
-            borderRadius: 16,
-            marginTop: 18,
-            padding: 14,
-          }}
-        >
-          <T f="display" w={700} s={11.5} ls={0.5} c={theme.colors.mockText}>
-            VERSIÓN DE DEMOSTRACIÓN
-          </T>
-          <T s={13} lh={19} c={theme.colors.mockText} style={{ marginTop: 4 }}>
-            Los registros de lengua y cultura son temporales y están pendientes
-            de validación con fuentes confiables y orientación de las
-            comunidades.
-          </T>
+          {/* Territorio y Ñawi Explora: mosaico de dos */}
+          <View style={{ flexDirection: "row", gap: 12 }}>
+            {tiles.map((tile) => (
+              <Pressable
+                key={tile.title}
+                accessibilityLabel={`${tile.title}. ${tile.description}`}
+                accessibilityRole="link"
+                onPress={() => router.push(tile.href)}
+                style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.92 : 1 })}
+              >
+                <GradientBox
+                  colors={tile.colors}
+                  direction="br"
+                  style={[
+                    { borderRadius: 22, height: 190, overflow: "hidden", padding: 16 },
+                    shadows.card,
+                  ]}
+                >
+                  <Glow size={120} top={-40} right={-36} />
+                  <IconBubble name={tile.icon} />
+                  <View style={{ flex: 1, justifyContent: "flex-end", marginTop: 14 }}>
+                    {tile.tag ? (
+                      <View
+                        style={{
+                          alignSelf: "flex-start",
+                          backgroundColor: "rgba(255,255,255,0.22)",
+                          borderRadius: 10,
+                          marginBottom: 6,
+                          paddingHorizontal: 8,
+                          paddingVertical: 2,
+                        }}
+                      >
+                        <T f="display" w={700} s={10.5} ls={0.3} c="#FFFFFF">
+                          {tile.tag}
+                        </T>
+                      </View>
+                    ) : null}
+                    <T f="display" w={800} s={19} lh={22} c="#FFFFFF">
+                      {tile.title}
+                    </T>
+                    <T s={12} lh={16} c="#FFFFFF" style={{ marginTop: 3, opacity: 0.95 }}>
+                      {tile.description}
+                    </T>
+                  </View>
+                  <View style={{ alignItems: "flex-end", marginTop: 8 }}>
+                    <View
+                      style={{
+                        alignItems: "center",
+                        backgroundColor: "#FFFFFF",
+                        borderRadius: 16,
+                        height: 32,
+                        justifyContent: "center",
+                        width: 32,
+                      }}
+                    >
+                      <Icon name="arrowRight" size={18} color={tile.colors[0]} strokeWidth={2.6} />
+                    </View>
+                  </View>
+                </GradientBox>
+              </Pressable>
+            ))}
+          </View>
         </View>
       </View>
     </ScreenLayout>
