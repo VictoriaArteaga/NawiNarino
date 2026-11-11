@@ -10,7 +10,9 @@ import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
 import { useSource } from "../../hooks/useHeritage";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function SourceDetailScreen() {
+  useAppearance();
   const { sourceId: rawId } = useLocalSearchParams<{ sourceId: string }>();
   const sourceId = Number(rawId);
   const validId = Number.isInteger(sourceId) && sourceId > 0;

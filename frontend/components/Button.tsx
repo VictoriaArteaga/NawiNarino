@@ -1,12 +1,7 @@
-import {
-  ActivityIndicator,
-  Pressable,
-  View,
-  type StyleProp,
-  type ViewStyle,
-} from "react-native";
+import { ActivityIndicator, View, type StyleProp, type ViewStyle } from "react-native";
+import { Pressable } from "./Pressable";
 
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import { T } from "./T";
 
 interface ButtonProps {
@@ -30,7 +25,7 @@ export function Button({
   const isPrimary = variant === "primary";
   const inactive = disabled || loading;
   const isOutline = variant === "outline";
-  const textColor = isPrimary ? "#FFFFFF" : isOutline ? theme.colors.accent : theme.colors.primaryDark;
+  const textColor = isPrimary ? "#FFFFFF" : isOutline ? theme.colors.accent : theme.colors.heading;
 
   return (
     <Pressable
@@ -44,7 +39,7 @@ export function Button({
           backgroundColor: isPrimary
             ? theme.colors.accent
             : isOutline
-              ? "rgba(251,243,230,0.96)"
+              ? tone("rgba(251,243,230,0.96)")
               : theme.colors.softGreen,
           borderColor: isOutline ? theme.colors.accent : "transparent",
           borderRadius: 15,

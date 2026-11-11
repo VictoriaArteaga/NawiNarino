@@ -1,6 +1,7 @@
 import { useRouter, type Href } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 
 import { ExploreHero } from "../../components/art/ExploreHero";
@@ -13,11 +14,12 @@ import { Icon, type IconName } from "../../components/Icon";
 import { Loading } from "../../components/Loading";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
-import { shadows, theme } from "../../constants/theme";
+import { shadows, theme, tone } from "../../constants/theme";
 import { useHeritage } from "../../hooks/useHeritage";
 import { useTerritories } from "../../hooks/useTerritories";
 import type { HeritageCategory } from "../../types/heritage";
 
+import { useAppearance } from "../../store/settingsStore";
 type Tab = "Lugares" | "Cultura" | "Patrimonio";
 
 const tabs: { label: Tab; icon: IconName }[] = [
@@ -104,6 +106,7 @@ function pickScene(text: string, rules: [RegExp, SceneKey][]): SceneKey | undefi
 }
 
 export default function ExploreScreen() {
+  useAppearance();
   const router = useRouter();
   const headerTop = useHeaderTop();
   const [tab, setTab] = useState<Tab>("Lugares");
@@ -225,14 +228,14 @@ export default function ExploreScreen() {
             style={{
               alignItems: "center",
               backgroundColor: theme.colors.surface,
-              borderColor: "#D9CBB0",
+              borderColor: tone("#D9CBB0"),
               borderRadius: 18,
               borderStyle: "dashed",
               borderWidth: 1,
               padding: 24,
             }}
           >
-            <T f="display" w={700} s={16} c={theme.colors.primaryDark}>
+            <T f="display" w={700} s={16} c={theme.colors.heading}>
               Aún no hay registros en esta categoría
             </T>
             <T s={13} c={theme.colors.muted} align="center" style={{ marginTop: 4 }}>
@@ -353,7 +356,7 @@ export default function ExploreScreen() {
                         paddingVertical: 1,
                       }}
                     >
-                      <T w={700} s={11} c="#1F5C3A">
+                      <T w={700} s={11} c={tone("#1F5C3A")}>
                         {row.tag}
                       </T>
                     </View>
@@ -395,7 +398,7 @@ function MoreLink({ label, onPress }: { label: string; onPress: () => void }) {
         justifyContent: "center",
       }}
     >
-      <T f="display" w={600} s={14} c={theme.colors.primaryDark}>
+      <T f="display" w={600} s={14} c={theme.colors.heading}>
         {label}
       </T>
       <Icon name="arrowRight" size={16} color={theme.colors.accent} strokeWidth={2.2} />

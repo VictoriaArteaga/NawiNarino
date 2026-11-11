@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, TextInput, View } from "react-native";
+import { ActivityIndicator, ScrollView, TextInput, View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ChatHeaderArt } from "../../components/art/ChatHeaderArt";
@@ -10,12 +11,14 @@ import { Hero, useHeaderTop } from "../../components/Hero";
 import { Icon } from "../../components/Icon";
 import { Mascot } from "../../components/Mascot";
 import { T } from "../../components/T";
-import { fontFamily, shadows, theme } from "../../constants/theme";
+import { fontFamily, shadows, theme, tone } from "../../constants/theme";
 import { useAskExplorer } from "../../hooks/useExplorer";
 import { ApiError } from "../../services/api";
 import { ApiConfigError } from "../../services/config";
 import type { ExplorerCitation } from "../../types/explorer";
 
+import { useAppearance } from "../../store/settingsStore";
+import { useTr } from "../../i18n";
 // Preguntas sugeridas sobre los documentos del corpus.
 const suggestions = [
   "¿Cómo se dice casa en awapit?",
@@ -61,8 +64,8 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
     <View
       style={{
         alignItems: "flex-start",
-        backgroundColor: "#F8F4FC",
-        borderColor: "#E3D8EE",
+        backgroundColor: tone("#F8F4FC"),
+        borderColor: tone("#E3D8EE"),
         borderRadius: 10,
         borderWidth: 1,
         flexDirection: "row",
@@ -87,14 +90,14 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         {/* Extracto literal recuperado: contenido principal de la tarjeta */}
-        <T s={13.5} lh={20} c="#2B2A33">
+        <T s={13.5} lh={20} c={tone("#2B2A33")}>
           «{citation.excerpt}»
         </T>
-        <View style={{ borderTopColor: "#E3D8EE", borderTopWidth: 1, marginTop: 8, paddingTop: 6 }}>
+        <View style={{ borderTopColor: tone("#E3D8EE"), borderTopWidth: 1, marginTop: 8, paddingTop: 6 }}>
           <T w={700} s={12} lh={15}>
             {citation.title}
           </T>
-          <T s={11.5} lh={15} c="#5E5A6B">
+          <T s={11.5} lh={15} c={tone("#5E5A6B")}>
             {citation.isSynthetic ? `Página ${citation.page}` : `p. ${citation.page} del PDF`}
             {byline ? ` · ${byline}` : ""}
           </T>
@@ -124,6 +127,8 @@ function CitationCard({ citation }: { citation: ExplorerCitation }) {
  * the client. When the backend abstains, nothing is made up.
  */
 export default function ConversationScreen() {
+  useAppearance();
+  const tr = useTr();
   const insets = useSafeAreaInsets();
   const headerTop = useHeaderTop();
   const { q } = useLocalSearchParams<{ q?: string }>();
@@ -196,7 +201,7 @@ export default function ConversationScreen() {
         <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
           {!question ? (
             <View style={{ marginTop: 14 }}>
-              <T s={14} lh={21} c="#5E5A6B">
+              <T s={14} lh={21} c={tone("#5E5A6B")}>
                 Escribe una pregunta y Ñawi te responde mostrando las fuentes de donde
                 viene la información.
               </T>
@@ -217,7 +222,7 @@ export default function ConversationScreen() {
                       paddingHorizontal: 16,
                       paddingVertical: 12,
                     },
-                    { shadowColor: "#6B4A9E", shadowOffset: { height: 3, width: 0 }, shadowOpacity: 0.3, shadowRadius: 8 },
+                    { shadowColor: tone("#6B4A9E"), shadowOffset: { height: 3, width: 0 }, shadowOpacity: 0.3, shadowRadius: 8 },
                   ]}
                 >
                   <T w={600} s={14.5} c="#FFFFFF">
@@ -232,10 +237,10 @@ export default function ConversationScreen() {
                 <View
                   style={[
                     {
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: tone("#FFFFFF"),
                       borderBottomLeftRadius: 20,
                       borderBottomRightRadius: 20,
-                      borderColor: "#E3D8EE",
+                      borderColor: tone("#E3D8EE"),
                       borderTopLeftRadius: 4,
                       borderTopRightRadius: 20,
                       borderWidth: 1,
@@ -252,7 +257,7 @@ export default function ConversationScreen() {
                       style={{ alignItems: "center", flexDirection: "row", gap: 10 }}
                     >
                       <ActivityIndicator color={theme.colors.purple} />
-                      <T s={14} c="#5E5A6B">
+                      <T s={14} c={tone("#5E5A6B")}>
                         Buscando en las fuentes y preparando la respuesta…
                       </T>
                     </View>
@@ -268,10 +273,10 @@ export default function ConversationScreen() {
                       <T f="display" w={700} s={14} c={theme.colors.purpleDeep}>
                         Sin evidencia suficiente
                       </T>
-                      <T s={14} lh={21.5} c="#2B2A33" style={{ marginTop: 4 }}>
+                      <T s={14} lh={21.5} c={tone("#2B2A33")} style={{ marginTop: 4 }}>
                         {result.answer}
                       </T>
-                      <T s={12.5} lh={18} c="#5E5A6B" style={{ marginTop: 8 }}>
+                      <T s={12.5} lh={18} c={tone("#5E5A6B")} style={{ marginTop: 8 }}>
                         Intenta con otras palabras o consulta las fuentes originales.
                       </T>
                     </View>
@@ -280,7 +285,7 @@ export default function ConversationScreen() {
                       {/* El texto de la respuesta repite los extractos; se muestran una sola vez, en las tarjetas. */}
                       {result.explanation ? (
                         <View style={{ marginBottom: 12 }}>
-                          <T s={14} lh={21.5} c="#2B2A33">
+                          <T s={14} lh={21.5} c={tone("#2B2A33")}>
                             {result.explanation}
                           </T>
                         </View>
@@ -311,7 +316,7 @@ export default function ConversationScreen() {
                           key={notice}
                           style={{
                             alignItems: "flex-start",
-                            backgroundColor: "#F1EAF8",
+                            backgroundColor: tone("#F1EAF8"),
                             borderRadius: 10,
                             flexDirection: "row",
                             gap: 8,
@@ -320,7 +325,7 @@ export default function ConversationScreen() {
                           }}
                         >
                           <Icon name="help" size={18} color={theme.colors.purple} />
-                          <T s={11.5} lh={16} c="#3F2670" style={{ flex: 1 }}>
+                          <T s={11.5} lh={16} c={tone("#3F2670")} style={{ flex: 1 }}>
                             {notice}
                           </T>
                         </View>
@@ -332,7 +337,7 @@ export default function ConversationScreen() {
           )}
 
           {/* Suggestions */}
-          <T w={700} s={12} c="#6A6477" style={{ marginBottom: 8, marginTop: 18 }}>
+          <T w={700} s={12} c={tone("#6A6477")} style={{ marginBottom: 8, marginTop: 18 }}>
             Sugerencias
           </T>
           <ScrollView
@@ -349,7 +354,7 @@ export default function ConversationScreen() {
                 onPress={() => send(text)}
                 style={{
                   alignItems: "center",
-                  backgroundColor: "#FFFFFF",
+                  backgroundColor: tone("#FFFFFF"),
                   borderColor: theme.colors.purpleBorder,
                   borderRadius: 20,
                   borderWidth: 1.5,
@@ -372,7 +377,7 @@ export default function ConversationScreen() {
       <View
         style={{
           backgroundColor: theme.colors.surface,
-          borderTopColor: "#E3D8EE",
+          borderTopColor: tone("#E3D8EE"),
           borderTopWidth: 1,
           bottom: 0,
           left: 0,
@@ -384,14 +389,14 @@ export default function ConversationScreen() {
         }}
       >
         {tooShort ? (
-          <T accessibilityRole="alert" s={12} lh={16} c="#6A6477" style={{ marginBottom: 6, paddingLeft: 14 }}>
+          <T accessibilityRole="alert" s={12} lh={16} c={tone("#6A6477")} style={{ marginBottom: 6, paddingLeft: 14 }}>
             Escribe al menos {MIN_QUESTION_LENGTH} caracteres.
           </T>
         ) : null}
         <View
           style={{
             alignItems: "center",
-            backgroundColor: "#FFFFFF",
+            backgroundColor: tone("#FFFFFF"),
             borderColor: focused ? theme.colors.purple : theme.colors.purpleBorder,
             borderRadius: 27,
             borderWidth: 2,
@@ -410,8 +415,8 @@ export default function ConversationScreen() {
             onChangeText={setDraft}
             onFocus={() => setFocused(true)}
             onSubmitEditing={() => send(draft)}
-            placeholder="Escribe una pregunta…"
-            placeholderTextColor="#8A8472"
+            placeholder={tr("Escribe una pregunta…")}
+            placeholderTextColor={tone("#8A8472")}
             returnKeyType="send"
             style={{
               color: theme.colors.ink,

@@ -25,6 +25,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { theme } from "../constants/theme";
 import { ApiError } from "../services/api";
 import { useAuthStore } from "../store/authStore";
+import { useAppearance, useSettingsStore } from "../store/settingsStore";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,6 +69,8 @@ function AuthGate() {
 
 export default function RootLayout() {
   const authReady = useAuthStore((s) => s.hydrated);
+  const settingsReady = useSettingsStore((s) => s.hydrated);
+  const { dark } = useAppearance();
   const [fontsLoaded, fontError] = useFonts({
     Outfit_400Regular,
     Outfit_500Medium,
@@ -83,14 +86,14 @@ export default function RootLayout() {
 
   // Keep the cream background while the brand fonts load. If loading fails the
   // app still opens with the system font instead of blocking the user.
-  if ((!fontsLoaded && !fontError) || !authReady) {
+  if ((!fontsLoaded && !fontError) || !authReady || !settingsReady) {
     return <View style={{ backgroundColor: theme.colors.canvas, flex: 1 }} />;
   }
 
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style="dark" />
+        <StatusBar style={dark ? "light" : "dark"} />
         <AuthGate />
         <Stack
           screenOptions={{

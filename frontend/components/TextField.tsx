@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Pressable, TextInput, View, type TextInputProps } from "react-native";
+import { TextInput, View, type TextInputProps } from "react-native";
+import { Pressable } from "./Pressable";
 
 import { fontFamily, theme } from "../constants/theme";
 import { T } from "./T";
@@ -45,7 +46,7 @@ export function TextField({
 
   return (
     <View style={{ marginTop: theme.spacing.md + 2 }}>
-      <T f="display" w={700} s={12} ls={0.6} c={theme.colors.primaryDark}>
+      <T f="display" w={700} s={12} ls={0.6} c={theme.colors.heading}>
         {label.toUpperCase()}
       </T>
       <View

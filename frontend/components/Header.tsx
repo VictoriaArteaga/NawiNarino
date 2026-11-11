@@ -21,12 +21,13 @@ export function Header({ title, subtitle, backHref, backLabel = "Volver" }: Head
           <BackButton
             fallback={backHref}
             label={backLabel}
+            color={theme.colors.heading}
             background={theme.colors.surface}
             borderColor={theme.colors.border}
           />
         </View>
       ) : null}
-      <T f="display" w={800} s={28} lh={33} c={theme.colors.primaryDark}>
+      <T f="display" w={800} s={28} lh={33} c={theme.colors.heading}>
         {title}
       </T>
       {subtitle ? (

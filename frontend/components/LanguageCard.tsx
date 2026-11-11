@@ -1,10 +1,11 @@
 import { useRouter } from "expo-router";
 import { useId } from "react";
-import { Pressable, View, useWindowDimensions } from "react-native";
+import { View, useWindowDimensions } from "react-native";
+import { Pressable } from "./Pressable";
 import Svg, { Defs, LinearGradient, Mask, Rect, Stop } from "react-native-svg";
 
 import { getLanguageTheme } from "../constants/languages";
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import { useLanguageProgress } from "../hooks/useLearning";
 import type { Language } from "../types/language";
 import { GradientBox } from "./GradientBox";

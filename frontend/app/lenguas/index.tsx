@@ -10,9 +10,11 @@ import { T } from "../../components/T";
 import { useHeaderTop } from "../../components/Hero";
 import { useLanguages } from "../../hooks/useLanguages";
 import { sortLanguages } from "../../constants/languages";
-import { theme } from "../../constants/theme";
+import { theme, tone } from "../../constants/theme";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function LanguagesScreen() {
+  useAppearance();
   const languagesQuery = useLanguages();
   const headerTop = useHeaderTop();
 
@@ -22,7 +24,7 @@ export default function LanguagesScreen() {
         <View style={{ alignItems: "center", flexDirection: "row", gap: 6 }}>
           <BackButton
             fallback="/inicio"
-            color="#25674F"
+            color={tone("#25674F")}
             background="transparent"
           />
           <T
@@ -38,7 +40,7 @@ export default function LanguagesScreen() {
         </View>
       </View>
       <View style={{ paddingHorizontal: 20 }}>
-        <T s={15.5} lh={20} c="#6A6A62" style={{ marginBottom: 16, marginTop: 4 }}>
+        <T s={15.5} lh={20} c={tone("#6A6A62")} style={{ marginBottom: 16, marginTop: 4 }}>
           Cuatro lenguas, un mismo territorio.
         </T>
 

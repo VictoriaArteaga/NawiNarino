@@ -1,5 +1,6 @@
 import { useRouter, type Href } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { Avatar } from "../../components/Avatar";
 import { HomeHero } from "../../components/art/HomeHero";
@@ -14,8 +15,9 @@ import { getLanguageTheme } from "../../constants/languages";
 import { useLanguages } from "../../hooks/useLanguages";
 import { useProgress } from "../../hooks/useLearning";
 import { useVocabulary } from "../../hooks/useVocabulary";
-import { shadows, theme } from "../../constants/theme";
+import { shadows, theme, tone } from "../../constants/theme";
 
+import { useAppearance } from "../../store/settingsStore";
 interface FeatureCard {
   href: Href;
   icon: IconName;
@@ -91,6 +93,7 @@ function IconBubble({ name, size = 54 }: { name: IconName; size?: number }) {
 }
 
 export default function HomeScreen() {
+  useAppearance();
   const router = useRouter();
   const headerTop = useHeaderTop();
   const languages = useLanguages();
@@ -220,7 +223,7 @@ export default function HomeScreen() {
               <T f="display" w={700} s={16} lh={20} numberOfLines={1}>
                 {wordOfTheDay ? wordOfTheDay.word : "Próximamente"}
                 {wordOfTheDay ? (
-                  <T f="display" w={500} s={13} c="#4B554F">
+                  <T f="display" w={500} s={13} c={tone("#4B554F")}>
                     {` · ${wordOfTheDay.translation}`}
                   </T>
                 ) : null}
@@ -260,14 +263,14 @@ export default function HomeScreen() {
 
       {/* Explora Nariño */}
       <View style={{ paddingHorizontal: 20, paddingTop: 6 }}>
-        <T f="display" w={800} s={23} lh={28} c={theme.colors.primaryDark}>
+        <T f="display" w={800} s={23} lh={28} c={theme.colors.heading}>
           Explora Nariño
         </T>
         <T s={13.5} lh={18} c={theme.colors.muted}>
           El territorio también se habla.
         </T>
 
-        <View style={{ gap: 12, marginTop: 16 }}>
+        <View style={{ gap: 10, marginTop: 14 }}>
           {/* Aprende lenguas: la acción principal */}
           <Pressable
             accessibilityLabel={`${learn.title}. ${learn.description}`}
@@ -298,7 +301,7 @@ export default function HomeScreen() {
                   alignItems: "center",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  marginTop: 18,
+                  marginTop: 14,
                 }}
               >
                 <View style={{ alignItems: "center", flexDirection: "row", gap: 10 }}>
@@ -338,68 +341,75 @@ export default function HomeScreen() {
             </GradientBox>
           </Pressable>
 
-          {/* Territorio y Ñawi Explora: mosaico de dos */}
-          <View style={{ flexDirection: "row", gap: 12 }}>
-            {tiles.map((tile) => (
-              <Pressable
-                key={tile.title}
-                accessibilityLabel={`${tile.title}. ${tile.description}`}
-                accessibilityRole="link"
-                onPress={() => router.push(tile.href)}
-                style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.92 : 1 })}
+          {/* Territorio y Ñawi Explora: una tarjeta por fila, a todo el ancho */}
+          {tiles.map((tile) => (
+            <Pressable
+              key={tile.title}
+              accessibilityLabel={`${tile.title}. ${tile.description}`}
+              accessibilityRole="link"
+              onPress={() => router.push(tile.href)}
+              style={({ pressed }) => ({ opacity: pressed ? 0.92 : 1 })}
+            >
+              <GradientBox
+                colors={tile.colors}
+                direction="br"
+                style={[
+                  {
+                    alignItems: "center",
+                    borderRadius: 22,
+                    flexDirection: "row",
+                    minHeight: 98,
+                    overflow: "hidden",
+                    paddingHorizontal: 16,
+                    paddingVertical: 12,
+                  },
+                  shadows.card,
+                ]}
               >
-                <GradientBox
-                  colors={tile.colors}
-                  direction="br"
-                  style={[
-                    { borderRadius: 22, height: 190, overflow: "hidden", padding: 16 },
-                    shadows.card,
-                  ]}
-                >
-                  <Glow size={120} top={-40} right={-36} />
+                <Glow size={130} top={-50} right={-30} />
+                <View style={{ marginRight: 14 }}>
                   <IconBubble name={tile.icon} />
-                  <View style={{ flex: 1, justifyContent: "flex-end", marginTop: 14 }}>
-                    {tile.tag ? (
-                      <View
-                        style={{
-                          alignSelf: "flex-start",
-                          backgroundColor: "rgba(255,255,255,0.22)",
-                          borderRadius: 10,
-                          marginBottom: 6,
-                          paddingHorizontal: 8,
-                          paddingVertical: 2,
-                        }}
-                      >
-                        <T f="display" w={700} s={10.5} ls={0.3} c="#FFFFFF">
-                          {tile.tag}
-                        </T>
-                      </View>
-                    ) : null}
-                    <T f="display" w={800} s={19} lh={22} c="#FFFFFF">
-                      {tile.title}
-                    </T>
-                    <T s={12} lh={16} c="#FFFFFF" style={{ marginTop: 3, opacity: 0.95 }}>
-                      {tile.description}
-                    </T>
-                  </View>
-                  <View style={{ alignItems: "flex-end", marginTop: 8 }}>
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  {tile.tag ? (
                     <View
                       style={{
-                        alignItems: "center",
-                        backgroundColor: "#FFFFFF",
-                        borderRadius: 16,
-                        height: 32,
-                        justifyContent: "center",
-                        width: 32,
+                        alignSelf: "flex-start",
+                        backgroundColor: "rgba(255,255,255,0.22)",
+                        borderRadius: 10,
+                        marginBottom: 4,
+                        paddingHorizontal: 8,
+                        paddingVertical: 2,
                       }}
                     >
-                      <Icon name="arrowRight" size={18} color={tile.colors[0]} strokeWidth={2.6} />
+                      <T f="display" w={700} s={10.5} ls={0.3} c="#FFFFFF">
+                        {tile.tag}
+                      </T>
                     </View>
-                  </View>
-                </GradientBox>
-              </Pressable>
-            ))}
-          </View>
+                  ) : null}
+                  <T f="display" w={800} s={19} lh={23} c="#FFFFFF">
+                    {tile.title}
+                  </T>
+                  <T s={12.5} lh={17} c="#FFFFFF" style={{ marginTop: 2, opacity: 0.95 }}>
+                    {tile.description}
+                  </T>
+                </View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    backgroundColor: "#FFFFFF",
+                    borderRadius: 17,
+                    height: 34,
+                    justifyContent: "center",
+                    marginLeft: 10,
+                    width: 34,
+                  }}
+                >
+                  <Icon name="arrowRight" size={18} color={tile.colors[0]} strokeWidth={2.6} />
+                </View>
+              </GradientBox>
+            </Pressable>
+          ))}
         </View>
       </View>
     </ScreenLayout>

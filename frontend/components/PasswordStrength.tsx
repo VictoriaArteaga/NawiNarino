@@ -3,12 +3,14 @@ import { View } from "react-native";
 import { theme } from "../constants/theme";
 import { T } from "./T";
 
-const LEVELS = [
-  { label: "Débil", color: theme.colors.danger },
-  { label: "Aceptable", color: theme.colors.gold },
-  { label: "Buena", color: theme.colors.primary },
-  { label: "Fuerte", color: theme.colors.primaryDark },
-] as const;
+/** Niveles del medidor (se calculan al dibujar para seguir el modo claro/oscuro). */
+const levels = () =>
+  [
+    { label: "Débil", color: theme.colors.danger },
+    { label: "Aceptable", color: theme.colors.gold },
+    { label: "Buena", color: theme.colors.primary },
+    { label: "Fuerte", color: theme.colors.heading },
+  ] as const;
 
 /** 0 = vacía; 1–4 según longitud y variedad de caracteres. */
 export function passwordScore(password: string): number {
@@ -24,7 +26,8 @@ export function passwordScore(password: string): number {
 export function PasswordStrength({ password }: { password: string }) {
   const score = passwordScore(password);
   if (score === 0) return null;
-  const level = LEVELS[score - 1];
+  const all = levels();
+  const level = all[score - 1];
 
   return (
     <View
@@ -32,7 +35,7 @@ export function PasswordStrength({ password }: { password: string }) {
       accessibilityLiveRegion="polite"
       style={{ alignItems: "center", flexDirection: "row", gap: 6, marginTop: 8 }}
     >
-      {LEVELS.map((_, index) => (
+      {all.map((_, index) => (
         <View
           key={index}
           style={{

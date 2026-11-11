@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../components/Pressable";
 
 import { AuthLayout } from "../components/AuthLayout";
 import { Button } from "../components/Button";
@@ -10,7 +11,9 @@ import { theme } from "../constants/theme";
 import { useLogin } from "../hooks/useAuth";
 import { isValidEmail } from "../utils/validation";
 
+import { useAppearance } from "../store/settingsStore";
 export default function LoginScreen() {
+  useAppearance();
   const router = useRouter();
   const login = useLogin();
   const [email, setEmail] = useState("");

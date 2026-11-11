@@ -10,12 +10,14 @@ import { PatternBand } from "../components/PatternBand";
 import { Portrait } from "../components/Portrait";
 import { T } from "../components/T";
 import { getLanguageTheme } from "../constants/languages";
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import { useAuthStore } from "../store/authStore";
 
+import { useAppearance } from "../store/settingsStore";
 const peoples = ["Awá Pit", "Inga", "Nasa Yuwe", "Cofán"] as const;
 
 export default function WelcomeScreen() {
+  useAppearance();
   const router = useRouter();
   const isAuthenticated = useAuthStore((s) => s.token !== null);
   const insets = useSafeAreaInsets();
@@ -63,7 +65,7 @@ export default function WelcomeScreen() {
           <Svg width="150" height="12" viewBox="0 0 150 12">
             <Path
               d="M0 6 H58 M92 6 H150"
-              stroke="#C84A1F"
+              stroke={tone("#C84A1F")}
               strokeWidth="1.6"
               strokeLinecap="round"
               opacity={0.7}
@@ -71,7 +73,7 @@ export default function WelcomeScreen() {
             <Path d="M75 0 L81 6 L75 12 L69 6Z" fill="#E8A33D" />
             <Path
               d="M62 6 l3 -3 l3 3 l-3 3Z M82 6 l3 -3 l3 3 l-3 3Z"
-              fill="#C84A1F"
+              fill={tone("#C84A1F")}
             />
           </Svg>
         </View>
@@ -103,7 +105,7 @@ export default function WelcomeScreen() {
           style={[
             {
               alignItems: "center",
-              backgroundColor: "rgba(251,243,230,0.94)",
+              backgroundColor: tone("rgba(251,243,230,0.94)"),
               borderRadius: 22,
               flexDirection: "row",
               gap: 12,
@@ -129,10 +131,10 @@ export default function WelcomeScreen() {
             )}
           </View>
           <View style={{ flex: 1 }}>
-            <T f="display" w={800} s={15} c={theme.colors.primaryDark}>
+            <T f="display" w={800} s={15} c={theme.colors.heading}>
               4 lenguas vivas
             </T>
-            <T s={12} c="#4B554F" numberOfLines={1}>
+            <T s={12} c={tone("#4B554F")} numberOfLines={1}>
               {peoples.join(" · ")}
             </T>
           </View>

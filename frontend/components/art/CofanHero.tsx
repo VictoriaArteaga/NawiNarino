@@ -1,6 +1,7 @@
 import Svg, { Circle, Defs, Ellipse, G, LinearGradient, Path, RadialGradient, Rect, Stop, Use } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
 
+import { theme } from "../../constants/theme";
 /* Generated from the approved Ñawi-Nariño design artboards. */
 export function CofanHero(props: SvgProps) {
   return (
@@ -83,7 +84,7 @@ export function CofanHero(props: SvgProps) {
       <Use href="#cf-palm" transform="translate(354,214) scale(.85)" />
       <Use href="#cf-macaw" transform="translate(150,72) scale(.9)" />
       <Use href="#cf-macaw" transform="translate(214,52) scale(.62)" />
-      <Path d="M0 226 Q70 214 140 224 T280 222 T390 214 V240 H0Z" fill="#F5EDE0" />
+      <Path d="M0 226 Q70 214 140 224 T280 222 T390 214 V240 H0Z" fill={theme.colors.canvas} />
     </Svg>
   );
 }

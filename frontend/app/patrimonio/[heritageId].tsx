@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Pressable } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
@@ -11,6 +11,7 @@ import { theme } from "../../constants/theme";
 import { useHeritageItem } from "../../hooks/useHeritage";
 import type { HeritageCategory } from "../../types/heritage";
 
+import { useAppearance } from "../../store/settingsStore";
 const categoryLabels: Record<HeritageCategory, string> = {
   historical: "Histórico",
   linguistic: "Lingüístico",
@@ -19,6 +20,7 @@ const categoryLabels: Record<HeritageCategory, string> = {
 };
 
 export default function HeritageDetailScreen() {
+  useAppearance();
   const router = useRouter();
   const { heritageId: rawId } = useLocalSearchParams<{ heritageId: string }>();
   const heritageId = Number(rawId);

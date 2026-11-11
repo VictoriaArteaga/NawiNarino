@@ -1,6 +1,7 @@
 import { useId } from "react";
 import Svg, { Circle, ClipPath, Defs, Ellipse, G, Path } from "react-native-svg";
 
+import { tone } from "../constants/theme";
 interface AvatarProps {
   size?: number;
   /** Draws the orange progress ring used on the profile screens. */
@@ -38,13 +39,13 @@ export function Avatar({
       </Defs>
       {ring ? (
         <>
-          <Circle cx="48" cy="48" r="47" fill="#F5EDE0" />
+          <Circle cx="48" cy="48" r="47" fill={tone("#F5EDE0")} />
           <Circle
             cx="48"
             cy="48"
             r="40"
             fill="none"
-            stroke="#E6DAC4"
+            stroke={tone("#E6DAC4")}
             strokeWidth="4"
           />
           <Circle
@@ -52,7 +53,7 @@ export function Avatar({
             cy="48"
             r="40"
             fill="none"
-            stroke="#C84A1F"
+            stroke={tone("#C84A1F")}
             strokeWidth="4"
             strokeLinecap="round"
             strokeDasharray={`${dash} ${circumference}`}
@@ -60,7 +61,7 @@ export function Avatar({
           />
         </>
       ) : null}
-      <Circle cx="48" cy="48" r={radius} fill="#2F6F4E" />
+      <Circle cx="48" cy="48" r={radius} fill={tone("#2F6F4E")} />
       <G clipPath={`url(#${clipId})`}>
         <Ellipse cx="48" cy="44" rx="13" ry="15" fill="#D9A06F" />
         <Path
@@ -69,7 +70,7 @@ export function Avatar({
         />
         <Path
           d="M6 100 C10 74 28 64 48 64 C68 64 86 74 90 100Z"
-          fill="#C84A1F"
+          fill={tone("#C84A1F")}
         />
         <Path d="M39 66 L48 77 L57 66Z" fill="#E8A33D" />
       </G>

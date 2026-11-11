@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
@@ -9,10 +10,14 @@ import { InfoCard } from "../../components/InfoCard";
 import { Loading } from "../../components/Loading";
 import { PlainScreen } from "../../components/PlainScreen";
 import { T } from "../../components/T";
-import { fontFamily, theme } from "../../constants/theme";
+import { fontFamily, theme, tone } from "../../constants/theme";
 import { useToponyms } from "../../hooks/useHeritage";
 
+import { useAppearance } from "../../store/settingsStore";
+import { useTr } from "../../i18n";
 export default function ToponymsScreen() {
+  useAppearance();
+  const tr = useTr();
   const router = useRouter();
   const [search, setSearch] = useState("");
   const query = useToponyms(search.trim() || undefined);
@@ -27,8 +32,8 @@ export default function ToponymsScreen() {
       <View
         style={{
           alignItems: "center",
-          backgroundColor: "#FFFFFF",
-          borderColor: "#CFE0D2",
+          backgroundColor: tone("#FFFFFF"),
+          borderColor: tone("#CFE0D2"),
           borderRadius: 26,
           borderWidth: 2,
           flexDirection: "row",
@@ -42,8 +47,8 @@ export default function ToponymsScreen() {
         <TextInput
           accessibilityLabel="Buscar nombres de lugares"
           onChangeText={setSearch}
-          placeholder="Buscar nombres de lugares"
-          placeholderTextColor="#8A8472"
+          placeholder={tr("Buscar nombres de lugares")}
+          placeholderTextColor={tone("#8A8472")}
           style={{
             color: theme.colors.ink,
             flex: 1,

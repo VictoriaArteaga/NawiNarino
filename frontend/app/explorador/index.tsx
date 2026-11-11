@@ -1,5 +1,6 @@
 import { useRouter } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { ExplorerHero } from "../../components/art/ExplorerHero";
 import { SceneArt } from "../../components/art/SceneArt";
@@ -10,8 +11,9 @@ import { Icon } from "../../components/Icon";
 import { Mascot } from "../../components/Mascot";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
-import { shadows, theme } from "../../constants/theme";
+import { shadows, theme, tone } from "../../constants/theme";
 
+import { useAppearance } from "../../store/settingsStore";
 /** Cada pregunta lleva una ilustración que representa su tema. */
 const suggestions: { text: string; scene: SceneKey; alt: string }[] = [
   {
@@ -32,6 +34,7 @@ const suggestions: { text: string; scene: SceneKey; alt: string }[] = [
 ];
 
 export default function ExplorerScreen() {
+  useAppearance();
   const router = useRouter();
   const headerTop = useHeaderTop();
 
@@ -82,7 +85,7 @@ export default function ExplorerScreen() {
             {
               alignItems: "flex-start",
               backgroundColor: theme.colors.surface,
-              borderColor: "#E3D8EE",
+              borderColor: tone("#E3D8EE"),
               borderRadius: 18,
               borderWidth: 1,
               flexDirection: "row",
@@ -93,7 +96,7 @@ export default function ExplorerScreen() {
           ]}
         >
           <Mascot size={44} />
-          <T s={13.5} lh={20} c="#33323A" style={{ flex: 1 }}>
+          <T s={13.5} lh={20} c={tone("#33323A")} style={{ flex: 1 }}>
             Hola, soy{" "}
             <T f="display" w={700} s={13.5} c={theme.colors.purpleDeep}>
               Ñawi
@@ -113,7 +116,7 @@ export default function ExplorerScreen() {
           style={[
             {
               alignItems: "center",
-              backgroundColor: "#FFFFFF",
+              backgroundColor: tone("#FFFFFF"),
               borderColor: theme.colors.purpleBorder,
               borderRadius: 28,
               borderWidth: 2,
@@ -128,7 +131,7 @@ export default function ExplorerScreen() {
           ]}
         >
           <Icon name="search" size={20} color={theme.colors.purple} strokeWidth={2} />
-          <T s={14.5} c="#6A6477" style={{ flex: 1 }}>
+          <T s={14.5} c={tone("#6A6477")} style={{ flex: 1 }}>
             ¿Qué te gustaría saber?
           </T>
           <View
@@ -157,7 +160,7 @@ export default function ExplorerScreen() {
               style={({ pressed }) => ({
                 alignItems: "center",
                 backgroundColor: theme.colors.surface,
-                borderColor: "#E3D8EE",
+                borderColor: tone("#E3D8EE"),
                 borderRadius: 16,
                 borderWidth: 1,
                 flexDirection: "row",
@@ -172,10 +175,10 @@ export default function ExplorerScreen() {
               <View style={{ borderRadius: 12, height: 40, overflow: "hidden", width: 40 }}>
                 <SceneArt scene={item.scene} accessibilityLabel={item.alt} />
               </View>
-              <T f="display" w={600} s={14.5} c="#2D1B52" style={{ flex: 1 }}>
+              <T f="display" w={600} s={14.5} c={tone("#2D1B52")} style={{ flex: 1 }}>
                 {item.text}
               </T>
-              <Icon name="chevronRight" size={18} color="#8A7BA8" strokeWidth={2} />
+              <Icon name="chevronRight" size={18} color={tone("#8A7BA8")} strokeWidth={2} />
             </Pressable>
           ))}
         </View>
@@ -184,7 +187,7 @@ export default function ExplorerScreen() {
         <View
           style={{
             alignItems: "center",
-            backgroundColor: "#EFE8F8",
+            backgroundColor: tone("#EFE8F8"),
             borderRadius: 16,
             flexDirection: "row",
             gap: 12,
@@ -194,8 +197,8 @@ export default function ExplorerScreen() {
           }}
         >
           <Icon name="shield" size={26} color={theme.colors.purple} />
-          <T s={12.5} lh={17} c="#3F2670" style={{ flex: 1 }}>
-            <T f="display" w={700} s={12.5} c="#3F2670">
+          <T s={12.5} lh={17} c={tone("#3F2670")} style={{ flex: 1 }}>
+            <T f="display" w={700} s={12.5} c={tone("#3F2670")}>
               Siempre con fuentes.
             </T>{" "}
             Cada respuesta indica de dónde viene la información para que puedas

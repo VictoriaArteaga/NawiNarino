@@ -11,7 +11,9 @@ import { theme } from "../../../constants/theme";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { useLanguageProgress, useLessons } from "../../../hooks/useLearning";
 
+import { useAppearance } from "../../../store/settingsStore";
 export default function LessonsScreen() {
+  useAppearance();
   const { id } = useLocalSearchParams<{ id: string }>();
   const languageId = Number(id);
   const validId = Number.isInteger(languageId) && languageId > 0;

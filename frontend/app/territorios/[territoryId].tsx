@@ -10,7 +10,9 @@ import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
 import { useTerritory } from "../../hooks/useTerritories";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function TerritoryDetailScreen() {
+  useAppearance();
   const { territoryId: rawId } = useLocalSearchParams<{ territoryId: string }>();
   const territoryId = Number(rawId);
   const validId = Number.isInteger(territoryId) && territoryId > 0;

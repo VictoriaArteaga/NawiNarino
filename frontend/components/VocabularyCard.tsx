@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import type { Vocabulary } from "../types/vocabulary";
 import { GradientBox } from "./GradientBox";
 import { Icon } from "./Icon";
@@ -35,7 +35,7 @@ export function VocabularyCard({ item, tagBackground, tagColor }: VocabularyCard
     >
       {item.audioUrl ? (
         <GradientBox
-          colors={["#2F6F4E", "#4C8B6C"]}
+          colors={[tone("#2F6F4E"), "#4C8B6C"]}
           direction="br"
           style={{
             alignItems: "center",
@@ -52,7 +52,7 @@ export function VocabularyCard({ item, tagBackground, tagColor }: VocabularyCard
         <T f="display" w={800} s={21} lh={25} c={theme.colors.ink} numberOfLines={2}>
           {item.word}
         </T>
-        <T s={14} lh={18} c="#4B554F" numberOfLines={2}>
+        <T s={14} lh={18} c={tone("#4B554F")} numberOfLines={2}>
           {item.translation}
         </T>
       </View>

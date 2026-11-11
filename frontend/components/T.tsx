@@ -1,6 +1,8 @@
 import { Text, type StyleProp, type TextProps, type TextStyle } from "react-native";
 
 import { fontFamily, theme, type FontKind } from "../constants/theme";
+import { translateNode } from "../i18n";
+import { useSettingsStore } from "../store/settingsStore";
 
 interface TProps extends TextProps {
   /** "display" = Outfit (titles, labels), "body" = Nunito Sans (paragraphs). */
@@ -26,8 +28,10 @@ export function T({
   italic = false,
   align,
   style,
+  children,
   ...rest
 }: TProps) {
+  const language = useSettingsStore((s) => s.language);
   return (
     <Text
       {...rest}
@@ -42,6 +46,8 @@ export function T({
         },
         style,
       ]}
-    />
+    >
+      {translateNode(children, language)}
+    </Text>
   );
 }

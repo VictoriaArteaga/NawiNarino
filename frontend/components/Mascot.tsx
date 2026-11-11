@@ -1,5 +1,6 @@
 import Svg, { Circle, G, Path } from "react-native-svg";
 
+import { tone } from "../constants/theme";
 interface MascotProps {
   size?: number;
   /** Adds a soft white halo (for dark backgrounds). */
@@ -37,7 +38,7 @@ export function Mascot({ size = 44, halo = false }: MascotProps) {
           />
         ))}
       </G>
-      <Circle r="15.5" fill="#6B4A9E" />
+      <Circle r="15.5" fill={tone("#6B4A9E")} />
       <Circle
         r="13.6"
         fill="none"
@@ -46,7 +47,7 @@ export function Mascot({ size = 44, halo = false }: MascotProps) {
         strokeDasharray="1.6 2.2"
         strokeLinecap="round"
       />
-      <Path d="M-10 0 Q0 -8.6 10 0 Q0 8.6 -10 0Z" fill="#FBF3E6" />
+      <Path d="M-10 0 Q0 -8.6 10 0 Q0 8.6 -10 0Z" fill={tone("#FBF3E6")} />
       <Circle r="4.8" fill="#3E2A66" />
       <Circle r="2" fill="#E8A33D" />
       <Circle cx="-1.4" cy="-1.6" r="1" fill="#FFFFFF" />

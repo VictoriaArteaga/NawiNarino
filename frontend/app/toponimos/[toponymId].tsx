@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Pressable } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { Card } from "../../components/Card";
 import { ErrorMessage } from "../../components/ErrorMessage";
@@ -11,7 +11,9 @@ import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
 import { useToponym } from "../../hooks/useHeritage";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function ToponymDetailScreen() {
+  useAppearance();
   const router = useRouter();
   const { toponymId: rawId } = useLocalSearchParams<{ toponymId: string }>();
   const toponymId = Number(rawId);

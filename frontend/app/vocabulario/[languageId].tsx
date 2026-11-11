@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, TextInput, View } from "react-native";
+import { ScrollView, TextInput, View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { BackButton } from "../../components/CircleButton";
 import { Card } from "../../components/Card";
@@ -12,25 +13,33 @@ import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
 import { VocabularyCard } from "../../components/VocabularyCard";
 import { getLanguageTheme } from "../../constants/languages";
-import { fontFamily, shadows, theme } from "../../constants/theme";
+import { fontFamily, shadows, theme, tone } from "../../constants/theme";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useVocabulary } from "../../hooks/useVocabulary";
 
-const tagPalette: [string, string][] = [
-  ["#FBE3D6", "#8E2F22"],
-  ["#E6DDF3", "#4A2F78"],
-  ["#DCEBDD", "#1F4D3A"],
-  ["#F8E4C0", "#7A4A05"],
-  ["#D9E9F4", "#1D4A75"],
-];
+import { useAppearance } from "../../store/settingsStore";
+import { useTr } from "../../i18n";
+/** Colores de la etiqueta de categoría (se calculan al dibujar para seguir el modo claro/oscuro). */
+function tagPalette(): [string, string][] {
+  return [
+    [tone("#FBE3D6"), tone("#8E2F22")],
+    [tone("#E6DDF3"), tone("#4A2F78")],
+    [tone("#DCEBDD"), tone("#1F4D3A")],
+    [tone("#F8E4C0"), tone("#7A4A05")],
+    [tone("#D9E9F4"), tone("#1D4A75")],
+  ];
+}
 
 function tagColors(category: string): [string, string] {
   let hash = 0;
   for (const char of category) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
-  return tagPalette[hash % tagPalette.length];
+  const palette = tagPalette();
+  return palette[hash % palette.length];
 }
 
 export default function VocabularyScreen() {
+  useAppearance();
+  const tr = useTr();
   const { languageId: rawLanguageId } = useLocalSearchParams<{
     languageId: string;
   }>();
@@ -93,8 +102,8 @@ export default function VocabularyScreen() {
         style={[
           {
             alignItems: "center",
-            backgroundColor: "#FFFFFF",
-            borderColor: "#CFE0D2",
+            backgroundColor: tone("#FFFFFF"),
+            borderColor: tone("#CFE0D2"),
             borderRadius: 26,
             borderWidth: 2,
             flexDirection: "row",
@@ -111,8 +120,8 @@ export default function VocabularyScreen() {
         <TextInput
           accessibilityLabel="Buscar palabra"
           onChangeText={setSearch}
-          placeholder="Buscar palabra…"
-          placeholderTextColor="#8A8472"
+          placeholder={tr("Buscar palabra…")}
+          placeholderTextColor={tone("#8A8472")}
           returnKeyType="search"
           style={{
             color: theme.colors.ink,
@@ -125,7 +134,7 @@ export default function VocabularyScreen() {
         />
         {search ? (
           <Pressable accessibilityLabel="Borrar búsqueda" onPress={() => setSearch("")}>
-            <Icon name="close" size={20} color="#8A8472" />
+            <Icon name="close" size={20} color={tone("#8A8472")} />
           </Pressable>
         ) : null}
       </View>
@@ -194,14 +203,14 @@ export default function VocabularyScreen() {
                 style={{
                   alignItems: "center",
                   backgroundColor: theme.colors.surface,
-                  borderColor: "#D9CBB0",
+                  borderColor: tone("#D9CBB0"),
                   borderRadius: 18,
                   borderStyle: "dashed",
                   borderWidth: 1,
                   padding: 24,
                 }}
               >
-                <T f="display" w={700} s={16} c={theme.colors.primaryDark}>
+                <T f="display" w={700} s={16} c={theme.colors.heading}>
                   No encontramos esa palabra
                 </T>
                 <T s={13} c={theme.colors.muted} style={{ marginTop: 4 }}>

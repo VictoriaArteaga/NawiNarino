@@ -1,5 +1,6 @@
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 
+import { tone } from "../constants/theme";
 /** Icon paths copied from the approved designs (24×24 grid). */
 const paths = {
   home: "M3 11l9-8 9 8v10h-6v-6H9v6H3z",
@@ -37,6 +38,7 @@ const paths = {
   logout: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",
   sliders: "M4 6h16M4 12h16M4 18h16M9 4v4M15 10v4M8 16v4",
   gear: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+  moon: "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",
   shield: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM8.5 12l2.5 2.5 4.5-5",
   warning: "M12 3l10 18H2zM12 10v5M12 18h.01",
   dots: "M12 5h.01M12 12h.01M12 19h.01",
@@ -68,7 +70,7 @@ interface IconProps {
 export function Icon({
   name,
   size = 22,
-  color = "#1F2D27",
+  color = tone("#1F2D27"),
   fill = "none",
   strokeWidth = 1.9,
 }: IconProps) {

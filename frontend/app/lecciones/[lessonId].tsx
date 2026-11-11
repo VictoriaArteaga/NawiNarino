@@ -14,7 +14,9 @@ import {
   useLessonActivities,
 } from "../../hooks/useLearning";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function LessonDetailScreen() {
+  useAppearance();
   const { lessonId: rawId } = useLocalSearchParams<{ lessonId: string }>();
   const lessonId = Number(rawId);
   const validId = Number.isInteger(lessonId) && lessonId > 0;

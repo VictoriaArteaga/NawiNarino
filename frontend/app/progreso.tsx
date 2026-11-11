@@ -12,12 +12,13 @@ import { MockBadge } from "../components/MockBadge";
 import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
 import { getLanguageTheme, sortLanguages } from "../constants/languages";
-import { theme } from "../constants/theme";
+import { theme, tone } from "../constants/theme";
 import { useLanguages } from "../hooks/useLanguages";
 import { useLanguageProgress, useProgress } from "../hooks/useLearning";
 import type { Language } from "../types/language";
 import type { ProgressSummary } from "../types/learning";
 
+import { useAppearance } from "../store/settingsStore";
 const weekdays = ["L", "M", "X", "J", "V", "S", "D"];
 
 /** Monday-based index (0–6) of a date. */
@@ -44,6 +45,7 @@ function activeDays(summary: ProgressSummary) {
 }
 
 export default function ProgressScreen() {
+  useAppearance();
   const query = useProgress();
   const languages = useLanguages();
   const headerTop = useHeaderTop();
@@ -109,24 +111,24 @@ export default function ProgressScreen() {
             <View style={{ flexDirection: "row", gap: 10, marginTop: 14 }}>
               <Stat
                 icon="tasks"
-                bg="#E4EFE6"
-                stroke="#2F6F4E"
+                bg={tone("#E4EFE6")}
+                stroke={tone("#2F6F4E")}
                 value={`${query.data.completedActivities}/${query.data.totalActivities}`}
-                valueColor="#1F5C3A"
+                valueColor={tone("#1F5C3A")}
                 label="actividades completadas"
               />
               <Stat
                 icon="star"
-                bg="#F8E4C0"
+                bg={tone("#F8E4C0")}
                 stroke="#B9701A"
                 fill="#E8A33D"
                 value={`${Math.round(query.data.averageScore)}`}
-                valueColor="#8A5200"
+                valueColor={tone("#8A5200")}
                 label="puntaje promedio"
               />
               <Stat
                 icon="flame"
-                bg="#FBE3D6"
+                bg={tone("#FBE3D6")}
                 stroke={theme.colors.accent}
                 fill={theme.colors.accent}
                 value={`${Math.max(0, query.data.totalActivities - query.data.completedActivities)}`}
@@ -140,7 +142,7 @@ export default function ProgressScreen() {
 
             {/* Per-language progress */}
             <View style={{ marginTop: 14 }}>
-              <T f="display" w={700} s={16} c={theme.colors.primaryDark} style={{ marginBottom: 8 }}>
+              <T f="display" w={700} s={16} c={theme.colors.heading} style={{ marginBottom: 8 }}>
                 Tus avances
               </T>
               <Card style={{ gap: 14, paddingVertical: 14 }}>
@@ -250,7 +252,7 @@ function WeekCard({ summary }: { summary: ProgressSummary }) {
   return (
     <Card style={{ marginTop: 14, paddingBottom: 14, paddingTop: 12 }}>
       <View style={{ alignItems: "baseline", flexDirection: "row", justifyContent: "space-between" }}>
-        <T f="display" w={700} s={16} c={theme.colors.primaryDark}>
+        <T f="display" w={700} s={16} c={theme.colors.heading}>
           Esta semana
         </T>
         <T w={700} s={12} c={theme.colors.accent}>

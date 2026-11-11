@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import type { PropsWithChildren } from "react";
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { Pressable } from "./Pressable";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BrandEmblem } from "./art/BrandEmblem";
@@ -65,8 +66,8 @@ export function AuthLayout({ title, subtitle, tab, children }: AuthLayoutProps) 
               zIndex: 2,
             })}
           >
-            <Icon name="arrowLeft" size={20} color={theme.colors.surface} strokeWidth={2.4} />
-            <T f="display" w={600} s={13.5} c={theme.colors.surface}>
+            <Icon name="arrowLeft" size={20} color="#FBF3E6" strokeWidth={2.4} />
+            <T f="display" w={600} s={13.5} c="#FBF3E6">
               Inicio
             </T>
           </Pressable>
@@ -80,7 +81,7 @@ export function AuthLayout({ title, subtitle, tab, children }: AuthLayoutProps) 
             s={34}
             lh={38}
             ls={2.5}
-            c={theme.colors.surface}
+            c="#FBF3E6"
             style={{ marginTop: 6 }}
           >
             ÑAWI

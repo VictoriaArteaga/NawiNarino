@@ -1,5 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { BackButton, CircleButton } from "../../components/CircleButton";
 import { Card } from "../../components/Card";
@@ -15,12 +16,14 @@ import { ProgressBar } from "../../components/ProgressBar";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
 import { getLanguageTheme } from "../../constants/languages";
-import { shadows, theme } from "../../constants/theme";
+import { shadows, theme, tone } from "../../constants/theme";
 import { useCulturalContent, useLanguage } from "../../hooks/useLanguage";
 import { useLanguageProgress } from "../../hooks/useLearning";
 import { useAppStore } from "../../store/appStore";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function LanguageDetailScreen() {
+  useAppearance();
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const languageId = Number(id);
@@ -97,7 +100,7 @@ export default function LanguageDetailScreen() {
             w={800}
             s={33}
             lh={36}
-            c={look.title}
+            c={tone(look.title)}
             numberOfLines={1}
           >
             {language?.name ?? "Lengua"}
@@ -117,7 +120,7 @@ export default function LanguageDetailScreen() {
             />
           ) : (
             <>
-              <T s={14} lh={21} c="#3B4540">
+              <T s={14} lh={21} c={tone("#3B4540")}>
                 Aprende palabras, frases y expresiones de esta lengua, y conoce
                 un poco más sobre su cultura y territorio.
               </T>
@@ -189,7 +192,7 @@ export default function LanguageDetailScreen() {
                 }}
                 style={({ pressed }) => ({
                   alignItems: "center",
-                  backgroundColor: look.soft,
+                  backgroundColor: tone(look.soft),
                   borderRadius: 14,
                   flexDirection: "row",
                   gap: 8,
@@ -199,30 +202,30 @@ export default function LanguageDetailScreen() {
                   opacity: pressed ? 0.88 : 1,
                 })}
               >
-                <Icon name="book" size={18} color={look.icon} />
-                <T f="display" w={600} s={15} c={look.title}>
+                <Icon name="book" size={18} color={tone(look.icon)} />
+                <T f="display" w={600} s={15} c={tone(look.title)}>
                   Ver vocabulario
                 </T>
               </Pressable>
 
               {/* About this language (real records only) */}
               <Card style={{ marginTop: 16, paddingVertical: 12 }}>
-                <T f="display" w={700} s={16} c={look.title} style={{ marginBottom: 2 }}>
+                <T f="display" w={700} s={16} c={tone(look.title)} style={{ marginBottom: 2 }}>
                   Sobre esta lengua
                 </T>
                 <InfoRow
                   icon="message"
                   title="Descripción"
                   value={languageQuery.data.shortDescription}
-                  tint={look.soft}
-                  color={look.icon}
+                  tint={tone(look.soft)}
+                  color={tone(look.icon)}
                 />
                 <InfoRow
                   icon="users"
                   title="Información cultural"
                   value={languageQuery.data.culturalDescription}
-                  tint={look.soft}
-                  color={look.icon}
+                  tint={tone(look.soft)}
+                  color={tone(look.icon)}
                 />
               </Card>
 
@@ -248,8 +251,8 @@ export default function LanguageDetailScreen() {
                   <CulturalInfoCard
                     key={content.id}
                     content={content}
-                    accent={look.icon}
-                    tint={look.soft}
+                    accent={tone(look.icon)}
+                    tint={tone(look.soft)}
                   />
                 ))
               )}

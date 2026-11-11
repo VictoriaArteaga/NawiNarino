@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../../components/Pressable";
 
 import { ActivityScene } from "../../components/art/ActivityScene";
 import { BackButton } from "../../components/CircleButton";
@@ -10,7 +11,7 @@ import { Icon } from "../../components/Icon";
 import { Loading } from "../../components/Loading";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
-import { shadows, theme } from "../../constants/theme";
+import { shadows, theme, tone } from "../../constants/theme";
 import {
   useActivity,
   useLesson,
@@ -18,9 +19,11 @@ import {
   useSubmitActivity,
 } from "../../hooks/useLearning";
 
+import { useAppearance } from "../../store/settingsStore";
 const letters = ["A", "B", "C", "D", "E", "F"];
 
 export default function ActivityScreen() {
+  useAppearance();
   const router = useRouter();
   const { activityId: rawId } = useLocalSearchParams<{ activityId: string }>();
   const activityId = Number(rawId);
@@ -76,8 +79,8 @@ export default function ActivityScreen() {
         }}
       >
         <View style={{ alignItems: "center", flexDirection: "row", gap: 6 }}>
-          <BackButton fallback={fallback} background="transparent" />
-          <T accessibilityRole="header" f="display" w={700} s={22} c={theme.colors.primaryDark}>
+          <BackButton fallback={fallback} color={theme.colors.heading} background="transparent" />
+          <T accessibilityRole="header" f="display" w={700} s={22} c={theme.colors.heading}>
             Aprender
           </T>
         </View>
@@ -166,8 +169,8 @@ export default function ActivityScreen() {
                 paddingRight: 10,
               }}
             >
-              <Icon name="book" size={14} color="#1F5C3A" strokeWidth={2.2} />
-              <T f="display" w={600} s={12.5} c="#1F5C3A" numberOfLines={1}>
+              <Icon name="book" size={14} color={tone("#1F5C3A")} strokeWidth={2.2} />
+              <T f="display" w={600} s={12.5} c={tone("#1F5C3A")} numberOfLines={1}>
                 {lesson.data?.title ?? activity.data.title}
               </T>
             </View>
@@ -207,8 +210,8 @@ export default function ActivityScreen() {
               const on = selected === option.id;
               const done = Boolean(result);
               const border = done && on ? (result?.isCorrect ? theme.colors.primary : "#B3261E") : on ? theme.colors.accent : theme.colors.border;
-              const bg = done && on ? (result?.isCorrect ? theme.colors.softGreen : theme.colors.softDanger) : on ? "#FDF0E6" : theme.colors.surface;
-              const badge = done && on ? border : on ? theme.colors.accent : "#F1E6D0";
+              const bg = done && on ? (result?.isCorrect ? theme.colors.softGreen : theme.colors.softDanger) : on ? tone("#FDF0E6") : theme.colors.surface;
+              const badge = done && on ? border : on ? theme.colors.accent : tone("#F1E6D0");
               return (
                 <Pressable
                   key={option.id}
@@ -280,13 +283,13 @@ export default function ActivityScreen() {
                 padding: 14,
               }}
             >
-              <T f="display" w={700} s={15} c={result.isCorrect ? "#1F5C3A" : "#9A1C14"}>
+              <T f="display" w={700} s={15} c={result.isCorrect ? tone("#1F5C3A") : tone("#9A1C14")}>
                 {result.isCorrect ? "¡Muy bien! Respuesta correcta." : "Casi. Sigue practicando."}
               </T>
-              <T w={700} s={13} lh={19} c={result.isCorrect ? "#1F5C3A" : "#9A1C14"} style={{ marginTop: 2 }}>
+              <T w={700} s={13} lh={19} c={result.isCorrect ? tone("#1F5C3A") : tone("#9A1C14")} style={{ marginTop: 2 }}>
                 Puntaje {result.score}/100 · Intento {result.attempts}
               </T>
-              <T s={13} lh={19} c={result.isCorrect ? "#1F5C3A" : "#9A1C14"} style={{ marginTop: 2 }}>
+              <T s={13} lh={19} c={result.isCorrect ? tone("#1F5C3A") : tone("#9A1C14")} style={{ marginTop: 2 }}>
                 {result.feedback}
               </T>
             </View>
@@ -327,7 +330,7 @@ export default function ActivityScreen() {
                 onPress={() => setStep((s) => Math.max(0, s - 1))}
                 style={{ alignItems: "center", height: 44, justifyContent: "center", marginTop: 4 }}
               >
-                <T f="display" w={600} s={14} c={theme.colors.primaryDark}>
+                <T f="display" w={600} s={14} c={theme.colors.heading}>
                   Pregunta anterior
                 </T>
               </Pressable>

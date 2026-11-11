@@ -1,6 +1,7 @@
 import Svg, { Circle, Defs, G, LinearGradient, Path, Rect, Stop } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
 
+import { theme } from "../../constants/theme";
 /* Generated from the approved Ñawi-Nariño design artboards. */
 export function ExploreHero(props: SvgProps) {
   return (
@@ -27,7 +28,7 @@ export function ExploreHero(props: SvgProps) {
       <Circle cx="30" cy="126" r="5" fill="#2F6F4E" />
       <Circle cx="124" cy="112" r="5" fill="#E8A33D" />
       <Circle cx="214" cy="100" r="5" fill="#2E6FA8" />
-      <Path d="M0 136 Q70 124 140 134 T280 132 T390 126 V150 H0Z" fill="#F5EDE0" />
+      <Path d="M0 136 Q70 124 140 134 T280 132 T390 126 V150 H0Z" fill={theme.colors.canvas} />
     </Svg>
   );
 }

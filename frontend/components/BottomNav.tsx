@@ -1,8 +1,9 @@
 import { useRouter, type Href } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "./Pressable";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { theme } from "../constants/theme";
+import { theme, tone } from "../constants/theme";
 import { Icon, type IconName } from "./Icon";
 import { T } from "./T";
 
@@ -52,7 +53,7 @@ export function BottomNav({
     >
       {items.map((item) => {
         const isActive = item.key === active;
-        const color = isActive ? activeColor : "#4A4740";
+        const color = isActive ? activeColor : tone("#4A4740");
         return (
           <Pressable
             key={item.key}

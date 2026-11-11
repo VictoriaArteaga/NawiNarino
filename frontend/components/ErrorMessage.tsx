@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Button } from "./Button";
 import { Card } from "./Card";
 import { T } from "./T";
-import { theme } from "../constants/theme";
+import { theme, tone } from "../constants/theme";
 
 interface ErrorMessageProps {
   message: string;
@@ -15,7 +15,7 @@ export function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
     <Card
       style={{
         backgroundColor: theme.colors.softDanger,
-        borderColor: "#F3D3CD",
+        borderColor: tone("#F3D3CD"),
       }}
     >
       <T f="display" w={800} s={18} c={theme.colors.danger}>

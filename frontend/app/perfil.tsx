@@ -1,9 +1,11 @@
 import { useRouter, type Href } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
+import { Pressable } from "../components/Pressable";
 
 import { ProfileHero } from "../components/art/ProfileHero";
 import { Avatar } from "../components/Avatar";
 import { BackButton, CircleButton } from "../components/CircleButton";
+import { GradientBox } from "../components/GradientBox";
 import { Hero, useHeaderTop } from "../components/Hero";
 import { Icon, type IconName } from "../components/Icon";
 import { PatternBand } from "../components/PatternBand";
@@ -11,7 +13,7 @@ import { Portrait } from "../components/Portrait";
 import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
 import { getLanguageTheme, sortLanguages } from "../constants/languages";
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import { useLogout } from "../hooks/useAuth";
 import { useLanguages } from "../hooks/useLanguages";
 import { useLanguageProgress, useProgress } from "../hooks/useLearning";
@@ -19,6 +21,7 @@ import { useAppStore } from "../store/appStore";
 import { useAuthStore } from "../store/authStore";
 import type { Language } from "../types/language";
 
+import { useAppearance } from "../store/settingsStore";
 interface MenuItem {
   label: string;
   icon: IconName;
@@ -31,6 +34,7 @@ interface MenuItem {
 }
 
 export default function ProfileScreen() {
+  useAppearance();
   const router = useRouter();
   const headerTop = useHeaderTop();
   const languages = useLanguages();
@@ -40,20 +44,19 @@ export default function ProfileScreen() {
   const logout = useLogout();
 
   const learnItems: MenuItem[] = [
-    { label: "Mi progreso", icon: "chart", bg: "#E4EFE6", color: "#2F6F4E", href: "/progreso" },
+    { label: "Mi progreso", icon: "chart", bg: tone("#E4EFE6"), color: "#2F6F4E", href: "/progreso" },
     {
       label: "Lenguas guardadas",
       icon: "bookmark",
-      bg: "#E6DDF3",
-      color: "#6B4A9E",
+      bg: tone("#E6DDF3"),
+      color: tone("#6B4A9E"),
       href: "/lenguas",
       badge: savedCount > 0 ? String(savedCount) : undefined,
     },
-    { label: "Mis actividades", icon: "tasks", bg: "#FBE3D6", color: "#C84A1F", href: "/progreso" },
   ];
   const accountItems: MenuItem[] = [
-    { label: "Ajustes", icon: "sliders", bg: "#DCEAF6", color: "#1D4A75", href: "/ajustes" },
-    { label: "Cerrar sesión", icon: "logout", bg: "#FBE4E1", color: "#A3281C", danger: true, action: "logout" },
+    { label: "Ajustes", icon: "gear", bg: tone("#DCEAF6"), color: "#2E6FA8", href: "/ajustes" },
+    { label: "Cerrar sesión", icon: "logout", bg: tone("#FBE4E1"), color: "#C0392B", danger: true, action: "logout" },
   ];
 
   return (
@@ -110,8 +113,8 @@ export default function ProfileScreen() {
         </T>
         <View style={{ alignItems: "center", flexDirection: "row", gap: 8, marginTop: 12 }}>
           <Chip bg={theme.colors.gold} color="#2B1D05" icon="star" label={`${Math.round(progress.data?.percentage ?? 0)}% total`} />
-          <Chip bg="#FBE3D6" color={theme.colors.accent} icon="flame" label={`${progress.data?.completedActivities ?? 0} actividades`} />
-          <Chip bg="#E4EFE6" color="#1F5C3A" label={`${savedCount} guardadas`} />
+          <Chip bg={tone("#FBE3D6")} color={theme.colors.accent} icon="flame" label={`${progress.data?.completedActivities ?? 0} actividades`} />
+          <Chip bg={tone("#E4EFE6")} color={tone("#1F5C3A")} label={`${savedCount} guardadas`} />
         </View>
       </View>
 
@@ -128,7 +131,7 @@ export default function ProfileScreen() {
           }}
         >
           <View style={{ alignItems: "baseline", flexDirection: "row", justifyContent: "space-between" }}>
-            <T f="display" w={700} s={16} c={theme.colors.primaryDark}>
+            <T f="display" w={700} s={16} c={theme.colors.heading}>
               Mis lenguas
             </T>
             <Pressable accessibilityRole="link" onPress={() => router.push("/lenguas")} hitSlop={10}>
@@ -252,63 +255,79 @@ function MenuCard({
         overflow: "hidden",
       }}
     >
-      {items.map((item, index) => {
-        const disabled = !item.href && !item.action;
-        const textColor = item.danger ? theme.colors.danger : theme.colors.ink;
-        return (
-          <Pressable
-            key={item.label}
-            accessibilityRole={disabled ? "text" : "link"}
-            accessibilityState={{ disabled }}
-            disabled={disabled}
-            onPress={() => {
-              if (item.action) onAction?.(item.action);
-              else if (item.href) onOpen(item.href);
-            }}
-            style={({ pressed }) => ({
+      {items.map((item, index) => (
+        <MenuRow
+          key={item.label}
+          item={item}
+          last={index === items.length - 1}
+          onPress={() => {
+            if (item.action) onAction?.(item.action);
+            else if (item.href) onOpen(item.href);
+          }}
+        />
+      ))}
+    </View>
+  );
+}
+
+/**
+ * Fila del menú: mosaico de color con el ícono a la izquierda, el texto a su lado y una flecha a la derecha.
+ * La disposición usa vistas con márgenes explícitos (sin `gap` ni estilos en función) para que se vea igual
+ * en todos los celulares.
+ */
+function MenuRow({ item, last, onPress }: { item: MenuItem; last: boolean; onPress: () => void }) {
+  return (
+    <Pressable accessibilityLabel={item.label} accessibilityRole="button" onPress={onPress}>
+      {({ pressed }) => (
+        <View style={{ opacity: pressed ? 0.8 : 1 }}>
+          <View
+            style={{
               alignItems: "center",
-              borderBottomColor: "#F0E6D3",
-              borderBottomWidth: index === items.length - 1 ? 0 : 1,
               flexDirection: "row",
-              gap: 12,
-              height: 48,
-              opacity: pressed ? 0.85 : 1,
+              minHeight: 64,
               paddingHorizontal: 14,
-            })}
+              paddingVertical: 10,
+            }}
           >
-            <View
+            <GradientBox
+              colors={[item.color, item.color]}
+              direction="br"
               style={{
                 alignItems: "center",
-                backgroundColor: item.bg,
-                borderRadius: 16,
-                height: 32,
+                borderRadius: 13,
+                height: 42,
                 justifyContent: "center",
-                width: 32,
+                marginRight: 14,
+                width: 42,
               }}
             >
-              <Icon name={item.icon} size={18} color={item.color} />
+              <Icon name={item.icon} size={22} color="#FFFFFF" strokeWidth={2} />
+            </GradientBox>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <T f="display" w={700} s={15.5} c={item.danger ? theme.colors.danger : theme.colors.ink} numberOfLines={1}>
+                {item.label}
+              </T>
             </View>
-            <T w={600} s={14.5} c={textColor} style={{ flex: 1 }}>
-              {item.label}
-            </T>
             {item.badge ? (
               <View
                 style={{
-                  backgroundColor: disabled ? theme.colors.track : theme.colors.purpleSoft,
+                  backgroundColor: theme.colors.purpleSoft,
                   borderRadius: 10,
-                  paddingHorizontal: 8,
+                  marginRight: 8,
+                  paddingHorizontal: 9,
                   paddingVertical: 2,
                 }}
               >
-                <T w={700} s={11} c={disabled ? theme.colors.muted : theme.colors.purpleDeep}>
+                <T w={700} s={11.5} c={theme.colors.purpleDeep}>
                   {item.badge}
                 </T>
               </View>
             ) : null}
-            {!disabled ? <Icon name="chevronRight" size={18} color="#8A8472" strokeWidth={2} /> : null}
-          </Pressable>
-        );
-      })}
-    </View>
+            <Icon name="chevronRight" size={20} color={tone("#8A8472")} strokeWidth={2.2} />
+          </View>
+          {!last ? <View style={{ backgroundColor: theme.colors.border, height: 1, marginLeft: 70 }} /> : null}
+        </View>
+      )}
+    </Pressable>
   );
 }

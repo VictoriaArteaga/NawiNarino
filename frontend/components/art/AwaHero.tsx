@@ -1,6 +1,7 @@
 import Svg, { Circle, Defs, Ellipse, G, LinearGradient, Path, RadialGradient, Rect, Stop, Use } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
 
+import { theme } from "../../constants/theme";
 /* Generated from the approved Ñawi-Nariño design artboards. */
 export function AwaHero(props: SvgProps) {
   return (
@@ -71,7 +72,7 @@ export function AwaHero(props: SvgProps) {
         <Path d="M4 42 l10 18 l-18 -8Z" fill="#1B1B1B" />
         <Path d="M-6 42 l-2 10 l8 -4Z" fill="#C84A1F" />
       </G>
-      <Path d="M0 226 Q70 214 140 224 T280 222 T390 214 V240 H0Z" fill="#F5EDE0" />
+      <Path d="M0 226 Q70 214 140 224 T280 222 T390 214 V240 H0Z" fill={theme.colors.canvas} />
     </Svg>
   );
 }

@@ -7,7 +7,9 @@ import { T } from "../../components/T";
 import { theme } from "../../constants/theme";
 import { useSources } from "../../hooks/useHeritage";
 
+import { useAppearance } from "../../store/settingsStore";
 export default function SourcesScreen() {
+  useAppearance();
   const query = useSources();
 
   return (

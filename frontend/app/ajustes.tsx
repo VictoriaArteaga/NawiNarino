@@ -1,20 +1,21 @@
 import Constants from "expo-constants";
 import { useRouter } from "expo-router";
 import { useState, type PropsWithChildren } from "react";
-import { Pressable, View } from "react-native";
+import { Switch, View } from "react-native";
+import { Pressable } from "../components/Pressable";
 
 import { Avatar } from "../components/Avatar";
 import { Button } from "../components/Button";
 import { Icon, type IconName } from "../components/Icon";
-import { PasswordStrength } from "../components/PasswordStrength";
 import { PlainScreen } from "../components/PlainScreen";
 import { T } from "../components/T";
 import { TextField } from "../components/TextField";
-import { theme } from "../constants/theme";
-import { useChangePassword, useLogout, useUpdateProfile } from "../hooks/useAuth";
+import { theme, tone } from "../constants/theme";
+import { useLogout, useUpdateProfile } from "../hooks/useAuth";
 import { useAuthStore } from "../store/authStore";
-import { passwordProblem } from "../utils/validation";
+import { useSettingsStore } from "../store/settingsStore";
 
+import { useAppearance } from "../store/settingsStore";
 function SectionCard({ title, children }: PropsWithChildren<{ title: string }>) {
   return (
     <View
@@ -29,7 +30,7 @@ function SectionCard({ title, children }: PropsWithChildren<{ title: string }>) 
         paddingTop: 14,
       }}
     >
-      <T f="display" w={700} s={16} c={theme.colors.primaryDark}>
+      <T f="display" w={700} s={16} c={theme.colors.heading}>
         {title}
       </T>
       {children}
@@ -53,8 +54,8 @@ function Message({ kind, text }: { kind: "ok" | "error"; text: string }) {
         padding: 12,
       }}
     >
-      <Icon name={ok ? "check" : "warning"} size={18} color={ok ? "#1F5C3A" : theme.colors.danger} strokeWidth={2.2} />
-      <T w={600} s={13.5} c={ok ? "#1F5C3A" : theme.colors.danger} style={{ flex: 1 }}>
+      <Icon name={ok ? "check" : "warning"} size={18} color={ok ? tone("#1F5C3A") : theme.colors.danger} strokeWidth={2.2} />
+      <T w={600} s={13.5} c={ok ? tone("#1F5C3A") : theme.colors.danger} style={{ flex: 1 }}>
         {text}
       </T>
     </View>
@@ -131,86 +132,99 @@ function NameCard() {
   );
 }
 
-function PasswordCard() {
-  const change = useChangePassword();
-  const [current, setCurrent] = useState("");
-  const [next, setNext] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [errors, setErrors] = useState<{ current?: string; next?: string; confirm?: string }>({});
-  const [saved, setSaved] = useState(false);
+/** Idioma y modo oscuro: se guardan en el dispositivo y se aplican al instante en toda la app. */
+function AppearanceCard() {
+  const language = useSettingsStore((st) => st.language);
+  const dark = useSettingsStore((st) => st.dark);
+  const setLanguage = useSettingsStore((st) => st.setLanguage);
+  const setDark = useSettingsStore((st) => st.setDark);
 
-  function submit() {
-    const found: typeof errors = {};
-    if (!current) found.current = "Escribe tu contraseña actual";
-    const problem = passwordProblem(next);
-    if (problem) found.next = problem;
-    if (confirm !== next) found.confirm = "Las contraseñas no coinciden";
-    setErrors(found);
-    setSaved(false);
-    if (Object.keys(found).length > 0) return;
-    change.mutate(
-      { currentPassword: current, newPassword: next },
-      {
-        onSuccess: () => {
-          setCurrent("");
-          setNext("");
-          setConfirm("");
-          setSaved(true);
-        },
-      },
-    );
-  }
-
-  const busy = change.isPending;
   return (
-    <SectionCard title="Contraseña">
-      <TextField
-        autoCapitalize="none"
-        autoComplete="current-password"
-        editable={!busy}
-        error={errors.current}
-        label="Contraseña actual"
-        onChangeText={setCurrent}
-        returnKeyType="next"
-        secure
-        textContentType="password"
-        value={current}
-      />
-      <TextField
-        autoCapitalize="none"
-        autoComplete="new-password"
-        editable={!busy}
-        error={errors.next}
-        hint="Mínimo 8 caracteres, con letras y números."
-        label="Contraseña nueva"
-        onChangeText={setNext}
-        returnKeyType="next"
-        secure
-        textContentType="newPassword"
-        value={next}
-      />
-      <PasswordStrength password={next} />
-      <TextField
-        autoCapitalize="none"
-        autoComplete="new-password"
-        editable={!busy}
-        error={errors.confirm}
-        label="Confirmar contraseña nueva"
-        onChangeText={setConfirm}
-        onSubmitEditing={submit}
-        returnKeyType="go"
-        secure
-        textContentType="newPassword"
-        value={confirm}
-      />
-      {change.isError ? <Message kind="error" text={errorText(change.error, "No pudimos cambiar la contraseña.")} /> : null}
-      {saved ? <Message kind="ok" text="Contraseña actualizada." /> : null}
-      <Button
-        loading={busy}
-        onPress={submit}
-        style={{ marginTop: theme.spacing.md + 2 }}
-        title={busy ? "Guardando…" : "Cambiar contraseña"}
-      />
+    <SectionCard title="Apariencia e idioma">
+      <View style={{ marginTop: 12 }}>
+        <T f="display" w={700} s={12} ls={0.6} c={theme.colors.heading}>
+          IDIOMA
+        </T>
+        <View
+          style={{
+            backgroundColor: theme.colors.track,
+            borderRadius: 14,
+            flexDirection: "row",
+            marginTop: 6,
+            padding: 4,
+          }}
+        >
+          {(["es", "en"] as const).map((code, index) => {
+            const active = language === code;
+            return (
+              <Pressable
+                key={code}
+                accessibilityLabel={code === "es" ? "Español" : "English"}
+                accessibilityRole="button"
+                accessibilityState={{ selected: active }}
+                onPress={() => setLanguage(code)}
+                style={{
+                  alignItems: "center",
+                  backgroundColor: active ? theme.colors.primary : "transparent",
+                  borderRadius: 11,
+                  flex: 1,
+                  justifyContent: "center",
+                  marginLeft: index === 0 ? 0 : 4,
+                  minHeight: 44,
+                }}
+              >
+                <T f="display" w={700} s={14.5} c={active ? "#FFFFFF" : theme.colors.body}>
+                  {code === "es" ? "Español" : "English"}
+                </T>
+              </Pressable>
+            );
+          })}
+        </View>
+        <T s={12.5} lh={17} c={theme.colors.muted} style={{ marginTop: 6 }}>
+          Elige el idioma de los menús y los textos.
+        </T>
+      </View>
+
+      <View
+        style={{
+          alignItems: "center",
+          borderTopColor: theme.colors.border,
+          borderTopWidth: 1,
+          flexDirection: "row",
+          marginTop: 14,
+          paddingTop: 14,
+        }}
+      >
+        <View
+          style={{
+            alignItems: "center",
+            backgroundColor: theme.colors.purpleSoft,
+            borderRadius: 13,
+            height: 42,
+            justifyContent: "center",
+            marginRight: 14,
+            width: 42,
+          }}
+        >
+          <Icon name="moon" size={22} color={theme.colors.purple} strokeWidth={2} />
+        </View>
+        <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
+          <T f="display" w={700} s={15.5}>
+            Modo oscuro
+          </T>
+          <T s={12.5} lh={17} c={theme.colors.muted}>
+            Cambia los colores de toda la aplicación.
+          </T>
+        </View>
+        <Switch
+          accessibilityLabel="Modo oscuro"
+          ios_backgroundColor={theme.colors.track}
+          onValueChange={setDark}
+          thumbColor="#FFFFFF"
+          trackColor={{ false: theme.colors.track, true: theme.colors.primary }}
+          value={dark}
+        />
+      </View>
     </SectionCard>
   );
 }
@@ -235,7 +249,7 @@ function Row({
       onPress={onPress}
       style={({ pressed }) => ({
         alignItems: "center",
-        borderBottomColor: "#F0E6D3",
+        borderBottomColor: tone("#F0E6D3"),
         borderBottomWidth: last ? 0 : 1,
         flexDirection: "row",
         gap: 12,
@@ -246,7 +260,7 @@ function Row({
       <View
         style={{
           alignItems: "center",
-          backgroundColor: "#E4EFE6",
+          backgroundColor: tone("#E4EFE6"),
           borderRadius: 16,
           height: 32,
           justifyContent: "center",
@@ -263,12 +277,13 @@ function Row({
           {value}
         </T>
       ) : null}
-      {onPress ? <Icon name="chevronRight" size={18} color="#8A8472" strokeWidth={2} /> : null}
+      {onPress ? <Icon name="chevronRight" size={18} color={tone("#8A8472")} strokeWidth={2} /> : null}
     </Pressable>
   );
 }
 
 export default function SettingsScreen() {
+  useAppearance();
   const router = useRouter();
   const logout = useLogout();
   const version = Constants.expoConfig?.version ?? "1.0.0";
@@ -276,7 +291,7 @@ export default function SettingsScreen() {
   return (
     <PlainScreen backHref="/perfil" title="Ajustes" subtitle="Tu cuenta y la aplicación.">
       <NameCard />
-      <PasswordCard />
+      <AppearanceCard />
 
       <SectionCard title="La aplicación">
         <View style={{ marginTop: 4 }}>

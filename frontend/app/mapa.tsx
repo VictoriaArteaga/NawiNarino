@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
+import { Pressable } from "../components/Pressable";
 
 import { NarinoMap } from "../components/art/NarinoMap";
 import { SceneArt } from "../components/art/SceneArt";
@@ -20,10 +21,11 @@ import { Portrait } from "../components/Portrait";
 import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
 import { getLanguageTheme } from "../constants/languages";
-import { shadows, theme } from "../constants/theme";
+import { shadows, theme, tone } from "../constants/theme";
 import { useTerritories } from "../hooks/useTerritories";
 import type { Territory } from "../types/territory";
 
+import { useAppearance } from "../store/settingsStore";
 /** Ilustración que representa a cada pueblo. */
 const peopleScene: Record<PeopleKey, { scene: SceneKey; alt: string }> = {
   awa: { scene: "selva", alt: "Ilustración de la selva húmeda del pueblo Awá" },
@@ -48,6 +50,7 @@ interface Entry {
 }
 
 export default function MapScreen() {
+  useAppearance();
   const router = useRouter();
   const query = useTerritories();
   const headerTop = useHeaderTop();
@@ -89,7 +92,7 @@ export default function MapScreen() {
         <View
           style={[
             {
-              backgroundColor: "rgba(251,247,238,0.96)",
+              backgroundColor: tone("rgba(251,247,238,0.96)"),
               borderColor: theme.colors.track,
               borderRadius: 14,
               borderWidth: 1,
@@ -177,7 +180,7 @@ export default function MapScreen() {
                     onPress={() => setSelectedId(territory.id)}
                     style={{
                       alignItems: "center",
-                      backgroundColor: active ? zone.color : "#FFFFFF",
+                      backgroundColor: active ? zone.color : tone("#FFFFFF"),
                       borderColor: zone.color,
                       borderRadius: 18,
                       borderWidth: 1.5,
@@ -220,7 +223,7 @@ export default function MapScreen() {
             <T f="display" w={700} s={17} style={{ marginTop: portrait ? 6 : 10 }}>
               {selected.territory.name}
             </T>
-            <T s={13} lh={18} c="#4B554F" style={{ marginTop: 2 }}>
+            <T s={13} lh={18} c={tone("#4B554F")} style={{ marginTop: 2 }}>
               {selected.territory.region}. {selected.territory.description}
             </T>
             <Pressable
