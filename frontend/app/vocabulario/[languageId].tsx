@@ -127,9 +127,7 @@ export default function VocabularyScreen() {
           <Pressable accessibilityLabel="Borrar búsqueda" onPress={() => setSearch("")}>
             <Icon name="close" size={20} color="#8A8472" />
           </Pressable>
-        ) : (
-          <Icon name="mic" size={20} color="#8A8472" />
-        )}
+        ) : null}
       </View>
 
       {/* Categories */}

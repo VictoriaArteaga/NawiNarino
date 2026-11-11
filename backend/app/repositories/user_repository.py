@@ -14,6 +14,12 @@ class UserRepository:
     def get_by_email(self, email: str) -> User | None:
         return self.session.scalar(select(User).where(User.email == email))
 
+    def save(self, user: User) -> User:
+        self.session.add(user)
+        self.session.commit()
+        self.session.refresh(user)
+        return user
+
     def add(self, user: User) -> User:
         self.session.add(user)
         self.session.commit()

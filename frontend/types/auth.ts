@@ -16,6 +16,11 @@ export interface LoginPayload {
   password: string;
 }
 
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface RegisterPayload extends LoginPayload {
   name: string;
 }

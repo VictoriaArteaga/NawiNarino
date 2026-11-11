@@ -3,24 +3,49 @@ import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 
 import { NarinoMap } from "../components/art/NarinoMap";
-import { TerritoryThumb } from "../components/art/TerritoryThumb";
+import { SceneArt } from "../components/art/SceneArt";
+import type { SceneKey } from "../components/art/placeScenes";
+import {
+  peopleByKey,
+  peopleForTerritory,
+  peopleZones,
+  type PeopleKey,
+} from "../components/art/peopleZones";
 import { BackButton } from "../components/CircleButton";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { useHeaderTop } from "../components/Hero";
 import { Icon } from "../components/Icon";
 import { Loading } from "../components/Loading";
-import { MockBadge } from "../components/MockBadge";
+import { Portrait } from "../components/Portrait";
 import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
+import { getLanguageTheme } from "../constants/languages";
 import { shadows, theme } from "../constants/theme";
 import { useTerritories } from "../hooks/useTerritories";
+import type { Territory } from "../types/territory";
 
-const legend = [
-  { name: "Awá Pit", color: "#3F8A55" },
-  { name: "Inga", color: "#EDB23C" },
-  { name: "Nasa Yuwe", color: "#4B8FC7" },
-  { name: "Cofán", color: "#8B66BE" },
-];
+/** Ilustración que representa a cada pueblo. */
+const peopleScene: Record<PeopleKey, { scene: SceneKey; alt: string }> = {
+  awa: { scene: "selva", alt: "Ilustración de la selva húmeda del pueblo Awá" },
+  pasto: { scene: "cumbal", alt: "Ilustración del volcán Cumbal en el territorio del pueblo Pasto" },
+  quillacinga: { scene: "encano", alt: "Ilustración de la laguna y el bosque del pueblo Quillacinga" },
+  inga: { scene: "valle", alt: "Ilustración del valle de Sibundoy del pueblo Inga" },
+  aingae: { scene: "rio", alt: "Ilustración de un río de la Amazonía, territorio del pueblo A'ingae" },
+  nasa: { scene: "tierradentro", alt: "Ilustración de las montañas de Tierradentro, territorio del pueblo Nasa" },
+};
+
+/** Nombre del tema de retrato (solo existe para las cuatro lenguas ilustradas). */
+const portraitName: Partial<Record<PeopleKey, string>> = {
+  awa: "Awá Pit",
+  inga: "Inga",
+  aingae: "A'ingae",
+  nasa: "Nasa Yuwe",
+};
+
+interface Entry {
+  territory: Territory;
+  key: PeopleKey;
+}
 
 export default function MapScreen() {
   const router = useRouter();
@@ -28,13 +53,21 @@ export default function MapScreen() {
   const headerTop = useHeaderTop();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const territories = query.data ?? [];
-  const selected = territories.find((t) => t.id === selectedId) ?? territories[0];
+  // Cada territorio se asocia con su pueblo y se ordena como la leyenda.
+  const order = peopleZones.map((p) => p.key);
+  const entries: Entry[] = (query.data ?? [])
+    .map((territory) => ({ territory, key: peopleForTerritory(territory.name) }))
+    .filter((entry): entry is Entry => entry.key !== undefined)
+    .sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
+
+  const selected = entries.find((e) => e.territory.id === selectedId) ?? entries[0];
+  const people = selected ? peopleByKey(selected.key) : undefined;
+  const portrait = selected ? portraitName[selected.key] : undefined;
 
   return (
     <ScreenLayout nav="mapa" bottomSpace={12}>
       <View style={{ backgroundColor: "#EFE6CF", height: 520 }}>
-        <NarinoMap />
+        <NarinoMap selected={selected?.key} />
 
         <View
           style={{
@@ -52,7 +85,7 @@ export default function MapScreen() {
           </T>
         </View>
 
-        {/* Legend */}
+        {/* Leyenda: un color por pueblo (borde punteado = pueblo sin lengua propia en uso) */}
         <View
           style={[
             {
@@ -61,52 +94,48 @@ export default function MapScreen() {
               borderRadius: 14,
               borderWidth: 1,
               bottom: 22,
-              gap: 6,
+              columnGap: 14,
+              flexDirection: "row",
+              flexWrap: "wrap",
               left: 14,
               paddingHorizontal: 12,
               paddingVertical: 9,
               position: "absolute",
+              rowGap: 6,
+              width: 236,
             },
             shadows.soft,
           ]}
         >
-          {legend.map((item) => (
-            <View key={item.name} style={{ alignItems: "center", flexDirection: "row", gap: 8 }}>
-              <View style={{ backgroundColor: item.color, borderRadius: 6, height: 12, width: 12 }} />
+          {peopleZones.map((item) => (
+            <View key={item.key} style={{ alignItems: "center", flexDirection: "row", gap: 8, width: 96 }}>
+              <View
+                style={{
+                  backgroundColor: item.color,
+                  borderColor: item.livingLanguage ? item.color : "#7A6A4F",
+                  borderRadius: 6,
+                  borderStyle: item.livingLanguage ? "solid" : "dashed",
+                  borderWidth: 1.5,
+                  height: 12,
+                  opacity: item.livingLanguage ? 1 : 0.8,
+                  width: 12,
+                }}
+              />
               <T w={700} s={12.5}>
-                {item.name}
+                {item.label}
               </T>
             </View>
           ))}
         </View>
-
-        <View
-          style={{
-            backgroundColor: "rgba(251,247,238,0.96)",
-            borderColor: theme.colors.track,
-            borderRadius: 12,
-            borderWidth: 1,
-            maxWidth: 170,
-            paddingHorizontal: 10,
-            paddingVertical: 6,
-            position: "absolute",
-            right: 14,
-            top: headerTop + 44,
-          }}
-        >
-          <T w={700} s={11} lh={14} c={theme.colors.muted}>
-            Esquema ilustrativo del territorio.
-          </T>
-        </View>
       </View>
 
-      {/* Selected territory */}
+      {/* Pueblo seleccionado */}
       <View style={{ marginTop: -6, paddingHorizontal: 16 }}>
         {query.isPending ? (
           <Loading label="Cargando territorios..." />
         ) : query.isError ? (
           <ErrorMessage message={query.error.message} onRetry={() => void query.refetch()} />
-        ) : !selected ? (
+        ) : !selected || !people ? (
           <View
             style={{
               backgroundColor: theme.colors.surface,
@@ -131,57 +160,75 @@ export default function MapScreen() {
               shadows.float,
             ]}
           >
-            {territories.length > 1 ? (
-              <ScrollView
-                contentContainerStyle={{ gap: 8, paddingBottom: 10 }}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-              >
-                {territories.map((territory) => {
-                  const active = territory.id === selected.id;
-                  return (
-                    <Pressable
-                      key={territory.id}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected: active }}
-                      onPress={() => setSelectedId(territory.id)}
-                      style={{
-                        alignItems: "center",
-                        backgroundColor: active ? theme.colors.primary : "#FFFFFF",
-                        borderColor: active ? theme.colors.primary : theme.colors.border,
-                        borderRadius: 18,
-                        borderWidth: 1.5,
-                        flexDirection: "row",
-                        gap: 6,
-                        height: 36,
-                        paddingHorizontal: 12,
-                      }}
-                    >
-                      <Icon name="pin" size={14} color={active ? "#FFFFFF" : theme.colors.primary} />
-                      <T f="display" w={600} s={13} c={active ? "#FFFFFF" : theme.colors.ink}>
-                        {territory.name}
-                      </T>
-                    </Pressable>
-                  );
-                })}
-              </ScrollView>
-            ) : null}
-            <View style={{ borderRadius: 12, height: 84, overflow: "hidden" }}>
-              <TerritoryThumb preserveAspectRatio="xMidYMid slice" />
+            <ScrollView
+              contentContainerStyle={{ gap: 8, paddingBottom: 10 }}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            >
+              {entries.map(({ territory, key }) => {
+                const active = territory.id === selected.territory.id;
+                const zone = peopleByKey(key);
+                return (
+                  <Pressable
+                    key={territory.id}
+                    accessibilityLabel={`Ver el territorio de ${zone.label}`}
+                    accessibilityRole="button"
+                    accessibilityState={{ selected: active }}
+                    onPress={() => setSelectedId(territory.id)}
+                    style={{
+                      alignItems: "center",
+                      backgroundColor: active ? zone.color : "#FFFFFF",
+                      borderColor: zone.color,
+                      borderRadius: 18,
+                      borderWidth: 1.5,
+                      flexDirection: "row",
+                      gap: 6,
+                      height: 36,
+                      paddingHorizontal: 12,
+                    }}
+                  >
+                    {!active ? (
+                      <View style={{ backgroundColor: zone.color, borderRadius: 5, height: 10, width: 10 }} />
+                    ) : null}
+                    <T f="display" w={600} s={13} c={active ? "#FFFFFF" : theme.colors.ink}>
+                      {zone.label}
+                    </T>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+
+            {/* Imagen representativa del pueblo */}
+            <View style={{ borderRadius: 12, height: 104, overflow: "hidden" }}>
+              <SceneArt
+                scene={peopleScene[selected.key].scene}
+                accessibilityLabel={peopleScene[selected.key].alt}
+              />
             </View>
-            <T f="display" w={700} s={17} style={{ marginTop: 10 }}>
-              {selected.name}
+            {portrait ? (
+              <View style={{ marginLeft: 10, marginTop: -30 }}>
+                <Portrait
+                  language={getLanguageTheme(portrait)}
+                  size={60}
+                  ring={3}
+                  ringColor="#FFFFFF"
+                  accessibilityLabel={`Retrato del pueblo ${people.label}`}
+                />
+              </View>
+            ) : null}
+
+            <T f="display" w={700} s={17} style={{ marginTop: portrait ? 6 : 10 }}>
+              {selected.territory.name}
             </T>
             <T s={13} lh={18} c="#4B554F" style={{ marginTop: 2 }}>
-              {selected.region}. {selected.description}
+              {selected.territory.region}. {selected.territory.description}
             </T>
-            {selected.isMock ? <MockBadge /> : null}
             <Pressable
               accessibilityRole="button"
               onPress={() =>
                 router.push({
                   pathname: "/territorios/[territoryId]",
-                  params: { territoryId: String(selected.id) },
+                  params: { territoryId: String(selected.territory.id) },
                 })
               }
               style={({ pressed }) => ({

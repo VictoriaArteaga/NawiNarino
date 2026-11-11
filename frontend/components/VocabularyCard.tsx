@@ -27,26 +27,27 @@ export function VocabularyCard({ item, tagBackground, tagColor }: VocabularyCard
           flexDirection: "row",
           gap: 14,
           minHeight: 84,
-          paddingHorizontal: 12,
+          paddingHorizontal: 14,
           paddingVertical: 12,
         },
         shadows.soft,
       ]}
     >
-      <GradientBox
-        colors={["#2F6F4E", "#4C8B6C"]}
-        direction="br"
-        style={{
-          alignItems: "center",
-          borderRadius: 25,
-          height: 50,
-          justifyContent: "center",
-          opacity: item.audioUrl ? 1 : 0.55,
-          width: 50,
-        }}
-      >
-        <Icon name="speaker" size={24} color="#FFFFFF" />
-      </GradientBox>
+      {item.audioUrl ? (
+        <GradientBox
+          colors={["#2F6F4E", "#4C8B6C"]}
+          direction="br"
+          style={{
+            alignItems: "center",
+            borderRadius: 25,
+            height: 50,
+            justifyContent: "center",
+            width: 50,
+          }}
+        >
+          <Icon name="speaker" size={24} color="#FFFFFF" />
+        </GradientBox>
+      ) : null}
       <View style={{ flex: 1, minWidth: 0 }}>
         <T f="display" w={800} s={21} lh={25} c={theme.colors.ink} numberOfLines={2}>
           {item.word}

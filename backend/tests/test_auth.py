@@ -120,3 +120,34 @@ def test_cannot_read_progress_of_another_user(client):
     assert client.get("/progress/1").status_code == 401
     assert client.get("/progress/1/language/1").status_code == 401
     assert client.get("/progress/local-demo-user").status_code == 200
+
+
+def test_update_profile_changes_only_the_name(client):
+    token = register(client).json()["accessToken"]
+
+    ok = client.patch("/auth/me", json={"name": "  Ana   María  "}, headers=auth(token))
+    me = client.get("/auth/me", headers=auth(token)).json()
+
+    assert ok.status_code == 200
+    assert ok.json()["name"] == "Ana María"
+    assert me["name"] == "Ana María" and me["email"] == "ana@example.com"
+    assert client.patch("/auth/me", json={"name": " "}, headers=auth(token)).status_code == 422
+    assert client.patch("/auth/me", json={"name": "Ana"}).status_code == 401
+
+
+def test_change_password_requires_the_current_one(client):
+    token = register(client).json()["accessToken"]
+    url = "/auth/change-password"
+
+    wrong = client.post(url, json={"currentPassword": "incorrecta1", "newPassword": "nueva12345"}, headers=auth(token))
+    same = client.post(url, json={"currentPassword": "clave1234", "newPassword": "clave1234"}, headers=auth(token))
+    weak = client.post(url, json={"currentPassword": "clave1234", "newPassword": "solo-letras"}, headers=auth(token))
+    anonymous = client.post(url, json={"currentPassword": "clave1234", "newPassword": "nueva12345"})
+    ok = client.post(url, json={"currentPassword": "clave1234", "newPassword": "nueva12345"}, headers=auth(token))
+
+    assert wrong.status_code == 400 and same.status_code == 400
+    assert weak.status_code == 422 and anonymous.status_code == 401
+    assert ok.status_code == 204
+    assert client.post("/auth/login", json={"email": USER["email"], "password": "clave1234"}).status_code == 401
+    assert client.post("/auth/login", json={"email": USER["email"], "password": "nueva12345"}).status_code == 200
+    assert client.get("/auth/me", headers=auth(token)).status_code == 200  # la sesión actual sigue vigente

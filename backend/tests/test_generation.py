@@ -181,7 +181,8 @@ def test_ollama_down_falls_back_to_extractive_and_says_so(base):
     a = e.ask(Q_DIRECT)
     assert a.generation_mode == "extractive_fallback" and a.explanation is None
     assert a.citations and a.evidence == "direct"  # extractivo seguro con las citas existentes
-    assert any("No se pudo generar la explicación" in n and "no está disponible" in n for n in a.notices)
+    assert not any("No se pudo generar" in n for n in a.notices)  # el usuario ve los extractos, sin avisos técnicos
+    assert a.generation_note.startswith("unavailable")
     assert e.generator_status()["available"] is False and "inaccesible" in e.generator_status()["reason"]
     again = e.ask(Q_DIRECT)  # tras el fallo, se pausa unos segundos en vez de esperar el tiempo de espera otra vez
     assert again.generation_mode == "extractive_fallback"

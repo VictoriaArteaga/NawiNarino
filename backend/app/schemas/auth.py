@@ -52,6 +52,30 @@ class LoginRequest(BaseModel):
         return _normalize_email(value)
 
 
+class UpdateProfileRequest(ResponseSchema):
+    name: Annotated[str, Field(min_length=2, max_length=80)]
+
+    @field_validator("name")
+    @classmethod
+    def clean_name(cls, value: str) -> str:
+        value = " ".join(value.split())
+        if len(value) < 2:
+            raise ValueError("El nombre debe tener al menos 2 caracteres")
+        return value
+
+
+class ChangePasswordRequest(ResponseSchema):
+    current_password: Annotated[str, Field(min_length=1, max_length=128)]
+    new_password: Annotated[str, Field(min_length=8, max_length=128)]
+
+    @field_validator("new_password")
+    @classmethod
+    def strong_enough(cls, value: str) -> str:
+        if not (any(c.isalpha() for c in value) and any(c.isdigit() for c in value)):
+            raise ValueError("La contraseña debe incluir letras y números")
+        return value
+
+
 class UserResponse(ResponseSchema):
     id: int
     name: str

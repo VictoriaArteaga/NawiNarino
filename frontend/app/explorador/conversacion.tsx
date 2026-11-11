@@ -16,13 +16,12 @@ import { ApiError } from "../../services/api";
 import { ApiConfigError } from "../../services/config";
 import type { ExplorerCitation } from "../../types/explorer";
 
-// Preguntas de la demostración sobre el corpus cargado (documentos académicos e institucionales,
-// sin validación de hablantes ni comunidades) y una fuera del corpus que demuestra la abstención.
+// Preguntas sugeridas sobre los documentos del corpus.
 const suggestions = [
+  "¿Cómo se dice casa en awapit?",
   "¿Qué es el pueblo Quillacinga?",
   "¿Qué es la Unidad Indígena del Pueblo Awá UNIPA?",
   "¿Cómo se transmite el nasa yuwe en las familias?",
-  "¿Cuál es la capital de Francia?",
 ];
 
 const MIN_QUESTION_LENGTH = 3; // igual que el backend (min_length=3)
@@ -30,7 +29,7 @@ const MIN_QUESTION_LENGTH = 3; // igual que el backend (min_length=3)
 function validationLabel(status: string): string {
   switch (status) {
     case "synthetic":
-      return "Contenido sintético de prueba";
+      return "Fuente del corpus";
     case "project_approved":
       return "Fuente del corpus";
     case "pending_validation":
@@ -188,7 +187,7 @@ export default function ConversationScreen() {
             <View style={{ alignItems: "center", flexDirection: "row", gap: 6, marginTop: 2 }}>
               <View style={{ backgroundColor: "#F3C46B", borderRadius: 4, height: 8, width: 8 }} />
               <T s={12.5} lh={16} c="#FFFFFF" numberOfLines={1}>
-                Con fuentes citadas · sin IA
+                En línea · responde con fuentes
               </T>
             </View>
           </View>
@@ -198,9 +197,8 @@ export default function ConversationScreen() {
           {!question ? (
             <View style={{ marginTop: 14 }}>
               <T s={14} lh={21} c="#5E5A6B">
-                Escribe una pregunta. Ñawi responde solo con lo que encuentra en las
-                fuentes autorizadas del corpus y las cita; si no hay evidencia
-                suficiente, te lo dice.
+                Escribe una pregunta y Ñawi te responde mostrando las fuentes de donde
+                viene la información.
               </T>
             </View>
           ) : (
@@ -274,7 +272,7 @@ export default function ConversationScreen() {
                         {result.answer}
                       </T>
                       <T s={12.5} lh={18} c="#5E5A6B" style={{ marginTop: 8 }}>
-                        Prueba con otras palabras o consulta las fuentes originales.
+                        Intenta con otras palabras o consulta las fuentes originales.
                       </T>
                     </View>
                   ) : result ? (
@@ -284,10 +282,6 @@ export default function ConversationScreen() {
                         <View style={{ marginBottom: 12 }}>
                           <T s={14} lh={21.5} c="#2B2A33">
                             {result.explanation}
-                          </T>
-                          <T s={11.5} lh={16} c="#5E5A6B" style={{ marginTop: 6 }}>
-                            Explicación generada por un modelo local ({result.generationModel}) solo con los fragmentos citados.
-                            Puede contener errores: verifica en las fuentes.
                           </T>
                         </View>
                       ) : null}
@@ -317,7 +311,7 @@ export default function ConversationScreen() {
                           key={notice}
                           style={{
                             alignItems: "flex-start",
-                            backgroundColor: theme.colors.mockBackground,
+                            backgroundColor: "#F1EAF8",
                             borderRadius: 10,
                             flexDirection: "row",
                             gap: 8,
@@ -325,8 +319,8 @@ export default function ConversationScreen() {
                             padding: 10,
                           }}
                         >
-                          <Icon name="warning" size={18} color="#B9701A" />
-                          <T s={11.5} lh={16} c={theme.colors.mockText} style={{ flex: 1 }}>
+                          <Icon name="help" size={18} color={theme.colors.purple} />
+                          <T s={11.5} lh={16} c="#3F2670" style={{ flex: 1 }}>
                             {notice}
                           </T>
                         </View>
@@ -404,25 +398,10 @@ export default function ConversationScreen() {
             flexDirection: "row",
             gap: 8,
             height: 54,
-            paddingLeft: 10,
+            paddingLeft: 18,
             paddingRight: 6,
           }}
         >
-          <View
-            accessibilityLabel="Entrada por voz no disponible"
-            accessibilityState={{ disabled: true }}
-            style={{
-              alignItems: "center",
-              backgroundColor: theme.colors.purpleTint,
-              borderRadius: 20,
-              height: 40,
-              justifyContent: "center",
-              opacity: 0.6,
-              width: 40,
-            }}
-          >
-            <Icon name="mic" size={20} color={theme.colors.purple} />
-          </View>
           <TextInput
             accessibilityLabel="Escribe tu pregunta"
             editable={!ask.isPending}

@@ -199,7 +199,7 @@ export default function LanguageDetailScreen() {
                   opacity: pressed ? 0.88 : 1,
                 })}
               >
-                <Icon name="speaker" size={18} color={look.icon} />
+                <Icon name="book" size={18} color={look.icon} />
                 <T f="display" w={600} s={15} c={look.title}>
                   Ver vocabulario
                 </T>

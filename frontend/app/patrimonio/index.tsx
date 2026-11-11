@@ -36,21 +36,72 @@ interface ExploreItem {
   alt: string;
 }
 
-const categoryLabels: Record<HeritageCategory, string> = {
-  historical: "Histórico",
-  linguistic: "Lingüístico",
-  cultural: "Cultural",
-  toponymy: "Toponimia",
+/** Qué pestañas muestran cada categoría (como en el diseño, Cultura y Patrimonio comparten registros). */
+const tabCategories: Record<Exclude<Tab, "Lugares">, HeritageCategory[]> = {
+  Cultura: ["cultural", "linguistic"],
+  Patrimonio: ["historical", "toponymy", "cultural"],
 };
 
-const heritageScenes: Record<HeritageCategory, SceneKey> = {
+function heritageTag(category: HeritageCategory): string {
+  switch (category) {
+    case "cultural":
+      return "Cultura · Patrimonio";
+    case "linguistic":
+      return "Cultura";
+    default:
+      return "Patrimonio";
+  }
+}
+
+/** Ilustración por categoría cuando ningún tema concreto coincide. */
+const fallbackScenes: Record<HeritageCategory, SceneKey> = {
   historical: "lajas",
   linguistic: "barniz",
   cultural: "carnaval",
   toponymy: "cocha",
 };
 
-const placeScenes: SceneKey[] = ["cocha", "cumbal", "encano", "lajas"];
+/** Cada ilustración se elige por el contenido del registro, no por su posición en la lista. */
+const territoryScenes: [RegExp, SceneKey][] = [
+  [/awá/i, "selva"],
+  [/sibundoy|inga/i, "valle"],
+  [/a['’]?ingae|putumayo/i, "rio"],
+  [/nasa|tierradentro|cauca/i, "tierradentro"],
+  [/quillacinga/i, "encano"],
+  [/pasto/i, "cumbal"],
+];
+
+const heritageScenesByTopic: [RegExp, SceneKey][] = [
+  [/higra|canasto|tejido/i, "tejido"],
+  [/hijos del sol/i, "sol"],
+  [/luna|lunar/i, "luna"],
+  [/numeraci[oó]n|cuerdas/i, "quipu"],
+  [/numerales|a['’]?ingae/i, "rio"],
+  [/rastros|quillacinga/i, "encano"],
+];
+
+const placeFallbacks: SceneKey[] = ["cocha", "cumbal", "encano", "lajas"];
+
+const sceneAlt: Record<SceneKey, string> = {
+  cocha: "Ilustración de una laguna rodeada de montañas",
+  lajas: "Ilustración de un santuario sobre un cañón con un puente",
+  encano: "Ilustración de un bosque nublado junto a una laguna",
+  cumbal: "Ilustración de un volcán nevado con páramo y una laguna",
+  carnaval: "Ilustración de una máscara mitad negra y mitad blanca",
+  barniz: "Ilustración de un cuenco con motivos florales",
+  selva: "Ilustración de la selva húmeda con un río y palmas",
+  valle: "Ilustración de un valle andino con cultivos y una casa",
+  rio: "Ilustración de un río grande al atardecer con una canoa",
+  tierradentro: "Ilustración de montañas con terrazas de cultivo",
+  sol: "Ilustración de un sol grande sobre las colinas",
+  luna: "Ilustración de la luna sobre montañas de noche",
+  tejido: "Ilustración de un tejido con rombos de colores",
+  quipu: "Ilustración de cuerdas de colores con nudos",
+};
+
+function pickScene(text: string, rules: [RegExp, SceneKey][]): SceneKey | undefined {
+  return rules.find(([pattern]) => pattern.test(text))?.[1];
+}
 
 export default function ExploreScreen() {
   const router = useRouter();
@@ -63,35 +114,49 @@ export default function ExploreScreen() {
 
   let items: ExploreItem[] = [];
   if (tab === "Lugares") {
-    items = (territories.data ?? []).map((territory, index) => ({
-      key: `t${territory.id}`,
-      title: territory.name,
-      subtitle: territory.region,
-      tag: "Territorio",
-      scene: placeScenes[index % placeScenes.length],
-      href: {
-        pathname: "/territorios/[territoryId]",
-        params: { territoryId: String(territory.id) },
-      },
-      alt: "Ilustración de un paisaje de Nariño",
-    }));
-  } else {
-    const wanted: HeritageCategory[] =
-      tab === "Cultura" ? ["cultural", "linguistic"] : ["historical", "toponymy"];
-    items = (heritage.data ?? [])
-      .filter((record) => wanted.includes(record.category))
-      .map((record) => ({
-        key: `h${record.id}`,
-        title: record.title,
-        subtitle: record.dateLabel ?? "Sin fecha",
-        tag: categoryLabels[record.category],
-        scene: heritageScenes[record.category],
+    const priority = (name: string) => {
+      const at = territoryScenes.findIndex(([pattern]) => pattern.test(name));
+      return at === -1 ? territoryScenes.length : at;
+    };
+    const ordered = [...(territories.data ?? [])].sort((a, b) => priority(a.name) - priority(b.name));
+    items = ordered.map((territory, index) => {
+      const scene =
+        pickScene(territory.name, territoryScenes) ?? placeFallbacks[index % placeFallbacks.length];
+      return {
+        key: `t${territory.id}`,
+        title: territory.name,
+        subtitle: territory.region,
+        tag: "Lugar",
+        scene,
         href: {
-          pathname: "/patrimonio/[heritageId]",
-          params: { heritageId: String(record.id) },
+          pathname: "/territorios/[territoryId]",
+          params: { territoryId: String(territory.id) },
         },
-        alt: "Ilustración del registro",
-      }));
+        alt: sceneAlt[scene],
+      };
+    });
+  } else {
+    const regionById = new Map((territories.data ?? []).map((t) => [t.id, t.region]));
+    items = (heritage.data ?? [])
+      .filter((record) => tabCategories[tab].includes(record.category))
+      .map((record) => {
+        const scene = pickScene(record.title, heritageScenesByTopic) ?? fallbackScenes[record.category];
+        return {
+          key: `h${record.id}`,
+          title: record.title,
+          subtitle:
+            (record.territoryId ? regionById.get(record.territoryId) : undefined) ??
+            record.dateLabel ??
+            "Nariño",
+          tag: heritageTag(record.category),
+          scene,
+          href: {
+            pathname: "/patrimonio/[heritageId]",
+            params: { heritageId: String(record.id) },
+          },
+          alt: sceneAlt[scene],
+        };
+      });
   }
 
   const featured = items[0];

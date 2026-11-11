@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { login, register } from "../services/auth.service";
+import { changePassword, login, register, updateProfile } from "../services/auth.service";
 import { useAuthStore } from "../store/authStore";
-import type { LoginPayload, RegisterPayload } from "../types/auth";
+import type { ChangePasswordPayload, LoginPayload, RegisterPayload } from "../types/auth";
 
 export function useLogin() {
   const queryClient = useQueryClient();
@@ -25,6 +25,20 @@ export function useRegister() {
       queryClient.clear();
       setSession(session);
     },
+  });
+}
+
+export function useUpdateProfile() {
+  const setUser = useAuthStore((s) => s.setUser);
+  return useMutation({
+    mutationFn: (name: string) => updateProfile(name),
+    onSuccess: (user) => setUser(user),
+  });
+}
+
+export function useChangePassword() {
+  return useMutation({
+    mutationFn: (payload: ChangePasswordPayload) => changePassword(payload),
   });
 }
 

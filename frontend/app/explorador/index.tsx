@@ -2,18 +2,33 @@ import { useRouter } from "expo-router";
 import { Pressable, View } from "react-native";
 
 import { ExplorerHero } from "../../components/art/ExplorerHero";
+import { SceneArt } from "../../components/art/SceneArt";
+import type { SceneKey } from "../../components/art/placeScenes";
 import { BackButton } from "../../components/CircleButton";
 import { Hero, useHeaderTop } from "../../components/Hero";
-import { Icon, type IconName } from "../../components/Icon";
+import { Icon } from "../../components/Icon";
 import { Mascot } from "../../components/Mascot";
 import { ScreenLayout } from "../../components/ScreenLayout";
 import { T } from "../../components/T";
 import { shadows, theme } from "../../constants/theme";
 
-const suggestions: { text: string; icon: IconName }[] = [
-  { text: "¿Qué es el pueblo Quillacinga?", icon: "pin" },
-  { text: "¿Qué es la Unidad Indígena del Pueblo Awá UNIPA?", icon: "translate" },
-  { text: "¿Cómo se transmite el nasa yuwe en las familias?", icon: "waves" },
+/** Cada pregunta lleva una ilustración que representa su tema. */
+const suggestions: { text: string; scene: SceneKey; alt: string }[] = [
+  {
+    text: "¿Cómo se dice casa en awapit?",
+    scene: "selva",
+    alt: "Ilustración de la selva del pueblo Awá",
+  },
+  {
+    text: "¿Qué es el pueblo Quillacinga?",
+    scene: "encano",
+    alt: "Ilustración de un bosque junto a una laguna",
+  },
+  {
+    text: "¿Qué es la Unidad Indígena del Pueblo Awá UNIPA?",
+    scene: "tejido",
+    alt: "Ilustración de un tejido con rombos de colores",
+  },
 ];
 
 export default function ExplorerScreen() {
@@ -61,7 +76,7 @@ export default function ExplorerScreen() {
       </Hero>
 
       <View style={{ marginTop: -7, paddingHorizontal: 20 }}>
-        {/* Introduction */}
+        {/* Presentación de Ñawi */}
         <View
           style={[
             {
@@ -83,33 +98,13 @@ export default function ExplorerScreen() {
             <T f="display" w={700} s={13.5} c={theme.colors.purpleDeep}>
               Ñawi
             </T>
-            . Busco en los documentos disponibles y te muestro los fragmentos
-            encontrados con su fuente y página. Si no hay evidencia suficiente,
-            te lo digo.
+            , tu asistente virtual. Puedo ayudarte a resolver dudas sobre las
+            lenguas, el territorio y la cultura. Uso información confiable y
+            siempre te muestro las fuentes.
           </T>
         </View>
 
-        {/* Honest notice: demo corpus is synthetic */}
-        <View
-          accessibilityRole="alert"
-          style={{
-            alignItems: "flex-start",
-            backgroundColor: theme.colors.mockBackground,
-            borderRadius: 14,
-            flexDirection: "row",
-            gap: 10,
-            marginTop: 12,
-            padding: 12,
-          }}
-        >
-          <Icon name="warning" size={18} color="#B9701A" />
-          <T w={600} s={12.5} lh={18} c={theme.colors.mockText} style={{ flex: 1 }}>
-            Ñawi busca solo en los documentos cargados y explica con un modelo
-            de lenguaje a partir de sus fragmentos.
-          </T>
-        </View>
-
-        {/* Question box */}
+        {/* Caja de pregunta */}
         <Pressable
           accessibilityHint="Abre la conversación con Ñawi"
           accessibilityLabel="¿Qué te gustaría saber?"
@@ -151,7 +146,7 @@ export default function ExplorerScreen() {
         </Pressable>
 
         <T f="display" w={700} s={16} lh={20} c={theme.colors.purpleDeep} style={{ marginBottom: 10, marginTop: 18 }}>
-          Prueba preguntando
+          Puedes preguntar
         </T>
         <View style={{ gap: 8 }}>
           {suggestions.map((item) => (
@@ -167,24 +162,15 @@ export default function ExplorerScreen() {
                 borderWidth: 1,
                 flexDirection: "row",
                 gap: 12,
-                minHeight: 52,
+                minHeight: 56,
                 opacity: pressed ? 0.9 : 1,
-                paddingLeft: 10,
+                paddingLeft: 8,
                 paddingRight: 12,
                 paddingVertical: 8,
               })}
             >
-              <View
-                style={{
-                  alignItems: "center",
-                  backgroundColor: theme.colors.purpleSoft,
-                  borderRadius: 17,
-                  height: 34,
-                  justifyContent: "center",
-                  width: 34,
-                }}
-              >
-                <Icon name={item.icon} size={19} color={theme.colors.purple} />
+              <View style={{ borderRadius: 12, height: 40, overflow: "hidden", width: 40 }}>
+                <SceneArt scene={item.scene} accessibilityLabel={item.alt} />
               </View>
               <T f="display" w={600} s={14.5} c="#2D1B52" style={{ flex: 1 }}>
                 {item.text}
@@ -194,7 +180,7 @@ export default function ExplorerScreen() {
           ))}
         </View>
 
-        {/* Sources promise */}
+        {/* Promesa de fuentes */}
         <View
           style={{
             alignItems: "center",
@@ -210,32 +196,12 @@ export default function ExplorerScreen() {
           <Icon name="shield" size={26} color={theme.colors.purple} />
           <T s={12.5} lh={17} c="#3F2670" style={{ flex: 1 }}>
             <T f="display" w={700} s={12.5} c="#3F2670">
-              Pensado para citar fuentes.
+              Siempre con fuentes.
             </T>{" "}
-            Cuando esté disponible, cada respuesta indicará de dónde viene la
-            información para que puedas consultarla.
+            Cada respuesta indica de dónde viene la información para que puedas
+            consultarla.
           </T>
         </View>
-        <Pressable
-          accessibilityRole="link"
-          onPress={() => router.push("/fuentes")}
-          style={({ pressed }) => ({
-            alignItems: "center",
-            backgroundColor: theme.colors.purpleSoft,
-            borderRadius: 14,
-            flexDirection: "row",
-            gap: 8,
-            height: 46,
-            justifyContent: "center",
-            marginTop: 12,
-            opacity: pressed ? 0.9 : 1,
-          })}
-        >
-          <Icon name="library" size={18} color={theme.colors.purple} />
-          <T f="display" w={600} s={14.5} c={theme.colors.purpleDeep}>
-            Revisar las fuentes
-          </T>
-        </Pressable>
       </View>
     </ScreenLayout>
   );

@@ -78,14 +78,10 @@ class ExplorerEngine:
             )
         except GenerationError as exc:
             log.warning("Generación no disponible (%s): %s", exc.kind, exc)
-            reason = {
-                "unavailable": "el modelo no está disponible",
-                "timeout": "el modelo tardó demasiado",
-                "invalid": "la explicación generada no pasó la verificación contra los fragmentos",
-            }.get(exc.kind, "falló el modelo")
+            # Sin explicación válida se muestran los extractos con sus citas, sin comentarlo al usuario.
+            # El motivo queda en generation_note (para registros y diagnóstico).
             answer.generation_mode = "extractive_fallback"
             answer.generation_note = f"{exc.kind}: {exc}"
-            answer.notices.append(f"No se pudo generar la explicación ({reason}); se muestran los extractos con sus citas.")
             return answer
         answer.explanation = result.text
         answer.generation_mode = "generated"

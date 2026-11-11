@@ -3,7 +3,7 @@ import { Pressable, View } from "react-native";
 
 import { ProfileHero } from "../components/art/ProfileHero";
 import { Avatar } from "../components/Avatar";
-import { BackButton } from "../components/CircleButton";
+import { BackButton, CircleButton } from "../components/CircleButton";
 import { Hero, useHeaderTop } from "../components/Hero";
 import { Icon, type IconName } from "../components/Icon";
 import { PatternBand } from "../components/PatternBand";
@@ -11,7 +11,7 @@ import { Portrait } from "../components/Portrait";
 import { ScreenLayout } from "../components/ScreenLayout";
 import { T } from "../components/T";
 import { getLanguageTheme, sortLanguages } from "../constants/languages";
-import { theme } from "../constants/theme";
+import { shadows, theme } from "../constants/theme";
 import { useLogout } from "../hooks/useAuth";
 import { useLanguages } from "../hooks/useLanguages";
 import { useLanguageProgress, useProgress } from "../hooks/useLearning";
@@ -52,13 +52,13 @@ export default function ProfileScreen() {
     { label: "Mis actividades", icon: "tasks", bg: "#FBE3D6", color: "#C84A1F", href: "/progreso" },
   ];
   const accountItems: MenuItem[] = [
-    { label: "Ajustes", icon: "sliders", bg: "#DCEAF6", color: "#1D4A75", badge: "Pronto" },
-    { label: "Ayuda y soporte", icon: "help", bg: "#F8E4C0", color: "#8A5200", badge: "Pronto" },
+    { label: "Ajustes", icon: "sliders", bg: "#DCEAF6", color: "#1D4A75", href: "/ajustes" },
     { label: "Cerrar sesión", icon: "logout", bg: "#FBE4E1", color: "#A3281C", danger: true, action: "logout" },
   ];
 
   return (
-    <ScreenLayout bottomSpace={0}>
+    <View style={{ flex: 1 }}>
+    <ScreenLayout bottomSpace={theme.layout.bandHeight + 16}>
       <Hero height={190} art={<ProfileHero preserveAspectRatio="xMidYMin slice" />}>
         <View style={{ left: 14, position: "absolute", top: headerTop }}>
           <BackButton fallback="/inicio" />
@@ -68,11 +68,40 @@ export default function ProfileScreen() {
             Perfil
           </T>
         </View>
+        <View style={{ position: "absolute", right: 14, top: headerTop }}>
+          <CircleButton icon="gear" label="Ajustes" onPress={() => router.push("/ajustes")} iconSize={22} />
+        </View>
       </Hero>
 
       {/* Identity */}
       <View style={{ alignItems: "center", marginTop: -58 }}>
-        <Avatar size={96} ring progress={progress.data?.percentage ?? 0} />
+        <View style={{ height: 96, width: 96 }}>
+          <Avatar size={96} ring progress={progress.data?.percentage ?? 0} />
+          <Pressable
+            accessibilityLabel="Editar perfil"
+            accessibilityRole="button"
+            onPress={() => router.push("/ajustes")}
+            style={({ pressed }) => [
+              {
+                alignItems: "center",
+                backgroundColor: theme.colors.accent,
+                borderColor: theme.colors.canvas,
+                borderRadius: 17,
+                borderWidth: 2,
+                bottom: 0,
+                height: 34,
+                justifyContent: "center",
+                opacity: pressed ? 0.85 : 1,
+                position: "absolute",
+                right: -4,
+                width: 34,
+              },
+              shadows.soft,
+            ]}
+          >
+            <Icon name="edit" size={16} color="#FFFFFF" strokeWidth={2.2} />
+          </Pressable>
+        </View>
         <T f="display" w={800} s={22} lh={27} c={theme.colors.ink} style={{ marginTop: 8 }}>
           {user?.name ?? "Explorador/a Ñawi"}
         </T>
@@ -138,10 +167,12 @@ export default function ProfileScreen() {
         />
       </View>
 
-      <View style={{ marginTop: 16 }}>
-        <PatternBand />
-      </View>
     </ScreenLayout>
+    {/* La franja de patrón queda pegada al borde inferior, como en el diseño. */}
+    <View pointerEvents="none" style={{ bottom: 0, left: 0, position: "absolute", right: 0 }}>
+      <PatternBand />
+    </View>
+    </View>
   );
 }
 
@@ -240,7 +271,7 @@ function MenuCard({
               borderBottomWidth: index === items.length - 1 ? 0 : 1,
               flexDirection: "row",
               gap: 12,
-              height: 50,
+              height: 48,
               opacity: pressed ? 0.85 : 1,
               paddingHorizontal: 14,
             })}

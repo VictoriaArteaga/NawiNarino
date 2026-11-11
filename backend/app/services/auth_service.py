@@ -9,7 +9,14 @@ from app.core.security import (
 )
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
-from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse
+from app.schemas.auth import (
+    ChangePasswordRequest,
+    LoginRequest,
+    RegisterRequest,
+    TokenResponse,
+    UpdateProfileRequest,
+    UserResponse,
+)
 
 
 def _token_for(user: User) -> TokenResponse:
@@ -47,6 +54,24 @@ class AuthService:
                 detail="Correo o contraseña incorrectos",
             )
         return _token_for(user)
+
+    def update_profile(self, user: User, data: UpdateProfileRequest) -> User:
+        user.name = data.name
+        return self.users.save(user)
+
+    def change_password(self, user: User, data: ChangePasswordRequest) -> None:
+        if not verify_password(data.current_password, user.password_hash):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="La contraseña actual no es correcta",
+            )
+        if data.new_password == data.current_password:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="La contraseña nueva debe ser distinta de la actual",
+            )
+        user.password_hash = hash_password(data.new_password)
+        self.users.save(user)
 
     @staticmethod
     def _email_taken() -> HTTPException:

@@ -193,23 +193,26 @@ export default function HomeScreen() {
                 flexDirection: "row",
                 gap: 10,
                 height: 52,
-                paddingHorizontal: 8,
+                paddingLeft: wordOfTheDay?.audioUrl ? 8 : 16,
+                paddingRight: 8,
               },
               shadows.float,
             ]}
           >
-            <View
-              style={{
-                alignItems: "center",
-                backgroundColor: theme.colors.primary,
-                borderRadius: 20,
-                height: 40,
-                justifyContent: "center",
-                width: 40,
-              }}
-            >
-              <Icon name="speaker" size={20} color="#FFFFFF" />
-            </View>
+            {wordOfTheDay?.audioUrl ? (
+              <View
+                style={{
+                  alignItems: "center",
+                  backgroundColor: theme.colors.primary,
+                  borderRadius: 20,
+                  height: 40,
+                  justifyContent: "center",
+                  width: 40,
+                }}
+              >
+                <Icon name="speaker" size={20} color="#FFFFFF" />
+              </View>
+            ) : null}
             <View style={{ flex: 1 }}>
               <T f="body" w={700} s={11} lh={13} c={theme.colors.muted} ls={0.3}>
                 PALABRA DEL DÍA

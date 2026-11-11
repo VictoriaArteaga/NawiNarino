@@ -1,0 +1,287 @@
+{
+ "peoples": [
+  {
+   "key": "awa",
+   "label": "Awá Pit",
+   "color": "#3F8A55",
+   "livingLanguage": true,
+   "clip": "nar",
+   "source": "Diccionario Awapit-Español (UNIPA), p. 15: Tumaco, Ricaurte y Barbacoas; PEC UNIPA (2019): La Planada, Gran Sábalo, Llorente",
+   "shapes": [
+    [
+     [
+      86.0,
+      196.0
+     ],
+     [
+      137.2,
+      186.7
+     ],
+     [
+      185.2,
+      211.5
+     ],
+     [
+      210.8,
+      264.2
+     ],
+     [
+      217.2,
+      310.7
+     ],
+     [
+      191.6,
+      335.5
+     ],
+     [
+      162.8,
+      326.2
+     ],
+     [
+      130.8,
+      282.8
+     ],
+     [
+      97.2,
+      254.9
+     ]
+    ]
+   ],
+   "pin": [
+    121.2,
+    236.3
+   ]
+  },
+  {
+   "key": "pasto",
+   "label": "Pasto",
+   "color": "#D96A2B",
+   "livingLanguage": false,
+   "clip": "nar",
+   "source": "Caracterización del pueblo Pasto (Ministerio de Cultura): Aldana, Córdoba, Cuaspud, Cumbal, Guachucal, Ipiales, Mallama, Potosí, Santacruz y Túquerres",
+   "shapes": [
+    [
+     [
+      210.8,
+      304.5
+     ],
+     [
+      252.4,
+      301.4
+     ],
+     [
+      278.0,
+      332.4
+     ],
+     [
+      278.0,
+      366.5
+     ],
+     [
+      262.0,
+      388.2
+     ],
+     [
+      223.6,
+      388.2
+     ],
+     [
+      191.6,
+      366.5
+     ],
+     [
+      191.6,
+      335.5
+     ]
+    ]
+   ],
+   "pin": [
+    242.8,
+    347.9
+   ]
+  },
+  {
+   "key": "quillacinga",
+   "label": "Quillacinga",
+   "color": "#C0527A",
+   "livingLanguage": false,
+   "clip": "nar",
+   "source": "Caracterización del pueblo Quillacinga (Ministerio de Cultura): Pasto, La Florida, Tangua y La Cruz; Refugio del Sol (El Encano)",
+   "shapes": [
+    [
+     [
+      265.2,
+      285.9
+     ],
+     [
+      303.6,
+      282.8
+     ],
+     [
+      329.2,
+      304.5
+     ],
+     [
+      332.4,
+      335.5
+     ],
+     [
+      300.4,
+      346.4
+     ],
+     [
+      274.8,
+      340.2
+     ],
+     [
+      265.2,
+      313.8
+     ]
+    ],
+    [
+     [
+      345.2,
+      230.1
+     ],
+     [
+      367.6,
+      239.4
+     ],
+     [
+      370.8,
+      261.1
+     ],
+     [
+      351.6,
+      267.3
+     ]
+    ]
+   ],
+   "pin": [
+    300.4,
+    312.3
+   ]
+  },
+  {
+   "key": "inga",
+   "label": "Inga",
+   "color": "#EDB23C",
+   "livingLanguage": true,
+   "clip": "any",
+   "source": "Becerra (2023): Santiago, Colón, San Andrés, Yunguillo, Villagarzón y Mocoa (Putumayo), Aponte (Nariño); Chasoy et al.: Valle del Sibundoy",
+   "shapes": [
+    [
+     [
+      313.2,
+      248.7
+     ],
+     [
+      332.4,
+      245.6
+     ],
+     [
+      340.4,
+      264.2
+     ],
+     [
+      329.2,
+      276.6
+     ],
+     [
+      313.2,
+      267.3
+     ]
+    ],
+    [
+     [
+      335.6,
+      298.3
+     ],
+     [
+      364.4,
+      298.3
+     ],
+     [
+      374.0,
+      326.2
+     ],
+     [
+      345.2,
+      335.5
+     ]
+    ]
+   ],
+   "pin": [
+    353.2,
+    315.4
+   ]
+  },
+  {
+   "key": "aingae",
+   "label": "A'ingae",
+   "color": "#8B66BE",
+   "livingLanguage": true,
+   "clip": "any",
+   "source": "Fischer y Hengeveld (2023), p. 2: Putumayo y Nariño, ríos San Miguel, Guamués y Putumayo",
+   "shapes": [
+    [
+     [
+      335.6,
+      409.9
+     ],
+     [
+      377.2,
+      400.6
+     ],
+     [
+      386.8,
+      444.0
+     ],
+     [
+      354.8,
+      459.5
+     ],
+     [
+      329.2,
+      437.8
+     ]
+    ],
+    [
+     [
+      255.6,
+      406.8
+     ],
+     [
+      297.2,
+      400.6
+     ],
+     [
+      306.8,
+      437.8
+     ],
+     [
+      271.6,
+      447.1
+     ]
+    ]
+   ],
+   "pin": [
+    356.4,
+    428.5
+   ]
+  },
+  {
+   "key": "nasa",
+   "label": "Nasa Yuwe",
+   "color": "#4B8FC7",
+   "livingLanguage": true,
+   "clip": "none",
+   "source": "Ministerio de Cultura, Lenguas vivas vol. IV: departamento del Cauca (Tierradentro)",
+   "shapes": [],
+   "pin": [
+    372,
+    38
+   ]
+  }
+ ]
+}
